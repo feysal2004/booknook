@@ -19,7 +19,27 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    books:[
+    {
+      title:"book test",
+      author:"author test",
+      description:"descrciption test",
+      series:"series test",
+      book_id:"book id test",
+      release_date:"release date test"
+
+
+    }
+    ],
+
+    messages:[
+      
+        
+      
+
+
+    ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +57,17 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+
+    ADD_BOOK(state,book){
+      state.books.push(book);
+    },
+
+    DELETE_MESSAGE(state,id){
+      state.forum.messages.splice(id)
+
     }
+
+
   }
 })
