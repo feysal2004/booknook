@@ -36,14 +36,14 @@ export default {
         if(response.status === 200) {
           this.$router.push( {
             name: 'Messages',
-            params: { id: message.topicId}
+           
           })
         }
       }).catch(error => console.error(error))
      
     }
   },
-  created() {
+  createForumMessage() {
     forumService
       .get(this.messageId)
       .then(response => {

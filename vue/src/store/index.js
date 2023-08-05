@@ -33,13 +33,12 @@ export default new Vuex.Store({
     }
     ],
 
-    messages:[
+    // messages:[
       
         
-      
+    
 
-
-    ]
+    // ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -64,7 +63,7 @@ export default new Vuex.Store({
     },
 
     DELETE_MESSAGE(state,id){
-      state.forum.messages.splice(id)
+      state.messages.splice(id)
 
     }
 

@@ -1,17 +1,17 @@
 <template>
   <div>
-<forum/>
+<Forum/>
 
 
   </div>
 </template>
 
 <script>
-import forum from "../components/Forum.vue"
+import Forum from "../components/Forum.vue"
 export default {
-    
+
     components:{
-        forum
+        Forum
     }
 
 }

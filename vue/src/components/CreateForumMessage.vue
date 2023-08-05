@@ -39,7 +39,7 @@ export default {
         if(response.status === 201) {
           this.$router.push( {
             name: 'Messages',
-            params: { id: this.topicId }
+            params: { id: this.messageid }
           })
         }
       }).catch( error => console.error(error))
