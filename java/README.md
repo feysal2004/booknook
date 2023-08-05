@@ -8,7 +8,7 @@ From a terminal session, execute the following commands:
 
 ```
 cd <project-root>/database/
-./create.sh
+winpty sh create.sh
 ```
 
 This Bash script drops the existing database, if necessary, creates a new database named `final_capstone`, and runs the various SQL scripts in the correct order. You don't need to modify the Bash script unless you want to change the database name.
