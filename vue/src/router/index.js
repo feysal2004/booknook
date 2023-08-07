@@ -60,27 +60,47 @@ const router = new Router({
     {
       path:"/AddBook",
       name:"AddBook",
-      component: AddBook
+      component: AddBook,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path:"/Forum",
       name:"Forum",
-      component: Forum
+      component: Forum,
+      meta: {
+        requiresAuth: true
+      }
 
     },
     {
       path:"/MyBookShelf",
       name:"MyBookShelf",
-      component: MyBookShelf
+      component: MyBookShelf,
+      meta: {
+        requiresAuth: true
+      }
 
     },
     {
       path:"/BookLibrary",
       name:"BookLibrary",
-      component: BookLibrary
+      component: BookLibrary,
+      meta: {
+        requiresAuth: true
+      }
 
     },
+<<<<<<< HEAD
   
+=======
+    
+      
+
+
+    
+>>>>>>> 8960b6c01b4e12bd3bee012cd53e11168be013e2
   ]
 })
 

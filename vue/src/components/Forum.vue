@@ -2,6 +2,10 @@
   <div class="add-new-message">
     <button class="btnAddMessage"> Add Message</button>
     <router-link :to="{ name: 'postMessage' }">Create New Post</router-link>
+      
+      <button class ="btnAddMessage"> Add Message</button>
+      
+      <router-link :to="{name:'postMessage'}">Create New Post</router-link>
 
     <div>
       <h3 class="message-title">{{ message.title }}</h3>
@@ -14,27 +18,13 @@
 </template>
 
 <script>
-import forumService from '../services/ForumService';
+export default{
+ //import forumService from '../services/ForumService'
 
-export default {
-  name: 'MessageItem', 
-  props: {
-    message: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    deleteMessage(id) {
-      forumService.delete(id)
-        .then((response) => {
-          if (response.status === 200) {
-            this.$store.commit('DELETE_MESSAGE', id);
-          }
-        })
-        .catch((error) => console.error(error));
-    },
-  },
+    name:"forumService",
+      methods: {
+
+      }
 };
 </script>
 
