@@ -1,6 +1,5 @@
 <template>
   <div class="add-new-message">
-    
       
       <button class ="btnAddMessage"> Add Message</button>
       
@@ -26,23 +25,12 @@
 </template>
 
 <script>
- import forumService from '../services/ForumService'
+ //import forumService from '../services/ForumService'
  export default {
 
     name:"forumService",
-    props: {
-      message:{
-        type: Object,
-        required:true,
-      },
-    }, 
      methods: {
-    delete(id) {
-       forumService.delete(id).then( response => {
-        if(response.status == 200) {
-          this.$store.commit("DELETE_MESSAGE", id);
-        }
-      }).catch(error => console.error(error))}
+   
   }
 
 
