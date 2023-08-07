@@ -6,9 +6,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import AddBook from '../views/AddBook.vue'
-import Forum from '../views/Forum.vue'
 import MyBookShelf from '../views/MyBookShelf.vue'
 import BookLibrary from '../views/BookLibrary.vue'
+import Topic from '../views/Topic.vue'
 
 Vue.use(Router)
 
@@ -65,15 +65,7 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path:"/Forum",
-      name:"Forum",
-      component: Forum,
-      meta: {
-        requiresAuth: true
-      }
 
-    },
     {
       path:"/MyBookShelf",
       name:"MyBookShelf",
@@ -92,7 +84,14 @@ const router = new Router({
       }
 
     },
-  
+    {
+      path: '/topic',
+      name: 'Topic',
+      component: Topic,
+      meta: {
+        requiresAuth: true
+      }
+    },
 
   ]
 })

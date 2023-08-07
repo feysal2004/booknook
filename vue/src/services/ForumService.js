@@ -12,7 +12,6 @@ const http = axios.create({
 
     createForumMessage(){
         return http.post(`/forum`)
-
     },
 
     postMessage(message){
