@@ -9,6 +9,7 @@ import AddBook from '../views/AddBook.vue'
 import MyBookShelf from '../views/MyBookShelf.vue'
 import BookLibrary from '../views/BookLibrary.vue'
 import Topic from '../views/Topic.vue'
+import ForumMessages from '../views/ForumMessages.vue'
 
 Vue.use(Router)
 
@@ -100,7 +101,11 @@ const router = new Router({
         requiresAuth: true
       }
     },
-
+    {
+      path: '/topics/:id', //change to message
+      name: 'forumMessages',
+      component: ForumMessages
+    },
   ]
 })
 

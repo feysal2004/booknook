@@ -14,4 +14,6 @@ public interface ForumTopicDao {
 
     Topic createForumTopic(String topicName);
 
+    void deleteForumTopic(int topicId);
+
 }

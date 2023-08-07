@@ -24,7 +24,7 @@ public class JdbcForumTopic implements ForumTopicDao {
     @Override
     public List<Topic> getTopics() {
         List<Topic> topics = new ArrayList<>();
-        String sql = "SELECT topic_name FROM topics;";
+        String sql = "SELECT topic_name, topic_id FROM topics;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -45,13 +45,23 @@ public class JdbcForumTopic implements ForumTopicDao {
 
     @Override
     public Topic createForumTopic(String topicName) {
-        return null;
+        String sql = "INSERT INTO topics (topic_name) VALUES (?) RETURNING topic_id;";
+        int newTopicId = jdbcTemplate.queryForObject(sql, int.class, topicName);
+        Topic newTopic = new Topic(topicName, newTopicId);
+
+        return newTopic;
+    }
+
+    @Override
+    public void deleteForumTopic(int topicId) {
+        String sql = "DELETE FROM topics WHERE topic_id = (?) ";
+        jdbcTemplate.queryForObject(sql, int.class, topicId);
     }
 
     private Topic mapRowToTopic(SqlRowSet rs) {
         Topic topic = new Topic();
         topic.setTopicName(rs.getString("topic_name"));
-        // topic.setTopicId(rs.getInt("topic_id"));
+        topic.setTopicId(rs.getInt("topic_id"));
         return topic;
     }
 }

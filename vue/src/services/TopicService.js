@@ -14,7 +14,7 @@ export default {
     return http.get(`/topics/${id}`);
   },
 
-  create(topic) {
+  createNewForumTopic(topic) {
     return http.post('/topics', topic);
   },
 

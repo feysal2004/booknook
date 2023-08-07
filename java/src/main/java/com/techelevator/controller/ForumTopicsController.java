@@ -4,10 +4,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.ForumTopicDao;
 import com.techelevator.model.Topic;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,14 @@ public class ForumTopicsController {
         return forumTopicDao.getTopics();
     }
 
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public void createNewForumTopic(@RequestBody Topic newTopic) {
+        forumTopicDao.createForumTopic(newTopic.getTopicName());
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.DELETE)
+    public void deleteForumTopic(@RequestBody Topic topic) {
+        forumTopicDao.deleteForumTopic(topic.getTopicId());
+    }
 
 }

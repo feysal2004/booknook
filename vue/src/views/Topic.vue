@@ -1,6 +1,6 @@
 <template>
   <div>
-<Topic/>
+    <Topic/>
 
 
   </div>
