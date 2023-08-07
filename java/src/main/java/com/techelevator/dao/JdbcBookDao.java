@@ -21,25 +21,16 @@ public class JdbcBookDao implements BookDao {
         return null;
     }
 
-    @Override
-    public Book addBook() {
-        return null;
-    }
 
     @Override
-    public Book addNewBook(String title, String author, String authorSecond, String description, String series, Date release_date, Date date_added_to_collection) {
-        return null;
-    }
-
-    @Override
-    public Book addNewBook(String title, String author, String authorSecond,
-                           String description, String series, int book_id, Date release_date,
+    public Book addNewBook(String book_name, String author, String author_second,
+                           String description, String series, Date release_date,
                            Date date_added_to_collection) {
-        String sql = "INSERT INTO books_table (title, author, description, release_date)" +
-                " VALUES (?, ?, ?, ?) RETURNING book_id";
-        int newBookId = jdbcTemplate.queryForObject(sql, int.class, title, author, description, release_date);
-        Book newBook = new Book(title, author, authorSecond, description, series, newBookId, release_date, date_added_to_collection);
-        return null;
+        String sql = "INSERT INTO books_table (book_name, author, author_second, description, series, release_date, date_added_to_collection)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING book_id";
+        int newBookId = jdbcTemplate.queryForObject(sql, int.class, book_name, author, author_second, description, series, release_date, date_added_to_collection);
+        Book newBook = new Book(book_name, author, author_second, description, series, newBookId, release_date, date_added_to_collection);
+        return newBook;
     }
 
 

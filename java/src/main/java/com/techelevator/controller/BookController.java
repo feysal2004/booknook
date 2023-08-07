@@ -20,7 +20,7 @@ public class BookController {
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     public void addNewBook(@RequestBody Book newBook) {
-        bookDao.addNewBook(newBook.getTitle(), newBook.getAuthor(), newBook.getAuthorSecond(), newBook.getDescription(), newBook.getSeries(), newBook.getRelease_date(), newBook.getDate_added_to_collection())
+        bookDao.addNewBook(newBook.getBookName(), newBook.getAuthor(), newBook.getAuthorSecond(), newBook.getDescription(), newBook.getSeries(), newBook.getRelease_date(), newBook.getDate_added_to_collection());
     }
 
 

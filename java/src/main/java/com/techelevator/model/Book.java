@@ -3,9 +3,9 @@ package com.techelevator.model;
 import java.util.Date;
 
 public class Book {
-    public String title;
+    public String book_name;
     public String author;
-    public String authorSecond;
+    public String author_second;
     public String description;
     public String series;
     public int book_id;
@@ -13,12 +13,12 @@ public class Book {
     public Date date_added_to_collection;
 
 
-    public Book(String title, String author, String authorSecond,
+    public Book(String book_name, String author, String author_second,
                 String description, String series, int book_id, Date release_date,
                 Date date_added_to_collection) {
-        this.title = title;
+        this.book_name = book_name;
         this.author = author;
-        this.authorSecond = authorSecond;
+        this.author_second = author_second;
         this.description = description;
         this.series = series;
         this.book_id = book_id;
@@ -30,12 +30,12 @@ public class Book {
 
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookName() {
+        return book_name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookName(String book_name) {
+        this.book_name = book_name;
     }
 
     public String getAuthor() {
@@ -47,11 +47,11 @@ public class Book {
     }
 
     public String getAuthorSecond() {
-        return authorSecond;
+        return author_second;
     }
 
-    public void setAuthorSecond(String authorSecond) {
-        this.authorSecond = authorSecond;
+    public void setAuthorSecond(String author_second) {
+        this.author_second = author_second;
     }
 
     public String getDescription() {
