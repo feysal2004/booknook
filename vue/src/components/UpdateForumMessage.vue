@@ -32,40 +32,46 @@ export default {
         title: this.title,
         messageText: this.messageText
       };
-      forumService.editMessage(message.id, message).then( response => {
-        if(response.status === 200) {
-          this.$router.push( {
-            name: 'Messages',
-           
-          })
-        }
-      }).catch(error => console.error(error))
-     
+      forumService
+        .editMessage(message.id, message)
+        .then((response) => {
+          if (response.status === 200) {
+            this.$router.push({
+              name: 'Messages',
+              params: { id: this.topicId }
+            });
+          }
+        })
+        .catch((error) => console.error(error));
+    },
+    createForumMessage() {
+      forumService
+        .getForumMessageId(this.messageId)
+        .then((response) => {
+          this.title = response.data.title;
+          this.messageText = response.data.messageText;
+        })
+        .catch((error) => {
+          if (error.response.status == 404) {
+            this.$router.push({ name: 'NotFound' });
+          }
+        });
+    },
+    deleteMessage(id) {
+      forumService
+        .delete(id)
+        .then((response) => {
+          if (response.status == 200) {
+            this.$store.commit('DELETE_MESSAGE', id);
+          }
+        })
+        .catch((error) => console.error(error));
     }
   },
-  createForumMessage() {
-    forumService
-      .get(this.messageId)
-      .then(response => {
-        this.$store.commit("SET_ACTIVE_MESSAGE", response.data);
-        this.title = response.data.title;
-        this.messageText = response.data.messageText;
-      })
-      .catch(error => {
-        if (error.response.status == 404) {
-          this.$router.push({name: 'NotFound'});
-        }
-      });
-  },
-  deleteMessage(id) {
-       forumService.delete(id).then( response => {
-        if(response.status == 200) {
-          this.$store.commit("DELETE_MESSAGE", id);
-        }
-      }).catch(error => console.error(error))}
+  created() {
+    this.createForumMessage();
   }
-
-
+};
 </script>
 
 <style>
