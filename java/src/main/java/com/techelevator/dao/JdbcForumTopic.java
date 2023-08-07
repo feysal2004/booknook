@@ -51,7 +51,7 @@ public class JdbcForumTopic implements ForumTopicDao {
     private Topic mapRowToTopic(SqlRowSet rs) {
         Topic topic = new Topic();
         topic.setTopicName(rs.getString("topic_name"));
-        topic.setTopicId(rs.getInt("topic_id"));
+        // topic.setTopicId(rs.getInt("topic_id"));
         return topic;
     }
 }

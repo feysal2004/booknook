@@ -29,12 +29,13 @@ CREATE TABLE genre_table (
 	genre_name varchar(50) NOT NULL
 );
 
+CREATE SEQUENCE topic_id_serial;
 CREATE TABLE topics (
 	
 	topic_name varchar (50) not null,
-	topic_id serial not null
+	topic_id int not null DEFAULT nextval('topic_id_serial')
 );
 
-
+INSERT INTO topics (topic_name) VALUES ('test name');
 
 COMMIT TRANSACTION;
