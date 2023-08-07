@@ -92,6 +92,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/topic/:id',
+      name: 'TopicId',
+      component: Topic,
+      meta: {
+        requiresAuth: true
+      }
+    },
 
   ]
 })

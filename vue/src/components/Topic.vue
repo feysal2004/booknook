@@ -14,7 +14,8 @@
           <td width="80%">
             <router-link
               v-bind:to="{ name: 'Messages', params: { id: topic.id } }"
-            >{{ topic.title }}</router-link>
+            > {{ topic.topicName }} 
+            </router-link>
           </td>
           <td>
             <router-link :to="{ name: 'EditTopic', params: {id: topic.id} }">Edit</router-link>
@@ -33,6 +34,11 @@ import topicService from "../services/TopicService.js";
 
 export default {
   name: "topic-list",
+  data () {
+    return {
+      topics: []
+    }
+  },
   methods: {
     getTopics() {
       topicService.list().then(response => {
@@ -54,6 +60,8 @@ export default {
   },
   computed: {
     filteredTopics() {
+      console.log("hello")
+      console.log(this.$store.state.topics)
       return this.$store.state.topics;
     }
   }

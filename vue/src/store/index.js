@@ -20,6 +20,11 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     topics: [],
+    activeTopic: {
+      id: 0,
+      title: "",
+      messages: []
+    },
     user: currentUser || {},
     books:[
     {
@@ -29,21 +34,17 @@ export default new Vuex.Store({
       series:"series test",
       book_id:"book id test",
       release_date:"release date test"
-
-
     }
+
     ],
 
-    // messages:[
-      
-        
-    
-
-    // ]
   },
   mutations: {
     SET_TOPICS(state, data) {
       state.topics = data;
+    },
+    SET_ACTIVE_TOPIC(state, data) {
+      state.activeTopic = data;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
