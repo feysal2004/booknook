@@ -80,11 +80,7 @@ const router = new Router({
       component: BookLibrary
 
     },
-    {
-      
-
-
-    }
+  
   ]
 })
 
