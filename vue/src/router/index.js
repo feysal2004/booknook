@@ -92,15 +92,8 @@ const router = new Router({
       }
 
     },
-<<<<<<< HEAD
   
-=======
-    
-      
 
-
-    
->>>>>>> 8960b6c01b4e12bd3bee012cd53e11168be013e2
   ]
 })
 
