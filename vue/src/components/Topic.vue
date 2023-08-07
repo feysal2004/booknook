@@ -1,5 +1,6 @@
 <template>
   <div class="topic-list">
+    <h1>Forum Board</h1>
     <table>
       <thead>
         <tr>
@@ -9,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="topic in this.$store.state.topics" v-bind:key="topic.id">
+        <tr v-for="topic in filteredTopics" v-bind:key="topic.id">
           <td width="80%">
             <router-link
               v-bind:to="{ name: 'Messages', params: { id: topic.id } }"
@@ -50,6 +51,11 @@ export default {
   },
   created() {
     this.getTopics();
+  },
+  computed: {
+    filteredTopics() {
+      return this.$store.state.topics;
+    }
   }
 };
 </script>

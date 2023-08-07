@@ -19,6 +19,7 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
+    topics: [],
     user: currentUser || {},
     books:[
     {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     // ]
   },
   mutations: {
+    SET_TOPICS(state, data) {
+      state.topics = data;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);

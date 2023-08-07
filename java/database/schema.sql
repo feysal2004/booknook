@@ -20,8 +20,6 @@ book_name varchar(200) NOT NULL,
 	book_id serial NOT NULL,
 	release_date DATE NOT NULL,
 	date_added_to_collection DATE NULL
-	
-	
 );
 
 CREATE TABLE genre_table (
@@ -29,8 +27,14 @@ CREATE TABLE genre_table (
 	book_id serial NOT NULL,
 	genre_id serial NOT NULL,
 	genre_name varchar(50) NOT NULL
-
-
 );
+
+CREATE TABLE topics (
+	
+	topic_name varchar (50) not null,
+	topic_id serial not null
+);
+
+
 
 COMMIT TRANSACTION;
