@@ -43,9 +43,6 @@ export default new Vuex.Store({
     SET_TOPICS(state, data) {
       state.topics = data;
     },
-    SET_ACTIVE_TOPIC(state, data) {
-      state.activeTopic = data;
-    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
@@ -66,12 +63,5 @@ export default new Vuex.Store({
     ADD_BOOK(state,book){
       state.books.push(book);
     },
-
-    DELETE_MESSAGE(state,id){
-      state.messages.splice(id)
-
-    }
-
-
   }
 })

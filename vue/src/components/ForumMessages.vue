@@ -9,9 +9,7 @@
           <textarea name="newPost" id="newMessage" cols="70" rows="8"></textarea>
       </div>
       <div>
-        <!-- <router-link  >
-
-        </router-link> -->
+   
       </div>
   </form>
 </template>
@@ -21,7 +19,7 @@ import forumService from '../services/ForumService';
 import topicPage from '../components/Topic.vue';
 
 export default {
-  name: "update-message",
+  
   props: ["topicId", "messageId"],
   data() {
     return {
@@ -30,19 +28,7 @@ export default {
     };
   },
   methods: {
-    // createForumMessage() {
-    //   forumService
-    //     .getForumMessageId(this.messageId)
-    //     .then((response) => {
-    //       this.title = response.data.title;
-    //       this.messageText = response.data.messageText;
-    //     })
-    //     .catch((error) => {
-    //       if (error.response.status == 404) {
-    //         this.$router.push({ name: 'NotFound' });
-    //       }
-    //     });
-    // },
+    
     getMessages(){
       forumService.messageList()
     },
@@ -51,10 +37,7 @@ export default {
     }
     
   },
-  // created() {
-  //   this.createForumMessage();
-    
-  // }
+ 
   
 };
 </script>

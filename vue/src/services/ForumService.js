@@ -23,15 +23,6 @@ const http = axios.create({
 
     },
 
-    delete(id){
-        return http.post(`/topic/message/${id}`)
-
-    },
-    editMessage(id,message){
-        return http.put(`/topic/message/${id}`, message)
-
-    },
-
 
 
 

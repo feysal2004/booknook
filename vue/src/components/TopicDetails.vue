@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import topicService from "../services/TopicService.js";
-import forumService from "../services/ForumService.js";
+
 
 export default {
   name: "topic-details",
@@ -31,26 +30,7 @@ export default {
     topicId: Number
   },
   methods: {
-    deleteMessage(id) {
-      forumService.delete(id)
-        .then((response) => {
-          if (response.status === 200) {
-            this.$store.commit("DELETE_MESSAGE", id);
-          } 
-        })
-    }
   },
-  created() {
-    topicService
-      .get(this.topicId)
-      .then(response => {
-        this.$store.commit("SET_ACTIVE_TOPIC", response.data);
-      })
-      .catch(error => {
-        if (error.response.status == 404) {
-          this.$router.push({name: 'NotFound'});
-        }
-      });
-  }
+ 
 };
 </script>

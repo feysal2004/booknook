@@ -10,8 +10,6 @@
       <thead>
         <tr>
           <th>Topics</th>
-          <!-- <th>Edit</th>
-          <th>Delete</th> -->
         </tr>
       </thead>
       <tbody>
@@ -22,12 +20,6 @@
                {{ topic.topicName }} 
             </router-link>
           </td>
-          <!-- <td>
-            <router-link :to="{ name: 'EditTopic', params: {id: topic.topicId} }">Edit</router-link>
-          </td>
-          <td>
-            <a href="#" v-on:click="deleteTopic(topic.topicId)">Delete</a>
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -60,15 +52,6 @@ export default {
       this.getTopics();
        
     },
-    // deleteTopic(topicId) {
-    //   topicService.delete(topicId)
-    //     .then(() => {
-    //       this.$store.commit('SET_TOPICS', this.$store.state.topics.filter(topic => topic.topicId !== topicId));
-    //     })
-    //     .catch(() => {
-    //       alert('Failed to delete topic. Please try again.');
-    //     });
-    // }
   },
   created() {
     this.getTopics();
