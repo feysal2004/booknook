@@ -7,7 +7,7 @@
     <div class="field">
       <h4>Add new message:</h4>
       <textarea name="newPost" id="newMessage" cols="70" rows="8"></textarea>
-      <!-- <button v-on:click=""></button> -->
+      <button v-on:click="saveMessage()">Add Message</button>
     </div>
     <div>
       <table>
@@ -51,6 +51,11 @@ export default {
     },
     getTopicName() {
       forumService;
+    },
+    saveMessage() {
+      forumService.createForumMessage(this.message);
+     
+       
     },
   },
   created(){
