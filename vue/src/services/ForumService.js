@@ -22,6 +22,9 @@ const http = axios.create({
         return http.post(`/topic/message`, message)
 
     },
+    getTopicName(topicId){
+        return http.get(`/topic/message/name/${topicId}`);
+    }
 
 
 

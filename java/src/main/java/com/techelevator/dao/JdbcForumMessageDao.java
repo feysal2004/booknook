@@ -37,6 +37,17 @@ public class JdbcForumMessageDao implements ForumMessageDao {
         return messages;
     }
 
+    @Override
+    public String getTopicName(int topicId){
+        String topicName = "";
+        String sql = "SELECT topic_name FROM topics WHERE topic_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, topicId);
+        while(results.next()){
+            topicName = results.getString("topic_name");
+        }
+        return topicName;
+    }
+
     private ForumMessage mapRowToMessage(SqlRowSet rs) {
         ForumMessage forumMessage = new ForumMessage();
         forumMessage.setMessage_id(rs.getInt("message_id"));

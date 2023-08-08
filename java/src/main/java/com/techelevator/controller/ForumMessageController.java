@@ -4,10 +4,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.ForumMessageDao;
 import com.techelevator.model.ForumMessage;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,11 @@ public class ForumMessageController {
     @RequestMapping(path="", method = RequestMethod.GET)
     public List<ForumMessage> getListOfMessages(int topicId) {
         return forumMessageDao.getListOfMessages(topicId);
+    }
+
+    @RequestMapping(path="/name/{topicId}", method = RequestMethod.GET)
+    public String getTopicName(@PathVariable int topicId){
+        return forumMessageDao.getTopicName(topicId);
     }
 
 }
