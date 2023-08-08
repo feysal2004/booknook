@@ -10,29 +10,70 @@
 
 
 
-    <div class="app-name">App Name</div>
+  <div class="app-name">
+    <span class="app-name-text">App</span>
+    <span class="app-name-accent">Name</span>
+  </div>
+
+    <nav class="nav">
+                     <!-- NAVIGATION MENU CODE -->
+        <nav class="nav">
+        <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-home-60.png" alt="Home">
+            <span class="nav-text">Home</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum">
+          <span>Forum</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
+          <span>My BookShelf</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+        <img src="../assets/icons8-library-50.png" alt="BookLibrary">
+          <span>Book Library</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'AddBook' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <span>Add Book</span>
+        </div>
+    </nav>
+    </nav>
+
 
 
 
     <main class="main">
-      <router-view />
-        <nav class="nav">
-        <router-link v-bind:to="{ name: 'home' }"  v-if="$store.state.token != ''"><img src="../assests/icons8-home-60.png" alt="Home"></router-link>
-        <router-link v-bind:to ="{name:'Topic'}"> Forum </router-link>
-        <router-link v-bind:to="{name:'MyBookShelf'}"> My BookShelf</router-link>
-        <router-link v-bind:to="{name:'BookLibrary'}"> Book Library </router-link>
-        <router-link v-bind:to="{name: 'AddBook'}">Add Book</router-link>
-    </nav>
+                        <!-- BOOK BOXES -->
+        <div class="book-box">
+        <!-- Content of the first book box -->
+            </div>
+        <div class="book-box">
+        <!-- Content of the second book box -->
+            </div>
+        <div class="book-box">
+        <!-- Content of the third book box -->
+            </div>
+    <router-view />
     </main>
+
+
 
 
     <footer class="footer">
     </footer>
-
-
-    
   </div>
 </template>
+
+
+
+
 
 <style scoped>
 .default-layout {
@@ -41,21 +82,109 @@
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "header header header"
-    "app-name app-name app-name"
-    "main main main"
+    "nav app-name app-name"
+    "nav main main"
     "footer footer footer";
   min-height: 100vh;
 }
+
+
+
+/* NAV MENU CSS CODE */
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-bottom: 1rem;
+}
+
 
 .nav {
   grid-area: nav;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: left; 
+  justify-content: left; 
   padding: 1rem;
 }
 
+.nav-box {
+  position: absolute;
+  left: -45px; 
+  top: 0;
+  width: 150px;
+  height: 100%;
+  background-color: rgb(175, 174, 174);
+  border-radius: 5px; 
+  z-index: -1;
+  transition: background-color 0.3s; 
+}
 
+
+.nav-item:hover .nav-box {
+  background-color: #555; 
+}
+
+.nav-text {
+  margin-top: 0.5rem; 
+}
+
+
+
+
+
+/* APPNAME CSS CODE */
+.app-name {
+  grid-area: app-name;
+  text-align: center;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 4rem;
+}
+
+.app-name-text {
+  color: rgb(175, 174, 174);
+}
+
+.app-name-accent {
+  color: rgb(209, 77, 4);
+}
+
+
+
+
+
+
+/* BOOK BOXES */
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
+  padding: 0.5rem;
+}
+
+.book-box {
+  background-color: #fff;
+  width: 50%; 
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 200px;
+}
+
+
+
+
+
+/* HEADER CSS CODE */
 .header {
   grid-area: header;
   display: flex;
@@ -83,12 +212,18 @@
 
 .main {
   grid-area: main;
-  padding: 2rem;
+  padding: 0.5rem;
 }
 
 .footer {
   grid-area: footer;
   text-align: center;
   padding: 1rem;
+}
+
+.nav {
+  grid-area: nav;
+  text-align: center;
+  padding: 0.5rem;
 }
 </style>
