@@ -1,12 +1,14 @@
 <template>
   <div>
-      
+      <ForumMessages />
   </div>
 </template>
 
 <script>
-export default {
+import ForumMessages from "../components/ForumMessages.vue"
 
+export default {
+    components: {ForumMessages}
 }
 </script>
 

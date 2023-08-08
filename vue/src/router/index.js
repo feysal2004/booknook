@@ -102,7 +102,7 @@ const router = new Router({
       }
     },
     {
-      path: '/topics/:id', //change to message
+      path: '/topics/message/:id', 
       name: 'forumMessages',
       component: ForumMessages
     },

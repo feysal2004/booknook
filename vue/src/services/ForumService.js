@@ -6,27 +6,31 @@ const http = axios.create({
 
   export default{
 
-    getForumMessageId(id){
-        return http.get(`/forum/${id}`);
+    messageList(topicId){
+        return http.get(`/topic/message/${topicId}`)
+    },
+
+    getForumMessageId(messageId){
+        return http.get(`/topic/${messageId}`);
     },
 
     createForumMessage(){
-        return http.post(`/forum`)
+        return http.post(`/topic/message`)
     },
 
     postMessage(message){
-        return http.post(`/message`, message)
+        return http.post(`/topic/message`, message)
 
     },
 
     delete(id){
-        return http.post(`/forum/${id}`)
+        return http.post(`/topic/message/${id}`)
 
     },
     editMessage(id,message){
-        return http.put(`/forum/${id}`, message)
+        return http.put(`/topic/message/${id}`, message)
 
-    }
+    },
 
 
 
