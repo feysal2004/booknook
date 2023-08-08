@@ -11,4 +11,5 @@ public interface ForumMessageDao {
 
     List<ForumMessage> getListOfMessages(int topicId);
 
+    String getTopicName(int topicId);
 }

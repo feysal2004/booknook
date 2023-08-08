@@ -16,7 +16,7 @@
 
 <script>
 import forumService from '../services/ForumService';
-import topicPage from '../components/Topic.vue';
+// import topicPage from '../components/Topic.vue';
 
 export default {
   
@@ -33,7 +33,7 @@ export default {
       forumService.messageList()
     },
     getTopicName() {
-      return topicPage.topic.topicName;
+      forumService;
     }
     
   },
