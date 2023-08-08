@@ -10,6 +10,7 @@ import MyBookShelf from '../views/MyBookShelf.vue'
 import BookLibrary from '../views/BookLibrary.vue'
 import Topic from '../views/Topic.vue'
 import ForumMessages from '../views/ForumMessages.vue'
+import DefaultLayout from '@/components/DefaultLayout.vue';
 
 Vue.use(Router)
 
@@ -28,12 +29,25 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      component: DefaultLayout,
+      children: [
+        {
+      path: '',
       name: 'home',
       component: Home,
       meta: {
         requiresAuth: true
       }
     },
+    {
+      path: '/some-route',
+      component: DefaultLayout,
+      children: [
+
+      ],
+    },
+  ],
+},
     {
       path: "/login",
       name: "login",

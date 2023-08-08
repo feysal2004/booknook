@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="login-container">
     <form @submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -62,10 +62,39 @@ export default {
 </script>
 
 <style scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+}
+
 .form-input-group {
   margin-bottom: 1rem;
 }
+
 label {
   margin-right: 0.5rem;
+}
+
+
+form {
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+button {
+  background-color: #D14D04;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #D14D04;
 }
 </style>
