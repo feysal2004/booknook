@@ -16,8 +16,8 @@
 
     <main class="main">
       <router-view />
-              <nav class="nav">
-        <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+        <nav class="nav">
+        <router-link v-bind:to="{ name: 'home' }"  v-if="$store.state.token != ''"><img src="../assests/icons8-home-60.png" alt="Home"></router-link>
         <router-link v-bind:to ="{name:'Topic'}"> Forum </router-link>
         <router-link v-bind:to="{name:'MyBookShelf'}"> My BookShelf</router-link>
         <router-link v-bind:to="{name:'BookLibrary'}"> Book Library </router-link>
