@@ -41,8 +41,6 @@ export default {
   methods: {
     getTopics() {
       topicService.list().then(response => {
-        console.log("logging get topics data")
-        console.log(response.data)
         this.$store.commit("SET_TOPICS", response.data);
       });
     },

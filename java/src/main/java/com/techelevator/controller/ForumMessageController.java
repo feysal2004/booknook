@@ -20,8 +20,8 @@ public class ForumMessageController {
         this.forumMessageDao = forumMessageDao;
     }
 
-    @RequestMapping(path="", method = RequestMethod.GET)
-    public List<ForumMessage> getListOfMessages(int topicId) {
+    @RequestMapping(path="/{topicId}", method = RequestMethod.GET)
+    public List<ForumMessage> getListOfMessages(@PathVariable int topicId) {
         return forumMessageDao.getListOfMessages(topicId);
     }
 

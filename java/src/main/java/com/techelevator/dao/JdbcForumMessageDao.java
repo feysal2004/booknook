@@ -24,9 +24,9 @@ public class JdbcForumMessageDao implements ForumMessageDao {
     @Override
     public List<ForumMessage> getListOfMessages(int topicId) {
         List<ForumMessage> messages = new ArrayList<>();
-        String sql = "SELECT message_text, topic_id FROM messages";
+        String sql = "SELECT message_text, message_id, topic_id, message_written_by FROM messages WHERE topic_id = ?;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, topicId);
             while (results.next()) {
                 ForumMessage message = mapRowToMessage(results);
                 messages.add(message);
