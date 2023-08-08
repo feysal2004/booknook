@@ -26,17 +26,8 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
-    books:[
-    {
-      title:"book test",
-      author:"author test",
-      description:"descrciption test",
-      series:"series test",
-      book_id:"book id test",
-      release_date:"release date test"
-    }
+    books:[],
 
-    ],
 
   },
   mutations: {
