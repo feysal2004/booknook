@@ -4,7 +4,7 @@
       <div class="logo">Logo</div>
 
       <div class="login-logout">
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+        <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
     </header>
 
@@ -193,16 +193,33 @@
   padding: 1rem;
 }
 
+/* SIGN IN SIGN OUT BUTTON CSS CODE */
+.login-logout-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family:sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-logout-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
+
+
+
 
 
 .logo {
 }
 
-.nav-buttons {
-}
 
-.login-logout {
-}
 
 .app-name {
   grid-area: app-name;
