@@ -1,6 +1,6 @@
 <template>
   <div>
-      <ForumMessages />
+      <ForumMessages v-bind:topicId="parseInt(this.$route.params.id)" />
   </div>
 </template>
 

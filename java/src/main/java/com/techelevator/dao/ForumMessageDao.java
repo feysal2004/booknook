@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ForumMessageDao {
 
-    public List<ForumMessage> getListOfMessages(int topicId);
+    List<ForumMessage> getListOfMessages(int topicId);
 
 }
