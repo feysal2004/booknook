@@ -27,7 +27,31 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
-    books:[],
+    books:[
+
+      {
+      //hardcoded to test search bar
+        title:"pop up",
+        author:"hardcoded",
+        secondAuthor:"hardcoded",
+        description:"hardcoded",
+        series:"hardcoded",
+        releaseDate:"01-01-2022",
+        dateAddedToCollection:"01-01-2023"
+
+      }
+
+    ],
+
+    // searchBook:[
+    //   {
+    //     title:"",
+    //     author:""
+
+    //   }
+
+
+    // ]
 
 
   },

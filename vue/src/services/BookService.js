@@ -10,4 +10,11 @@ import axios from 'axios';
         return axios.post('/addBook', book);
     },
 
+    filteredBook(){
+      return axios.get(`/bookLibrary`);
+
+    }
+
+    
+
   }
