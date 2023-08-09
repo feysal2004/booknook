@@ -1,12 +1,11 @@
 <template>
   <form v-on:submit.prevent>
     <h1>
-      {{ topicId }}
+      Forum Topic: {{ topicId }}
     </h1>
     <h2>New Title</h2>
     <div class="field">
-      <h4>Add new message:</h4>
-      <textarea name="newPost" id="newMessage" cols="70" rows="8" placeholder="Enter your message here" v-model="newMessage.newMessageText" ></textarea>
+      <textarea name="newPost" id="newMessage" cols="70" rows="8" placeholder="Enter your message here" v-model="newMessage.message_text" ></textarea>
       <button v-on:click="saveMessage()">Add Message</button>
     </div>
     <div>
@@ -41,7 +40,7 @@ export default {
       title: "",
       message_text: "",
       newMessage: {
-        newMessageText: "",
+        message_text: "",
       }
     };
   },
@@ -55,9 +54,9 @@ export default {
       forumService;
     },
     saveMessage() {
-      forumService.createForumMessage(this.topicId, this.newMessage.newMessageText).then( () => {
-        console.log("I am here")
-        this.newMessage.newMessageText = "";
+      forumService.createForumMessage(this.topicId, this.newMessage).then( () => {
+        this.newMessage.message_text = "";
+        this.getMessages();
       }).catch(console.error);
     },
   },

@@ -31,8 +31,8 @@ public class ForumMessageController {
     }
 
     @RequestMapping(path="/{topicId}", method = RequestMethod.POST)
-    public ForumMessage createForumMessage(@RequestBody String message_text, @PathVariable int topicId) {
-        return forumMessageDao.createForumMessage(message_text, topicId);
+    public ForumMessage createForumMessage(@RequestBody ForumMessage message, @PathVariable int topicId) {
+        return forumMessageDao.createForumMessage(message, topicId);
     }
 
 
