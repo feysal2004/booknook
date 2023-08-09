@@ -49,6 +49,14 @@ const router = new Router({
   ],
 },
     {
+      path:"/addBook",
+      name:"addBook",
+      component: AddBook,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/login",
       name: "login",
       component: Login,
@@ -72,14 +80,7 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    {
-      path:"/addBook",
-      name:"addBook",
-      component: AddBook,
-      meta: {
-        requiresAuth: true
-      }
-    },
+
 
     {
       path:"/MyBookShelf",

@@ -1,7 +1,24 @@
 <template>
   <div class="topic-list">
-    <header class="header">
-      </header>
+        <header class="header">
+          <router-link :to="{ name: 'home' }" class="logo">
+      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+    </router-link>
+
+            <div class="app-name">
+        <span class="app-name-text">App</span>
+       <span class="app-name-accent">Name</span>
+      </div>
+
+      <div class="login-logout">
+        <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+      </div>
+
+    </header>
+
+
+
+  
     <main class="main">
     <h1 class="page-title">Forum Board</h1>
     <div class="add-topic">
@@ -113,6 +130,7 @@ export default {
 .page-title {
   text-align: center;
   font-size: 35px;
+  font-family: Arial, sans-serif;
   margin-bottom: 20px;
   color: rgb(209, 77, 4);
 }
@@ -124,6 +142,7 @@ export default {
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 .search-box {
@@ -145,6 +164,7 @@ export default {
 
 .add-topic h3 {
   font-size: 18px;
+  font-family: Arial, sans-serif;
   margin-bottom: 10px;
   color: #fff;
 }
@@ -157,6 +177,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-family: Arial, sans-serif;
 }
 
 .submit-button:hover {
@@ -170,6 +191,7 @@ export default {
 
 .topic-table th {
   font-weight: bold;
+  font-family: Arial, sans-serif;
   padding: 10px;
   border-bottom: 2px solid rgb(209, 77, 4);
   color: rgb(209, 77, 4);
@@ -184,6 +206,7 @@ export default {
   color: rgb(209, 77, 4);
   text-decoration: none;
   transition: color 0.2s;
+  font-family: Arial, sans-serif;
 }
 
 .topic-link:hover {
@@ -232,6 +255,67 @@ export default {
 
 .nav-text {
   margin-top: 0.5rem; 
+}
+
+
+
+/* HEADER CSS CODE */
+.header {
+  grid-area: header;
+ display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #ffffff;
+ 
+}
+
+.logo img {
+  width: 150px; 
+  height: auto; 
+}
+
+.logo-image {
+  width: 100px; 
+  height: auto; 
+  border-radius: 50%;
+  overflow: hidden; 
+}
+
+/* SIGN IN SIGN OUT BUTTON CSS CODE */
+.login-logout-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family:Arial, sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-logout-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
+
+/* APPNAME CSS CODE */
+.app-name {
+  grid-area: app-name;
+  text-align: center;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 4rem;
+}
+
+.app-name-text {
+  color: rgb(175, 174, 174);
+}
+
+.app-name-accent {
+  color: rgb(209, 77, 4);
 }
 
 
