@@ -7,23 +7,19 @@ const http = axios.create({
   export default{
 
     messageList(topicId){
-        return http.get(`/topic/message/${topicId}`)
+        return http.get(`/topics/message/${topicId}`)
     },
 
     getForumMessageId(messageId){
-        return http.get(`/topic/${messageId}`);
+        return http.get(`/topics/${messageId}`);
     },
 
-    createForumMessage(){
-        return http.post(`/topic/message`)
+    createForumMessage(topicId, message){
+        return http.post(`/topics/message/${topicId}`, message)
     },
 
-    postMessage(message){
-        return http.post(`/topic/message`, message)
-
-    },
     getTopicName(topicId){
-        return http.get(`/topic/message/name/${topicId}`);
+        return http.get(`/topics/message/${topicId}/name`);
     }
 
 

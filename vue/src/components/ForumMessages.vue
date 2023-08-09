@@ -19,10 +19,9 @@
         <tbody>
           <tr
             v-for="messages in filteredMessages"
-            v-bind:key="messages.messageTextId"
-          >
+            v-bind:key="messages.messageTextId">
             <td width="80%">
-              {{ message.messageText }}
+              {{ messages.message_text }}
             </td>
           </tr>
         </tbody>
@@ -40,22 +39,20 @@ export default {
   data() {
     return {
       title: "",
-      messageText: "",
+      message_text: "",
     };
   },
   methods: {
     getMessages() {
-      forumService.messageList().then(response => {
+      forumService.messageList(this.topicId).then(response => {
         this.$store.commit("SET_MESSAGES", response.data);
-      });
+      }).catch(console.error);
     },
     getTopicName() {
       forumService;
     },
     saveMessage() {
-      forumService.createForumMessage(this.message);
-     
-       
+      forumService.createForumMessage(this.topicId, this.message).catch(console.error);
     },
   },
   created(){
@@ -63,6 +60,7 @@ export default {
   },
   computed: {
     filteredMessages(){
+      console.log("myTest", this.$store);
       return this.$store.state.messages;
     }
   }

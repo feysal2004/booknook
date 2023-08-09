@@ -18,12 +18,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="topic in filteredTopics" v-bind:key="topic.topicId">
+        <tr v-for="topicset in filteredTopics" v-bind:key="topicset.topicId">
           <td>
             <router-link
               class="topic-link"
-              v-bind:to="{ name: 'forumMessages', params: { id: topic.topicId } }">
-              {{ topic.topicName }}
+              v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
+              {{ topicset.topicName }}
             </router-link>
           </td>
         </tr>
@@ -84,10 +84,10 @@ export default {
       });
     },
     saveTopic() {
-      topicService.createNewForumTopic(this.topic);
-      // Clears out the textbox
-      this.getTopics();
-       
+      topicService.createNewForumTopic(this.topic).then( () => {
+          this.getTopics();
+          this.topic.topicName = "";
+      }).catch(console.error);      
     },
   },
   created() {

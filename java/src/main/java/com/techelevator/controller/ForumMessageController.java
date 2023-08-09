@@ -25,9 +25,15 @@ public class ForumMessageController {
         return forumMessageDao.getListOfMessages(topicId);
     }
 
-    @RequestMapping(path="/name/{topicId}", method = RequestMethod.GET)
+    @RequestMapping(path="/{topicId}/name", method = RequestMethod.GET)
     public String getTopicName(@PathVariable int topicId){
         return forumMessageDao.getTopicName(topicId);
     }
+
+    @RequestMapping(path="/{topicId}", method = RequestMethod.POST)
+    public String createForumMessage(@RequestBody ForumMessage message, @PathVariable int topicId) {
+        return null; //TODO return something real and build the function
+    }
+
 
 }
