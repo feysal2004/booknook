@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Book {
@@ -9,13 +10,13 @@ public class Book {
     public String description;
     public String series;
     public int book_id;
-    public Date release_date;
-    public Date date_added_to_collection;
+    public LocalDate release_date;
+    public LocalDate date_added_to_collection;
 
 
     public Book(String book_name, String author, String author_second,
-                String description, String series, int book_id, Date release_date,
-                Date date_added_to_collection) {
+                String description, String series, int book_id, LocalDate release_date,
+                LocalDate date_added_to_collection) {
         this.book_name = book_name;
         this.author = author;
         this.author_second = author_second;
@@ -78,19 +79,19 @@ public class Book {
         this.book_id = book_id;
     }
 
-    public Date getRelease_date() {
+    public LocalDate getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(LocalDate release_date) {
         this.release_date = release_date;
     }
 
-    public Date getDate_added_to_collection() {
+    public LocalDate getDate_added_to_collection() {
         return date_added_to_collection;
     }
 
-    public void setDate_added_to_collection(Date date_added_to_collection) {
+    public void setDate_added_to_collection(LocalDate date_added_to_collection) {
         this.date_added_to_collection = date_added_to_collection;
     }
 }
