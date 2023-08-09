@@ -8,6 +8,7 @@
 
 <script>
 import SearchBook from '../components/SearchBook.vue'
+
 export default {
   components: { SearchBook },
 

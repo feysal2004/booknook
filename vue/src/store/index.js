@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -27,31 +27,43 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
-    books:[
 
+    books: [
       {
-      //hardcoded to test search bar
-        title:"pop up",
-        author:"hardcoded",
-        secondAuthor:"hardcoded",
-        description:"hardcoded",
-        series:"hardcoded",
-        releaseDate:"01-01-2022",
-        dateAddedToCollection:"01-01-2023"
+        "book_name": "admin",
+        "author": "admin",
+        "author_second": "heyeye",
+        "description": "eeh",
+        "series": "ehe",
+        "release_date": "2020-02-02",
+        "date_added_to_collection": "2021-02-02"
+
+      },
+      {
+        "book_name": "heloo",
+        "author": "adyyymin",
+        "author_second": "yees",
+        "description": "dumb",
+        "series": "data",
+        "release_date": "2020-02-02",
+        "date_added_to_collection": "2021-02-02"
 
       }
 
+
+
     ],
 
-    // searchBook:[
-    //   {
-    //     title:"",
-    //     author:""
 
-    //   }
+    searchBook:
+    {
+      title: "",
+      author: ""
+
+    }
 
 
-    // ]
+
 
 
   },
@@ -69,7 +81,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -79,7 +91,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
     },
 
-    ADD_BOOK(state,book){
+    ADD_BOOK(state, book) {
       state.books.push(book);
     },
   }
