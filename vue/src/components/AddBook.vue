@@ -2,7 +2,20 @@
 
   <div class="page-container">
     <header class="header">
-</header>
+          <router-link :to="{ name: 'home' }" class="logo">
+      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+    </router-link>
+
+            <div class="app-name">
+        <span class="app-name-text">App</span>
+       <span class="app-name-accent">Name</span>
+      </div>
+
+      <div class="login-logout">
+        <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+      </div>
+
+    </header>
 <main class="main">
     <div class="book-data" v-if="$store.state.user.username === 'admin'">
       <h2 class="add-book-title">Add a Book</h2>
@@ -151,5 +164,66 @@ export default {
   font-size: 18px;
   color: #ff3860;
   margin-top: 20px;
+}
+
+
+
+/* HEADER CSS CODE */
+.header {
+  grid-area: header;
+ display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #ffffff;
+ 
+}
+
+.logo img {
+  width: 150px; 
+  height: auto; 
+}
+
+.logo-image {
+  width: 100px; 
+  height: auto; 
+  border-radius: 50%;
+  overflow: hidden; 
+}
+
+/* SIGN IN SIGN OUT BUTTON CSS CODE */
+.login-logout-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family:sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-logout-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
+
+/* APPNAME CSS CODE */
+.app-name {
+  grid-area: app-name;
+  text-align: center;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 4rem;
+}
+
+.app-name-text {
+  color: rgb(175, 174, 174);
+}
+
+.app-name-accent {
+  color: rgb(209, 77, 4);
 }
 </style>
