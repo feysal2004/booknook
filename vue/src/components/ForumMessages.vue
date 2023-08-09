@@ -1,9 +1,9 @@
 <template>
   <form v-on:submit.prevent>
     <h1>
-      Forum Topic: {{ topicId }}
+      Forum Topic: {{ }}
     </h1>
-    <h2>New Title</h2>
+
     <div class="field">
       <textarea name="newPost" id="newMessage" cols="70" rows="8" placeholder="Enter your message here" v-model="newMessage.message_text" ></textarea>
       <button v-on:click="saveMessage()">Add Message</button>
@@ -31,7 +31,7 @@
 
 <script>
 import forumService from "../services/ForumService";
-// import topicPage from '../components/Topic.vue';
+import topicService from '../services/TopicService';
 
 export default {
   props: ["topicId", "messageId"],
@@ -51,7 +51,7 @@ export default {
       }).catch(console.error);
     },
     getTopicName() {
-      forumService;
+      topicService.getTopicName(this.topicId);
     },
     saveMessage() {
       forumService.createForumMessage(this.topicId, this.newMessage).then( () => {

@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-const http = axios.create({
-  baseURL: "http://localhost:9000"
-});
+// const http = axios.create({
+//   baseURL: "http://localhost:9000"
+// });
 
 export default {
 
   list() {
-    return http.get('/topics');
+    return axios.get('/topics');
   },
 
-  get(id) {
-    return http.get(`/topics/${id}`);
+  getTopicName(id) {
+    return axios.get(`/topics/${id}`);
   },
 
   createNewForumTopic(topic) {
-    return http.post('/topics', topic);
+    return axios.post('/topics', topic);
   },
 };

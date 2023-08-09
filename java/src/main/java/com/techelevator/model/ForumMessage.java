@@ -19,7 +19,7 @@ public class ForumMessage {
     public ForumMessage() {
 
     }
-    
+
 
     public int getMessage_id() {
         return message_id;
