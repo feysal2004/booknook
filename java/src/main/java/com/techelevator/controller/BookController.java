@@ -4,10 +4,9 @@ package com.techelevator.controller;
 import com.techelevator.dao.BookDao;
 import com.techelevator.model.Book;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-@Component
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 @RequestMapping(path="/addBook")
 @RestController
