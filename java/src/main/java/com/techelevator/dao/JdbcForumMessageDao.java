@@ -48,11 +48,12 @@ public class JdbcForumMessageDao implements ForumMessageDao {
         return topicName;
     }
 
-//    @Override
-//    public ForumMessage createForumMessage(ForumMessage message, int topicId) {
-//        String sql = "INSERT INTO messages (topic_id, message_text) VALUES ? ?";
-//        ForumMessage newMessage = jdbcTemplate.queryForObject(sql, ForumMessage.class, message, topicId);
-//    }
+    @Override
+    public ForumMessage createForumMessage(String message_text, int topicId) {
+        String sql = "INSERT INTO messages (topic_id, message_text) VALUES ? ?";
+        ForumMessage newMessage = jdbcTemplate.queryForObject(sql, ForumMessage.class, message_text, topicId);
+        return newMessage;
+    }
 
     private ForumMessage mapRowToMessage(SqlRowSet rs) {
         ForumMessage forumMessage = new ForumMessage();

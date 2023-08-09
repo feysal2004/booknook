@@ -12,4 +12,6 @@ public interface ForumMessageDao {
     List<ForumMessage> getListOfMessages(int topicId);
 
     String getTopicName(int topicId);
+
+    ForumMessage createForumMessage(String message_text, int topicId);
 }

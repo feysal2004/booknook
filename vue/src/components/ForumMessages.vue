@@ -6,7 +6,7 @@
     <h2>New Title</h2>
     <div class="field">
       <h4>Add new message:</h4>
-      <textarea name="newPost" id="newMessage" cols="70" rows="8"></textarea>
+      <textarea name="newPost" id="newMessage" cols="70" rows="8" placeholder="Enter your message here" v-model="newMessage.newMessageText" ></textarea>
       <button v-on:click="saveMessage()">Add Message</button>
     </div>
     <div>
@@ -40,6 +40,9 @@ export default {
     return {
       title: "",
       message_text: "",
+      newMessage: {
+        newMessageText: "",
+      }
     };
   },
   methods: {
@@ -52,7 +55,10 @@ export default {
       forumService;
     },
     saveMessage() {
-      forumService.createForumMessage(this.topicId, this.message).catch(console.error);
+      forumService.createForumMessage(this.topicId, this.newMessage.newMessageText).then( () => {
+        console.log("I am here")
+        this.newMessage.newMessageText = "";
+      }).catch(console.error);
     },
   },
   created(){
@@ -60,7 +66,6 @@ export default {
   },
   computed: {
     filteredMessages(){
-      console.log("myTest", this.$store);
       return this.$store.state.messages;
     }
   }
