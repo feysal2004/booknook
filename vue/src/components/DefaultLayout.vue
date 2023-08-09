@@ -38,7 +38,7 @@
         <img src="../assets/icons8-library-50.png" alt="BookLibrary">
           <span>Book Library</span>
         </div>
-        <div class="nav-item" @click="$router.push({ name: 'addBook' })" v-if="$store.state.token != ''">
+        <div class="nav-item" @click="$router.push({ name: 'addBook' })" v-if="this.$store.state.user.username === 'admin'">
             <span class="nav-box"></span>
           <img src="../assets/icons8-plus-48.png" alt="addBook">
           <span>Add Book</span>
