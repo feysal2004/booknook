@@ -38,9 +38,9 @@
         <img src="../assets/icons8-library-50.png" alt="BookLibrary">
           <span>Book Library</span>
         </div>
-        <div class="nav-item" @click="$router.push({ name: 'AddBook' })" v-if="$store.state.token != ''">
+        <div class="nav-item" @click="$router.push({ name: 'addBook' })" v-if="$store.state.token != ''">
             <span class="nav-box"></span>
-          <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <img src="../assets/icons8-plus-48.png" alt="addBook">
           <span>Add Book</span>
         </div>
     </nav>

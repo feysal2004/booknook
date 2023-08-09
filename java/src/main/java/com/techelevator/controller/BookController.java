@@ -18,6 +18,7 @@ public class BookController {
         this.bookDao = bookDao;
     }
 
+
     @RequestMapping(path = "", method = RequestMethod.POST)
     public void addNewBook(@RequestBody Book newBook) {
         bookDao.addNewBook(newBook.getBookName(), newBook.getAuthor(), newBook.getAuthorSecond(), newBook.getDescription(), newBook.getSeries(), newBook.getRelease_date(), newBook.getDate_added_to_collection());

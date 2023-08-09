@@ -32,8 +32,18 @@ export default {
   },
 
   methods:{
+
       saveBook(){
-           bookService.addBook(this.book);
+           bookService.addBook(this.book).then(()=> {
+             this.book.book_name="";
+             this.book.author="";
+             this.book.author_second=""
+             this.book.series="";
+             this.book.book_id="";
+             this.book.date_added_to_collection="";
+             this.book.release_date="";
+             this.book.description="";
+           }).catch(console.error);
       }
 
   }
