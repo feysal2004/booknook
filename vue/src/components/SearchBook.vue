@@ -37,26 +37,12 @@ export default {
   },
 
   methods: {
-    // getBooks(){
-    //   bookService.getBooks()
-    // },
-    // filteredList(){
-    //   let filteredList = this.book.filter(book =>{
-    //     return book.title.toLowerCase().includes(this.searchBook.title.toLowerCase())&&
-    //     book.author.toLowerCase().includes(this.searchBook.author.toLowerCase())
-    //   })
-    //  return filteredList
-    //  }
+    
   },
 
   computed: {
     filteredBooks() {
-      // console.log(this.books)
-      //  let filteredList = this.books.filter(book =>{
-      //   return book.book_name.toLowerCase().includes(this.searchBook.book_name.toLowerCase()) ||
-      //   book.author.toLowerCase().includes(this.searchBook.author.toLowerCase())
-      //})
-
+     
       let filteredList = [];
       this.books.forEach((book) => {
         console.log(book);
@@ -68,13 +54,14 @@ export default {
             .includes(this.searchBook.book_name.toLowerCase())
         ) {
           filteredList.push(book);
-        } else if (
-          book.author
-            .toLowerCase()
-            .includes(this.searchBook.author.toLowerCase())
-        ) {
-          filteredList.push(book);
-        }
+         }
+        //  else if (
+        //   book.author
+        //     .toLowerCase()
+        //     .includes(this.searchBook.author.toLowerCase())
+        // ) {
+        //   filteredList.push(book);
+        // }
       });
 
       return filteredList;
