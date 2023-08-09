@@ -14,8 +14,8 @@ const http = axios.create({
         return http.get(`/topics/${messageId}`);
     },
 
-    createForumMessage(topicId, message){
-        return http.post(`/topics/message/${topicId}`, message)
+    createForumMessage(topicId, message_text){
+        return http.post(`/topics/message/${topicId}`, message_text)
     },
 
     getTopicName(topicId){
