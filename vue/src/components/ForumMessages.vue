@@ -46,8 +46,9 @@
           <tbody>
             <tr v-for="message in filteredMessages" :key="message.messageTextId">
               <td width="80%">{{ message.message_text }}</td>
-                        <button v-on:click="editMessage()">edit</button>
-
+              <td class="edit-button-cell">
+                  <button class="edit-button" v-on:click="editMessage()">Edit</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -321,7 +322,20 @@ font-family: Arial, sans-serif;
   color: rgb(209, 77, 4);
 }
 
+.edit-button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: Arial, sans-serif;
+}
 
+.edit-button:hover {
+  background-color: #e65c00;
+}
 
 .main {
   grid-area: main;
