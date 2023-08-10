@@ -21,8 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     messages: [],
-    bookInput: [ 
-  ],
+    bookInput: [],
     activeTopic: {
       id: 0,
       title: "",
