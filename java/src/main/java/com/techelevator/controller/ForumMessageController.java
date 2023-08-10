@@ -35,5 +35,10 @@ public class ForumMessageController {
         return forumMessageDao.createForumMessage(message, topicId);
     }
 
+    @RequestMapping(path="/{messageId}/name", method = RequestMethod.PUT)
+    public void  editForumMessage(@RequestBody ForumMessage message, @PathVariable int messageId){
+         forumMessageDao.editForumMessage(message, messageId);
+    }
+
 
 }

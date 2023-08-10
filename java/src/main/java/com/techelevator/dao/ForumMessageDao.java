@@ -14,4 +14,5 @@ public interface ForumMessageDao {
     String getTopicName(int topicId);
 
     ForumMessage createForumMessage(ForumMessage message, int topicId);
+    void editForumMessage(ForumMessage message, int messageId);
 }

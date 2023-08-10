@@ -56,6 +56,12 @@ public class JdbcForumMessageDao implements ForumMessageDao {
         return newMessage;
     }
 
+    @Override
+    public void  editForumMessage(ForumMessage message, int messageId) {
+        String sql = "UPDATE messages SET message_text = ? WHERE message_id = ?;";
+        jdbcTemplate.update(sql, message.message_text, messageId);
+    }
+
     private ForumMessage mapRowToMessage(SqlRowSet rs) {
         ForumMessage forumMessage = new ForumMessage();
         forumMessage.setMessage_id(rs.getInt("message_id"));

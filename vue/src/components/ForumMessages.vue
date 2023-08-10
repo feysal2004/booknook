@@ -46,7 +46,7 @@
           <tbody>
             <tr v-for="message in filteredMessages" :key="message.messageTextId">
               <td width="80%">{{ message.message_text }}</td>
-                        <button>edit</button>
+                        <button v-on:click="editMessage()">edit</button>
 
             </tr>
           </tbody>
@@ -102,15 +102,16 @@ export default {
         this.getMessages();
       }).catch(console.error);
     },
+     editMessage(){
+    forumService.editForumMessage(this.messageId, this.message_text)
+
+  },
   },
   created(){
     this.getMessages();
   },
 
-  editMessage(){
-    forumService.editForumMessage(this.messageId, this.message_text)
-
-  },
+ 
 
   computed: {
     filteredMessages(){
