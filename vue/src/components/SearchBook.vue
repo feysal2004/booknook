@@ -47,13 +47,14 @@ export default {
       this.books.forEach((book) => {
         console.log(book);
         console.log(this.searchBook.book_name);
+        console.log(this.searchBook.author);
 
         if (
           book.book_name
             .toLowerCase()
-            .includes(this.searchBook.book_name.toLowerCase())
+            .includes(this.searchBook.book_name.toLowerCase()) 
         ) {
-          filteredList.push(book);
+            filteredList.push(book);
          }
         //  else if (
         //   book.author

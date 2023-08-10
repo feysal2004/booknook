@@ -46,6 +46,8 @@
           <tbody>
             <tr v-for="message in filteredMessages" :key="message.messageTextId">
               <td width="80%">{{ message.message_text }}</td>
+                        <button>edit</button>
+
             </tr>
           </tbody>
         </table>
@@ -106,7 +108,7 @@ export default {
   },
 
   editMessage(){
-    
+    forumService.editForumMessage(this.messageId, this.message_text)
 
   },
 

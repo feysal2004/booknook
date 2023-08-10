@@ -21,8 +21,8 @@ import axios from 'axios';
     getTopicName(topicId){
         return axios.get(`/topics/message/${topicId}/name`);
     },
-    editForumMessage(){
-        
+    editForumMessage(messageId, message){
+        return axios.put(`/topics/message/${messageId}`, message)
     }
 
 
