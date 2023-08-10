@@ -191,7 +191,7 @@ export default {
 
 .message-list {
   width: 100%;
-    display: flex;
+ display: flex;
   flex-direction: column;
   align-items: center;
 }
