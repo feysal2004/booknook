@@ -3,8 +3,7 @@
       <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" >
         <h2> {{ book.volumeInfo.title }} </h2>
         <h2> {{book.volumeInfo.authors}} </h2>
-        <h2> {{book.volumeInfo.imageLinks.thumbnail}} </h2>
-        <img src="book.volumeInfo.imageLinks.thumbnail" alt="">
+        <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
       </div>
       <!-- <button v-on:click="getBookSearch()" v-model="" >Button</button> -->
 
@@ -45,5 +44,9 @@ export default {
 </script>
 
 <style>
+.bookCover{
+    width: 10%;
+    height: auto;
 
+}
 </style>
