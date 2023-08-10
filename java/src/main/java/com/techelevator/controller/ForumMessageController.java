@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Component
+
 @CrossOrigin
 @RequestMapping(path="/topics/message")
 @RestController

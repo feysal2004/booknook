@@ -1,16 +1,19 @@
 <template>
   <div>
 <SearchBook />
-
+<GoogleBooks />
       
   </div>
 </template>
 
 <script>
 import SearchBook from '../components/SearchBook.vue'
+import GoogleBooks from "../components/GoogleBooks.vue"
+
 
 export default {
-  components: { SearchBook },
+  components: { SearchBook ,
+  GoogleBooks},
 
 }
 </script>

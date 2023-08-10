@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     messages: [],
+    bookInput: [],
     activeTopic: {
       id: 0,
       title: "",
@@ -47,25 +48,13 @@ export default new Vuex.Store({
         "series": "data",
         "release_date": "2020-02-02",
         "date_added_to_collection": "2021-02-02"
-
       }
-
-
-
     ],
-
-
     searchBook:
     {
       title: "",
       author: ""
-
     }
-
-
-
-
-
   },
   mutations: {
     SET_TOPICS(state, data) {
@@ -73,6 +62,9 @@ export default new Vuex.Store({
     },
     SET_MESSAGES(state, data) {
       state.messages = data;
+    },
+    SET_GOOGLE_BOOK_SEARCH(state, data) {
+      state.bookInput = data;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;

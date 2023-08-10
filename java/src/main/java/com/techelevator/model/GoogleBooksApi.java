@@ -8,7 +8,7 @@ public class GoogleBooksApi {
     String url2 = "https://www.googleapis.com/books/v1/volumes?q=";
     String apiKey = "AIzaSyD7CXjdwbiWpjFADwOGsX0XZoJPXUgej7c";
 
-    String book_name;
+    String bo;
     String author;
     String description;
     String series;
