@@ -41,9 +41,6 @@
 
     </main>
 
-
-
-
 <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
         <nav class="nav">
@@ -69,8 +66,6 @@
         </div>
     </nav>
     </nav>
-
-
 
 
     <footer class="footer">

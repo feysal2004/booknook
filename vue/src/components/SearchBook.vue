@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Search Through Your Books</h2>
+    <!-- <h2>Search Through Your Books</h2>
     <input
       class="input field"
       type="text"
@@ -15,7 +15,7 @@
     />
     <p>{{ filteredBooks }}</p>
 
-
+ -->
 
   </div>
 </template>

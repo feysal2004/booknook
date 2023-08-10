@@ -59,13 +59,6 @@ public class JdbcForumTopic implements ForumTopicDao {
         jdbcTemplate.update(sql,topicId);
     }
 
-//    @Override
-//    public String getTopicName(int topicId) {
-//        String sql = "SELECT topic_name FROM topics WHERE topic_id = ?;";
-//        String newTopicName = jdbcTemplate.queryForObject(sql, String.class, topicId);
-//        return newTopicName;
-//    }
-
     private Topic mapRowToTopic(SqlRowSet rs) {
         Topic topic = new Topic();
         topic.setTopicName(rs.getString("topic_name"));
