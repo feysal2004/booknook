@@ -20,6 +20,9 @@ import axios from 'axios';
 
     getTopicName(topicId){
         return axios.get(`/topics/message/${topicId}/name`);
+    },
+    editForumMessage(){
+        
     }
 
 

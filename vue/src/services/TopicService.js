@@ -17,4 +17,7 @@ export default {
   createNewForumTopic(topic) {
     return axios.post('/topics', topic);
   },
+  delete(id){
+    return axios.delete(`/topics/${id}`);
+  }
 };

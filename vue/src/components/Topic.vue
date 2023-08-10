@@ -26,6 +26,7 @@
       <div class="search-box">
         <textarea name="addTopic" id="addForumTopic" rows="3" v-model="topic.topicName" placeholder="Enter your topic"></textarea>
         <button class="submit-button" v-on:click="saveTopic()">Submit</button>
+        <!-- <button v-on:click="deleteTopic(topic.topicId)">Delete Topic</button> -->
       </div>
     </div>
     <table class="topic-table">
@@ -42,6 +43,9 @@
               v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
               {{ topicset.topicName }}
             </router-link>
+            
+                    <button v-on:click="deleteTopic(topicset.topicId)"  v-if="$store.state.user.username === 'admin'">Delete Topic</button>
+
           </td>
         </tr>
       </tbody>
@@ -101,6 +105,13 @@ export default {
           this.topic.topicName = "";
       }).catch(console.error);      
     },
+
+    deleteTopic(id){
+      topicService.delete(id).then(() => {
+        this.getTopics();
+      }).catch(console.error)
+
+    }
   },
   created() {
     this.getTopics();

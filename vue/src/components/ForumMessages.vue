@@ -104,6 +104,12 @@ export default {
   created(){
     this.getMessages();
   },
+
+  editMessage(){
+    
+
+  },
+
   computed: {
     filteredMessages(){
       return this.$store.state.messages;

@@ -3,6 +3,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ForumTopicDao;
 import com.techelevator.model.Topic;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(path="/topics")
 @RestController
+@PreAuthorize("isAuthenticated()")
+
 public class ForumTopicsController {
 
     private ForumTopicDao forumTopicDao;
@@ -29,10 +32,10 @@ public class ForumTopicsController {
     public void createNewForumTopic(@RequestBody Topic newTopic) {
         forumTopicDao.createForumTopic(newTopic.getTopicName());
     }
-
-    @RequestMapping(path = "", method = RequestMethod.DELETE)
-    public void deleteForumTopic(@RequestBody Topic topic) {
-        forumTopicDao.deleteForumTopic(topic.getTopicId());
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void deleteForumTopic(@PathVariable int id) {
+        forumTopicDao.deleteForumTopic(id);
     }
 
 //    @RequestMapping(path= "/name/${topicId}")
