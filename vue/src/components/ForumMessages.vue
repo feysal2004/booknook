@@ -20,7 +20,7 @@
 
 
     <main class="main">
-      <h1 class="page-title">Forum Topic: {{ topicName }}</h1>
+      <h1 class="page-title">Forum Topic: {{ this.currentTopicName }}</h1>
 
       <div class="add-message">
         <h3>Add a new message</h3>
@@ -74,7 +74,7 @@
 
 <script>
 import forumService from "../services/ForumService";
-import topicService from '../services/TopicService';
+// import topicService from '../services/TopicService';
 
 export default {
   props: ["topicId", "messageId"],
@@ -84,7 +84,8 @@ export default {
       message_text: "",
       newMessage: {
         message_text: "",
-      }
+      },
+      currentTopicName: ""
     };
   },
   methods: {
@@ -94,7 +95,9 @@ export default {
       }).catch(console.error);
     },
     getTopicName() {
-      topicService.getTopicName(this.topicId);
+      forumService.getTopicName(this.topicId).then(response => {
+        this.currentTopicName = response.data;
+      });
     },
     saveMessage() {
       forumService.createForumMessage(this.topicId, this.newMessage).then( () => {
@@ -109,6 +112,7 @@ export default {
   },
   created(){
     this.getMessages();
+    this.getTopicName();
   },
 
  
@@ -192,6 +196,9 @@ export default {
 
 .message-list {
   width: 100%;
+ display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .message-table {
