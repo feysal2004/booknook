@@ -4,7 +4,7 @@
         <h2> {{ book.volumeInfo.title }} </h2>
         <h2> {{book.volumeInfo.authors}} </h2>
         <h2> {{book.volumeInfo.imageLinks.thumbnail}} </h2>
-        <img src="book.volumeInfo.imageLinks.thumbnail" alt="">
+        <img :src="book.volumeInfo.imageLinks.thumbnail" alt="">
       </div>
       <!-- <button v-on:click="getBookSearch()" v-model="" >Button</button> -->
 
