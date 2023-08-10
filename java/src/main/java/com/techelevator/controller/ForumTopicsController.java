@@ -38,9 +38,5 @@ public class ForumTopicsController {
         forumTopicDao.deleteForumTopic(id);
     }
 
-//    @RequestMapping(path= "/name/${topicId}")
-//    public String getTopicName(@PathVariable int topicId) {
-//        return forumTopicDao.getTopicName(topicId);
-//    }
 
 }
