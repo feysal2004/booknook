@@ -43,9 +43,7 @@
               v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
               {{ topicset.topicName }}
             </router-link>
-            
-                    <button v-on:click="deleteTopic(topicset.topicId)"  v-if="$store.state.user.username === 'admin'">Delete Topic</button>
-
+              <button class="delete-topic-button" v-on:click="deleteTopic(topicset.topicId)"  v-if="$store.state.user.username === 'admin'">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -209,6 +207,7 @@ export default {
 }
 
 .topic-table td {
+  position: relative;
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
@@ -218,12 +217,36 @@ export default {
   text-decoration: none;
   transition: color 0.2s;
   font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topic-link:hover {
   color: #e65c00;
+
 }
 
+
+
+.delete-topic-button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: Arial, sans-serif;
+  position: absolute;
+  top: 50%;
+  right: 10px; 
+  transform: translateY(-50%);
+}
+
+.delete-topic-button:hover {
+  background-color: #e6003e;
+}
 
 /* NAV MENU CSS CODE */
 .nav-item {
