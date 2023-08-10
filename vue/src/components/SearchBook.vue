@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Search For Books</h2>
+    <h2>Search Through Your Books</h2>
     <input
       class="input field"
       type="text"
@@ -14,12 +14,16 @@
       v-model="searchBook.author"
     />
     <p>{{ filteredBooks }}</p>
+
+
+
   </div>
 </template>
 
 
 <script>
 //import bookService from "../services/BookService"
+
 
 export default {
   data() {
@@ -70,7 +74,10 @@ export default {
   },
 
   created() {
-    this.books = this.$store.state.books;
+    //this.books = this.$store.state.books;
+    this.books = this.$store.state.bookInput;
+    console.log("we are at the created search area")
+    console.log(this.$store.state.bookInput)
   },
 };
 </script>
