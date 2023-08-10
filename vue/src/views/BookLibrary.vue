@@ -1,8 +1,8 @@
 <template>
   <div>
-<SearchBook />
-<GoogleBooks />
-      
+
+<GoogleBooks /> 
+<SearchBook />  
   </div>
 </template>
 

@@ -21,7 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     messages: [],
-    bookInput: [],
+    bookInput: [ 
+  ],
     activeTopic: {
       id: 0,
       title: "",
@@ -64,6 +65,8 @@ export default new Vuex.Store({
       state.messages = data;
     },
     SET_GOOGLE_BOOK_SEARCH(state, data) {
+      console.log("We are at the mutation")
+      console.log(data)
       state.bookInput = data;
     },
     SET_AUTH_TOKEN(state, token) {
