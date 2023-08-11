@@ -15,4 +15,6 @@ public interface ForumMessageDao {
 
     ForumMessage createForumMessage(ForumMessage message, int topicId);
     void editForumMessage(ForumMessage message, int messageId);
+
+    void deleteMessage(int messageId);
 }

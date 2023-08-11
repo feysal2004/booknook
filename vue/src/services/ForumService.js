@@ -23,6 +23,9 @@ import axios from 'axios';
     },
     editForumMessage(messageId, message){
         return axios.put(`/topics/message/${messageId}`, message)
+    },
+    deleteForumMessage(messageId,message){
+        return axios.delete(`/topics/message/${messageId}`,message)
     }
 
 

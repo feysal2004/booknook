@@ -62,6 +62,12 @@ public class JdbcForumMessageDao implements ForumMessageDao {
         jdbcTemplate.update(sql, message.message_text, messageId);
     }
 
+    @Override
+    public void deleteMessage(int messageId) {
+        String sql = "DELETE FROM messages WHERE message_id = ? ;";
+        jdbcTemplate.update(sql,messageId);
+    }
+
     private ForumMessage mapRowToMessage(SqlRowSet rs) {
         ForumMessage forumMessage = new ForumMessage();
         forumMessage.setMessage_id(rs.getInt("message_id"));

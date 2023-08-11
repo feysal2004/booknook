@@ -50,6 +50,7 @@
               <td class="edit-button-cell"  >
                   <button class="edit-button" v-on:click.prevent.stop="editMessage(message.message_id, index)" >Edit</button>
                   <button >Save Message</button>
+                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Topic</button>
                   
               </td>
             </tr> 
@@ -123,6 +124,11 @@ export default {
      toggleEditRow(index){
        this.activeIndex = !this.activeIndex === index ? -1 : index;
 
+     },
+     deleteMessage(id){
+       forumService.deleteForumMessage(id).then(() => {
+         this.getMessages();
+       }).catch(console.error)
      }
   },
   created(){
