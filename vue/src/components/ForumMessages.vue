@@ -99,7 +99,6 @@ export default {
   methods: {
     getMessages() {
       forumService.messageList(this.topicId).then(response => {
-        console.log(response.data)
         this.$store.commit("SET_MESSAGES", response.data);
       }).catch(console.error);
     },
@@ -115,9 +114,21 @@ export default {
       }).catch(console.error);
     },
     editMessage(id, index){
-       this.toggleEditRow(index)
-      forumService.editForumMessage(this.messageId, this.message_text)
+      this.toggleEditRow(index);
     },
+    getSingleMessage(topicId) {
+      forumService.getForumMessageId(topicId).then( response => {
+        this.currentMessageId = response.data
+      });
+    },
+    submitEditedMessage(index) {
+      forumService.editForumMessage(this.messageId, this.message_text).then( () => {
+        this.toggleEditRow(index);
+      }).catch(console.error)
+    },
+    // toggleButtons() {
+
+    // },
     toggleEditRow(index){
        this.activeIndex = !this.activeIndex === index ? -1 : index;
     },
