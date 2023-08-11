@@ -46,12 +46,11 @@
           <tbody>
             <tr v-for="(message, index) in filteredMessages" :key="message.message_id">
               <td :id = "message.message_id" width="80%"  ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
-              <input type="text" v-model="message_text" v-if="activeIndex === index "  ></td>
+              <input type="text" v-model="message.message_text" v-if="activeIndex === index"  ></td>
               <td class="edit-button-cell"  >
                   <button class="edit-button" v-on:click.prevent.stop="editMessage(message.message_id, index)" >Edit</button>
-                  <button >Save Message</button>
-                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button>
-                  
+                  <button v-on:click="submitEditedMessage(newMessage.message_text)" >Save Message</button>
+                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button> 
               </td>
             </tr> 
           </tbody>
@@ -87,7 +86,7 @@ export default {
     return {
       showMessage : false,
       activeIndex: -1,
-      currentMessageId: 0 ,
+      currentMessageId: this.messageId ,
       title: "",
       message_text: "",
       newMessage: {
@@ -116,14 +115,9 @@ export default {
     editMessage(id, index){
       this.toggleEditRow(index);
     },
-    getSingleMessage(topicId) {
-      forumService.getForumMessageId(topicId).then( response => {
-        this.currentMessageId = response.data
-      });
-    },
-    submitEditedMessage(index) {
-      forumService.editForumMessage(this.messageId, this.message_text).then( () => {
-        this.toggleEditRow(index);
+    submitEditedMessage(currentMessageId, newMessage) {
+      forumService.editForumMessage(currentMessageId, newMessage).then( () => {
+        // this.toggleEditRow(index);
       }).catch(console.error)
     },
     // toggleButtons() {
