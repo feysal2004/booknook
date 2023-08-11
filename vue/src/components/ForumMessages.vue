@@ -138,6 +138,7 @@ export default {
       }).catch(console.error)
     }
   },
+  
   created(){
     this.getMessages();
     this.getTopicName();
