@@ -16,4 +16,5 @@ public interface BookDao {
                     LocalDate date_added_to_collection);
 
 
+    List<Book> getBooksFromDatabase();
 }

@@ -55,8 +55,15 @@ public class JdbcForumTopic implements ForumTopicDao {
     @Override
     public void deleteForumTopic(int topicId) {
         String sql = "DELETE FROM topics WHERE topic_id = ? ";
-        //jdbcTemplate.queryForObject(sql, int.class, topicId);
         jdbcTemplate.update(sql,topicId);
+    }
+
+    @Override
+    public int getNumberOfMessages(int topicId) {
+        int numMessages = 0;
+        String sql = "SELECT COUNT(message_id) FROM messages where topic_id = ?";
+        numMessages = jdbcTemplate.queryForObject(sql, Integer.class, topicId);
+        return numMessages;
     }
 
     private Topic mapRowToTopic(SqlRowSet rs) {

@@ -19,5 +19,8 @@ export default {
   },
   delete(id){
     return axios.delete(`/topics/${id}`);
+  },
+  getMessageCount(topicId) {
+    return axios.get(`/topics/${topicId}/messages`);
   }
 };

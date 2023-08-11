@@ -26,7 +26,6 @@
       <div class="search-box">
         <textarea name="addTopic" id="addForumTopic" rows="3" v-model="topic.topicName" placeholder="Enter your topic"></textarea>
         <button class="submit-button" v-on:click="saveTopic()">Submit</button>
-        <!-- <button v-on:click="deleteTopic(topic.topicId)">Delete Topic</button> -->
       </div>
     </div>
     <table class="topic-table">
@@ -41,7 +40,7 @@
             <router-link
               class="topic-link"
               v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
-              {{ topicset.topicName }}
+              {{ topicset.topicName }} {{getNumberOfMessages(topicset.topicId)}}
             </router-link>
               <button class="delete-topic-button" v-on:click="deleteTopic(topicset.topicId)"  v-if="$store.state.user.username === 'admin'">Delete</button>
           </td>
@@ -95,7 +94,7 @@ export default {
     getTopics() {
       topicService.list().then(response => {
         this.$store.commit("SET_TOPICS", response.data);
-      });
+      }).catch(console.error);
     },
     saveTopic() {
       topicService.createNewForumTopic(this.topic).then( () => {
@@ -108,7 +107,11 @@ export default {
       topicService.delete(id).then(() => {
         this.getTopics();
       }).catch(console.error)
-
+    },
+    getNumberOfMessages(topicId){
+      topicService.getMessageCount(topicId).then(response => {
+        this.$store.commit("SET_NUMBER_OF_MESSAGES", response.data);
+      }).catch(console.error);
     }
   },
   created() {
