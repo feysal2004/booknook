@@ -23,20 +23,27 @@ public class ForumTopicsController {
      this.forumTopicDao = forumTopicDao;
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Topic> getListOfForumTopics() {
         return forumTopicDao.getTopics();
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "", method = RequestMethod.POST)
     public void createNewForumTopic(@RequestBody Topic newTopic) {
         forumTopicDao.createForumTopic(newTopic.getTopicName());
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void deleteForumTopic(@PathVariable int id) {
         forumTopicDao.deleteForumTopic(id);
     }
 
-
+    @PreAuthorize("permitAll")
+    @RequestMapping(path="/{topicId}/messages", method = RequestMethod.GET)
+    public int getMessageCount(@PathVariable int topicId) {
+        return forumTopicDao.getNumberOfMessages(topicId);
+    }
 }

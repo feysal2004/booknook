@@ -22,6 +22,8 @@ export default new Vuex.Store({
     topics: [],
     messages: [],
     bookInput: [],
+    adminBooks: [],
+    messageCount: [],
     activeTopic: {
       id: 0,
       title: "",
@@ -64,9 +66,10 @@ export default new Vuex.Store({
       state.messages = data;
     },
     SET_GOOGLE_BOOK_SEARCH(state, data) {
-      console.log("We are at the mutation")
-      console.log(data)
       state.bookInput = data;
+    },
+    SET_ADMIN_ADDED_BOOKS(state, data) {
+      state.adminBooks = data;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -88,5 +91,8 @@ export default new Vuex.Store({
     ADD_BOOK(state, book) {
       state.books.push(book);
     },
+    SET_NUMBER_OF_MESSAGES(state, data) {
+      state.messageCount = data;
+    }
   }
 })

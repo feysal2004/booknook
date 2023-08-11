@@ -28,7 +28,7 @@
       <input class="input-field" type="date" placeholder="Release Date" v-model="book.release_date" />
       <input class="input-field" type="date" placeholder="Date added to Collection" v-model="book.date_added_to_collection" />
 
-      <button class="add-button" v-on:click="saveBook()">Add Book</button>
+      <button class="add-button" v-on:click="saveBook();$router.push({ name: 'BookLibrary' })"  >Add Book</button>
     </div>
     <h2 v-else class="auth-required">Must Be Authorized</h2>
     </main>

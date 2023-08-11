@@ -19,6 +19,7 @@
 
 
     <main class="main">
+      <!-- books from google books api -->
      <div class="search-container">
       <input class="search-bar" type="text" placeholder="Search by Title or Author" v-model="input" />
       <button class="submit-button" v-on:click="getBookSearch()" >Search</button>
@@ -32,12 +33,18 @@
         <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
         </div>
       </div>
+     
+     <!-- books from internal database -->
      </div>
-      <!-- <button v-on:click="getBookSearch()" v-model="" >Button</button> -->
-
-    <!-- have google book api give us a selection of books -->
-    <!-- Get title author and thumbnail from the selection of Books -->
-    <!-- Have a block to display each book with that info -->
+      <div class="book-container">
+        <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" class="book-box" >
+          <div class="book-content">
+            <img src="" alt="">  <!-- add no image icon -->
+            <h2 class="book-title"> {{ truncateTitle(book.book_name, 10) }} </h2>
+            <p class="book-author"> {{ book.author }} </p>
+          </div>
+        </div>
+      </div>
 
     </main>
 
@@ -76,35 +83,46 @@
 </template>
 
 <script>
+import bookService from '../services/BookService';
 import googleBookAPI from "../services/GoogleBookApiService";
 
 export default {
     data() {
         return {
-            input: "a"
+            input: this.generateRandomLetter()
         }
     },
 
     methods: {
-        getBookSearch() {
-            googleBookAPI.getBookListBySearchQuery(this.input).then(response => {
-                this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
-                this.input = "";
-                console.log("Logging google books get books search method", response.data.items)
-            }).catch(console.error);
-        },
+      getBookSearch() {
+          googleBookAPI.getBookListBySearchQuery(this.input).then(response => {
+              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+              this.input = "";
+          }).catch(console.error);
+      },
 
-    truncateTitle(title, words) {
-    const titleWords = title.split(' ');
-    if (titleWords.length > words) {
-      return titleWords.slice(0, words).join(' ') + '...';
-    }
-    return title;
-  },
+      truncateTitle(title, words) {
+        const titleWords = title.split(' ');
+        if (titleWords.length > words) {
+          return titleWords.slice(0, words).join(' ') + '...';
+        }
+        return title;
+      },
+
+      generateRandomLetter() {
+        const alphabet = "aeijpqrtwxz"
+        return alphabet[Math.floor(Math.random() * alphabet.length)]
+      },
+
+      getAdminAddedBooks() {
+        return bookService.getBooksFromOurDatabase().then(response => {
+          this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
+        }).catch(console.error);
+      }
     },
     created() {
-        console.log("google books component created")
         this.getBookSearch();
+        this.getAdminAddedBooks();
     }
 }
 </script>

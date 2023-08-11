@@ -1,11 +1,14 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Book;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -34,5 +37,33 @@ public class JdbcBookDao implements BookDao {
         return newBook;
     }
 
+    @Override
+    public List<Book> getBooksFromDatabase() {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM books_table";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                Book book = mapRowToBook(results);
+                books.add(book);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return books;
+    }
+
+    private Book mapRowToBook(SqlRowSet rs) {
+        Book book = new Book();
+        book.setBookName(rs.getString("book_name"));
+        book.setAuthor(rs.getString("author"));
+        book.setAuthorSecond(rs.getString("author_second"));
+        book.setDescription(rs.getString("description"));
+        book.setSeries(rs.getString("series"));
+        book.setBook_id(rs.getInt("book_id"));
+        book.setRelease_date(rs.getDate("release_date").toLocalDate());
+        book.setDate_added_to_collection(rs.getDate("date_added_to_collection").toLocalDate());
+        return book;
+    }
 
 }

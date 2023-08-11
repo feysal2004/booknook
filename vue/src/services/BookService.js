@@ -1,15 +1,9 @@
 import axios from 'axios';
 
-// const http = axios.create({
-//     baseURL: "http://localhost:9000"
-//   });
-
   export default{
 
     getData(){
-
       const data = {
-
         "results": [
           {
             "title":"pop up",
@@ -21,25 +15,16 @@ import axios from 'axios';
             "dateAddedToCollection":"01-01-2023"
           }
         ]
-
-
       }
-
       return data
-
     },
-
-   
-
-    
       
     addBook(book){
-        return axios.post('/addBook', book);
+        return axios.post('/books/addBook', book);
     },
 
-    filteredBook(){
-      return axios.get(`/bookLibrary`);
-
+    getBooksFromOurDatabase(){
+      return axios.get('/books');
     },
    
 

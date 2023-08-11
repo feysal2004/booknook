@@ -16,5 +16,7 @@ public interface ForumTopicDao {
 
     void deleteForumTopic(int topicId);
 
+    int getNumberOfMessages(int topicId);
+
 //    String getTopicName(int topicId);
 }
