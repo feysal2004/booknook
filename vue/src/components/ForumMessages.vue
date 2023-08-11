@@ -114,37 +114,24 @@ export default {
         this.getMessages();
       }).catch(console.error);
     },
-     editMessage(id, index){
-       this.toggleEditRow(index);
+    editMessage(id, index){
+       this.toggleEditRow(index)
+      forumService.editForumMessage(this.messageId, this.message_text)
     },
-      submitEditedMessage(index){
-        forumService.editForumMessage(this.messageId, this.message_text).then(() => {
-          this.toggleEditRow(index);
-        }).catch(console.error);
-    },
-     toggleEditRow(index){
+    toggleEditRow(index){
        this.activeIndex = !this.activeIndex === index ? -1 : index;
-     },
-    //  getSingleMessage(messageId){
-
-    //  },
-    // showButton(){
-
-    //  },
-     deleteMessage(id){
-       forumService.deleteForumMessage(id).then(() => {
-         this.getMessages();
-       }).catch(console.error)
-     }
+    },
+    deleteMessage(id){
+      forumService.deleteForumMessage(id).then(() => {
+        this.getMessages();
+      }).catch(console.error)
+    }
   },
   
   created(){
     this.getMessages();
     this.getTopicName();
   },
-
- 
-
   computed: {
     filteredMessages(){
       return this.$store.state.messages;
