@@ -50,7 +50,7 @@
               <td class="edit-button-cell"  >
                   <button class="edit-button" v-on:click.prevent.stop="editMessage(message.message_id, index)" >Edit</button>
                   <button >Save Message</button>
-                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Topic</button>
+                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button>
                   
               </td>
             </tr> 
