@@ -3,6 +3,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ForumMessageDao;
 import com.techelevator.model.ForumMessage;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @CrossOrigin
 @RequestMapping(path="/topics/message")
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class ForumMessageController {
 
@@ -20,24 +22,33 @@ public class ForumMessageController {
         this.forumMessageDao = forumMessageDao;
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path="/{topicId}", method = RequestMethod.GET)
     public List<ForumMessage> getListOfMessages(@PathVariable int topicId) {
         return forumMessageDao.getListOfMessages(topicId);
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path="/{topicId}/name", method = RequestMethod.GET)
     public String getTopicName(@PathVariable int topicId){
         return forumMessageDao.getTopicName(topicId);
     }
-
+    @PreAuthorize("permitAll")
     @RequestMapping(path="/{topicId}", method = RequestMethod.POST)
     public ForumMessage createForumMessage(@RequestBody ForumMessage message, @PathVariable int topicId) {
         return forumMessageDao.createForumMessage(message, topicId);
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path="/{messageId}/name", method = RequestMethod.PUT)
     public void  editForumMessage(@RequestBody ForumMessage message, @PathVariable int messageId){
          forumMessageDao.editForumMessage(message, messageId);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void deleteMessage(@PathVariable int id){
+        forumMessageDao.deleteMessage(id);
     }
 
 
