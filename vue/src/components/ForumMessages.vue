@@ -114,17 +114,24 @@ export default {
       }).catch(console.error);
     },
      editMessage(id, index){
-       this.toggleEditRow(index)
-     forumService.editForumMessage(this.messageId, this.message_text)
-      
-
-  },
-
+       this.toggleEditRow(index);
+    },
+      submitEditedMessage(index){
+        forumService.editForumMessage(this.messageId, this.message_text).then(() => {
+          this.toggleEditRow(index);
+        }).catch(console.error);
+    },
      toggleEditRow(index){
        this.activeIndex = !this.activeIndex === index ? -1 : index;
+     },
+    //  getSingleMessage(messageId){
 
-     }
+    //  },
+    // showButton(){
+
+    // },
   },
+  
   created(){
     this.getMessages();
     this.getTopicName();
