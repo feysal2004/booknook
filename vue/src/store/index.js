@@ -93,6 +93,9 @@ export default new Vuex.Store({
     },
     SET_NUMBER_OF_MESSAGES(state, data) {
       state.messageCount = data;
+    },
+    SAVE_BOOK_TO_LIBRAY(state,book){
+      state.books.push(book)
     }
   }
 })
