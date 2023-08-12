@@ -118,7 +118,10 @@ export default {
         return bookService.getBooksFromOurDatabase().then(response => {
           this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
         }).catch(console.error);
-      }
+      },
+      // showingAuthors() {
+      //   book.volumeInfo.authors.join(', ')
+      // }
     },
     created() {
         this.getBookSearch();

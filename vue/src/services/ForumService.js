@@ -7,27 +7,23 @@ import axios from 'axios';
   export default{
 
     messageList(topicId){
-        return axios.get(`/topics/message/${topicId}`)
+        return axios.get(`/topics/message/${topicId}`);
     },
-
     getForumMessageId(messageId){
         return axios.get(`/topics/${messageId}`);
     },
-
     createForumMessage(topicId, message){
         return axios.post(`/topics/message/${topicId}`, message);
     },
-
     getTopicName(topicId){
         return axios.get(`/topics/message/${topicId}/name`);
     },
     editForumMessage(messageId, message){
-        return axios.put(`/topics/message/${messageId}/name`, message)
+        return axios.put(`/topics/message/${messageId}/name`, message);
     },
     deleteForumMessage(messageId,message){
-        return axios.delete(`/topics/message/${messageId}`,message)
+        return axios.delete(`/topics/message/${messageId}`,message);
     }
-
 
 
   }
