@@ -102,7 +102,6 @@ export default {
           this.topic.topicName = "";
       }).catch(console.error);      
     },
-
     deleteTopic(id){
       topicService.delete(id).then(() => {
         this.getTopics();
