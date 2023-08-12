@@ -23,6 +23,17 @@
      <div class="search-container">
       <input class="search-bar" type="text" placeholder="Search by Title or Author" v-model="input" />
       <button class="submit-button" v-on:click="getBookSearch()" >Search</button>
+
+      <div class="dropDown">
+      <select id="dropdown">
+  <option value="option1">Newest Books</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+</select>
+
+<p id="selectedOption"></p>
+
+      </div>
      </div>
 
      <div class="book-container">
@@ -31,6 +42,7 @@
         <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
         <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
         <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
+        <button>Add to libary</button>
         </div>
       </div>
      
@@ -89,7 +101,8 @@ import googleBookAPI from "../services/GoogleBookApiService";
 export default {
     data() {
         return {
-            input: this.generateRandomLetter()
+            input: this.generateRandomLetter(),
+            dropDownInput: this.newestToOldest()
         }
     },
 
@@ -118,6 +131,13 @@ export default {
         return bookService.getBooksFromOurDatabase().then(response => {
           this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
         }).catch(console.error);
+      },
+      AddToMyLibary(){
+        
+      
+      },
+      newestToOldest(){
+        
       }
     },
     created() {
