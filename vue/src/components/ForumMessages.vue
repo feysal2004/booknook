@@ -78,7 +78,6 @@
 
 <script>
 import forumService from "../services/ForumService";
-// import topicService from '../services/TopicService';
 
 export default {
   props: ["topicId", "messageId"],
