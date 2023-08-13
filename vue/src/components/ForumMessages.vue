@@ -43,17 +43,19 @@
               <th>Messages</th>
             </tr>
           </thead>
+          <div id="content">
           <tbody>
             <tr v-for="(message, index) in filteredMessages" :key="message.message_id">
               <td :id = "message.message_id" width="80%" v-bind:currentMessageId=message.message_id ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
               <input type="text" v-model="editObject.message_text" v-if="activeIndex === index"  ></td>
               <td class="edit-button-cell"  >
-                  <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)" >Edit</button>
-                  <button v-on:click="submitEditedMessage( message.message_id, editObject)" >Save Message</button>
+                  <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
+                  <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
                   <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button> 
               </td>
             </tr> 
           </tbody>
+          </div>
         </table>
       </div>
     </main>
@@ -83,6 +85,7 @@ export default {
   props: ["topicId", "messageId"],
   data() {
     return {
+       showButton: true,
       showMessage : false,
       activeIndex: -1,
       currentMessageId: 1,
@@ -117,18 +120,19 @@ export default {
     },
     editMessage(index, message){
       this.editObject.message_text = message.message_text;
-      this.toggleEditRow(index);
+      this.activeIndex = index
     },
     submitEditedMessage(message_id, editedMessage) {
       forumService.editForumMessage(message_id, editedMessage).then( () => {
         location.reload();
       }).catch(console.error)
     },
-    // toggleButtons() {
+    toggleButtons(button){
+        this.showButton = !this.showButton === button ? true : button;
+    },
 
-    // },
     toggleEditRow(index){
-       this.activeIndex = !this.activeIndex === index ? -1 : index;
+       this.activeIndex = this.activeIndex === index ? -1 : index;
     },
     deleteMessage(id){
       forumService.deleteForumMessage(id).then(() => {
