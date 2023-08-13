@@ -27,6 +27,7 @@
 </template>
  
 <script>
+import AddGoogleMap from "../components/AddGoogleMap.vue"
 export default {
   name: "AddGoogleMap",
   data() {
@@ -37,18 +38,20 @@ export default {
       },
       locationMarkers: [],
       locPlaces: [],
+      nearbyBookstores: [],
       existingPlace: null
     };
   },
 
   mounted() {
     this.locateGeoLocation();
-    this.loadPlaces();
+    this.fetchNearbyBookstores();
   },
 
   methods: {
     initMarker(loc) {
       this.existingPlace = loc;
+      this.fetchNearbyBookstores();
     },
     addLocationMarker() {
       if (this.existingPlace) {
@@ -69,6 +72,19 @@ export default {
           lng: res.coords.longitude
         };
       });
+    },
+
+      async fetchNearbyBookstores() {
+      try {
+        const response = await AddGoogleMap.get(
+          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCRUi9iFNf5yy3HxMkPiy6dwVCe1EC0q8g&libraries=places" 
+        );
+        this.nearbyBookstores = response.data.maps(store => ({
+          position: { lat: store.lat, lng: store.lng },
+        }));
+      } catch (error) {
+        console.error("Error fetching nearby bookstores:", error);
+      }
     },
   }
 };
