@@ -22,6 +22,7 @@ export default new Vuex.Store({
     topics: [],
     messages: [],
     bookInput: [],
+    maps: [],
     adminBooks: [],
     messageCount: [],
     activeTopic: {

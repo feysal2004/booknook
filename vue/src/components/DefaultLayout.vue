@@ -16,6 +16,10 @@
 
     </header>
 
+    <map class="map-container">
+      
+    </map>
+
 
     <main class="main">
                         <!-- BOOK BOXES -->
@@ -83,7 +87,7 @@
     "header header header"
     "nav main main"
     "nav main main"
-    "footer footer footer";
+    "footer footer map";
   min-height: 100vh;
 }
 

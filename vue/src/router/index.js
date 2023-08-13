@@ -11,6 +11,7 @@ import BookLibrary from '../views/BookLibrary.vue'
 import Topic from '../views/Topic.vue'
 import ForumMessages from '../views/ForumMessages.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue';
+import GoogleMaps from '../components/AddGoogleMap.vue';
 
 Vue.use(Router)
 
@@ -121,6 +122,11 @@ const router = new Router({
       name: 'forumMessages',
       component: ForumMessages
     },
+    {
+      path: '/googlemaps',
+      name: 'googleMaps',
+      component: GoogleMaps
+    }
   ]
 })
 
