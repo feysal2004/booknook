@@ -1,7 +1,7 @@
 <template>
   <div class="google-maps">
     <div>
-      <h2>Vue Js Search and Add Marker</h2>
+      <h2>Books In Your Area!</h2>
       <label>
         <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
         <button @click="addLocationMarker">Add</button>
@@ -11,9 +11,10 @@
     </div>
     <br>
     <gmap-map
-        :zoom="14"    
+        :zoom="10"    
         :center="center"
         style="width:100%;  height: 600px;"
+        ref="gmap" 
       >
       <gmap-marker
         :key="index"
@@ -30,7 +31,7 @@ export default {
   name: "AddGoogleMap",
   data() {
     return {
-      center: { 
+      center: {
         lat: 39.7837304,
         lng: -100.4458825
       },
@@ -39,11 +40,12 @@ export default {
       existingPlace: null
     };
   },
- 
+
   mounted() {
     this.locateGeoLocation();
+    this.loadPlaces();
   },
- 
+
   methods: {
     initMarker(loc) {
       this.existingPlace = loc;
@@ -67,14 +69,14 @@ export default {
           lng: res.coords.longitude
         };
       });
-    }
+    },
   }
 };
 </script>
 
 <style>
 .map {
-    width: 50%;
+    width: 75%;
     height: auto;
 }
 </style>

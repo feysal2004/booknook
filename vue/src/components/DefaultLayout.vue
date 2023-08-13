@@ -17,7 +17,7 @@
     </header>
 
     <map class="map-container">
-      
+      <AddGoogleMapVue />
     </map>
 
 
@@ -75,6 +75,14 @@
 </template>
 
 
+<script>
+import AddGoogleMapVue from '../components/AddGoogleMap.vue';
+
+export default {
+  name: "home",
+  components: {AddGoogleMapVue}
+};
+</script>
 
 
 
@@ -85,9 +93,9 @@
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "header header header"
-    "nav main main"
-    "nav main main"
-    "footer footer map";
+    "nav main map"
+    "nav main map"
+    "footer footer footer";
   min-height: 100vh;
 }
 
