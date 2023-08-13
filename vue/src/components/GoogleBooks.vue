@@ -26,12 +26,12 @@
 
       <div class="dropDown">
       <select id="dropdown">
-  <option value="option1">Newest Books</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-</select>
+        <option value="option1">Newest Books</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
 
-<p id="selectedOption"></p>
+      <p id="selectedOption"></p>
 
       </div>
      </div>
@@ -60,7 +60,7 @@
 
     </main>
 
-<nav class="nav">
+      <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
         <nav class="nav">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
@@ -79,11 +79,11 @@
           <span>My BookShelf</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <span class="nav-box"></span>
+            <img src="../assets/icons8-plus-48.png" alt="AddBook">
           <span>Add Book</span>
         </div>
-    </nav>
+        </nav>
     </nav>
 
 
