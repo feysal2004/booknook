@@ -26,25 +26,29 @@
     
       <div class="dropDown">
         <select v-model="difficultyChoice" @change="get10QuestionsByDifficulty(difficultyChoice)" >
-            <option value="">Select Difficulty</option>
-            <option value="optionEasy" >Easy</option>
-            <option value="optionMedium" >Medium</option>
-            <option value="optionHard" >Hard</option>
+            <!-- <option value="">Select Difficulty</option> -->
+            <option value="easy" >Easy</option>
+            <option value="medium" >Medium</option>
+            <option value="hard" >Hard</option>
         </select>
       </div>
 
       <div class="question-container">
           <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId"  >
               <div class="question-content">
-                  <h3> Q1 {{triviaQ.question}} </h3>
+                  <h3> Q: {{triviaQ.question}} </h3>
+                  <button @click="reveal = !reveal" >Reveal the Correct Answer</button>
+                  <h4 v-if="reveal" >Answer Hidden</h4>
+                  <h4 v-else > A: {{triviaQ.correct_answer}} </h4>
               </div>
           </div>
       </div>
+                 <!-- -- Use to test when creating --
         <h3>Test Line</h3>
         <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId" >
-            <h3> {{triviaQ.question}} </h3>
-        </div>
-        <h3>{{get10MultipleChoiceQuestions}} </h3>
+            <h3> q2 {{triviaQ.question}} </h3>
+        </div> --> 
+
   </div>
 
 
@@ -104,11 +108,14 @@ export default {
             triviaService.get10QuestionsChooseDifficulty(difficultyChoice).then(response => {
                 this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
             }).catch(console.error);
+        },
+        revealAnswer() {
+
         }
     },
-    created() {
-        this.get10MultipleChoiceQuestions();
-    }
+    // created() {
+    //     this.get10MultipleChoiceQuestions();
+    // }
 }
 </script>
 

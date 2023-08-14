@@ -10,7 +10,7 @@ export default{
     getTriviaByNumberOfQuestions(number) {
         return triviaApi.get(`https://opentdb.com/api.php?amount=${number}&category=10`);
     },
-    getMultipleChoiceTrivia() {
+    getMultipleChoiceQuestions() {
         return triviaApi.get(`https://opentdb.com/api.php?amount=10&category=10&type=multiple`);
     },
     get10QuestionsChooseDifficulty(difficulty) {
