@@ -104,8 +104,6 @@ export default {
         },
         get10QuestionsByDifficulty(difficultyChoice) {
             triviaService.get10QuestionsChooseDifficulty(difficultyChoice).then(response => {
-                // for each question add an id in a series 1-10
-                
                 this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
             }).catch(console.error);
         },

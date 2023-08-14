@@ -23,6 +23,7 @@ export default new Vuex.Store({
     messages: [],
     bookInput: [],
     triviaDifficulty: [],
+    triviaBoolean: [],
     map: [],
     adminBooks: [],
     messageCount: [],
@@ -74,6 +75,9 @@ export default new Vuex.Store({
     },
     SET_TRIVIA_DIFFICULTY(state, data) {
       state.triviaDifficulty = data;
+    },
+    SET_TRIVIA_TRUE_FALSE(state, data) {
+      state.triviaBoolean = data;
     },
     SET_ADMIN_ADDED_BOOKS(state, data) {
       state.adminBooks = data;
