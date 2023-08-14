@@ -1,13 +1,13 @@
 <template>
   <div class="topic-list">
-        <header class="header">
-          <router-link :to="{ name: 'home' }" class="logo">
-      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
-    </router-link>
+    <header class="header">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+      </router-link>
 
-            <div class="app-name">
+      <div class="app-name">
         <span class="app-name-text">App</span>
-       <span class="app-name-accent">Name</span>
+        <span class="app-name-accent">Name</span>
       </div>
 
       <div class="login-logout">
@@ -44,17 +44,17 @@
             </tr>
           </thead>
           <div id="content">
-          <tbody>
-            <tr v-for="(message, index) in filteredMessages" :key="message.message_id">
-              <td :id = "message.message_id" width="80%" v-bind:currentMessageId=message.message_id ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
-              <input type="text" v-model="editObject.message_text" v-if="activeIndex === index"  ></td>
-              <td class="edit-button-cell"  >
-                  <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
-                  <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
-                  <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button> 
-              </td>
-            </tr> 
-          </tbody>
+            <tbody>
+              <tr v-for="(message, index) in filteredMessages" :key="message.message_id">
+                <td :id = "message.message_id" width="80%" v-bind:currentMessageId=message.message_id ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
+                <input type="text" v-model="editObject.message_text" v-if="activeIndex === index"  ></td>
+                <td class="edit-button-cell"  >
+                    <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
+                    <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
+                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button> 
+                </td>
+              </tr> 
+            </tbody>
           </div>
         </table>
       </div>
@@ -62,18 +62,18 @@
 
     <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-        <nav class="nav">
+      <nav class="nav">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-home-60.png" alt="Home">
-            <span class="nav-text">Home</span>
+          <span class="nav-text">Home</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-keyboard-50.png" alt="Forum">
           <span>Forum</span>
         </div>
-    </nav>
+      </nav>
     </nav>
   </div>
 </template>

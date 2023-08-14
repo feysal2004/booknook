@@ -1,57 +1,50 @@
 <template>
   <div class="google-books">
-      <header class="header">
-          <router-link :to="{ name: 'home' }" class="logo">
-      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
-    </router-link>
-
-            <div class="app-name">
+    <header class="header">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+      </router-link>
+      <div class="app-name">
         <span class="app-name-text">App</span>
-       <span class="app-name-accent">Name</span>
+        <span class="app-name-accent">Name</span>
       </div>
-
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
     </header>
 
-
-
-
     <main class="main">
       <!-- books from google books api -->
-     <div class="search-container">
-      <input class="search-bar" type="text" placeholder="Search by Title or Author" v-model="input" />
-      <button class="submit-button" v-on:click="getBookSearch()" >Search</button>
+      <div class="search-container">
+        <input class="search-bar" type="text" placeholder="Search by Title or Author" v-model="input" />
+        <button class="submit-button" v-on:click="getBookSearch()" >Search</button>
 
-      <div class="dropDown">
-      <select id="dropdown">
-        <option value="option1">Newest Books</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </select>
-
-      <p id="selectedOption"></p>
-
-      </div>
-     </div>
-
-     <div class="book-container">
-      <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
-        <div class="book-content">
-        <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
-        <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-        <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
-        <button>Add to libary</button>
+        <div class="dropDown">
+          <select id="dropdown">
+            <option value="option1">Newest Books</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </select>
+          <p id="selectedOption"></p>
         </div>
       </div>
-     
-     <!-- books from internal database -->
-     </div>
+
+      <div class="book-container">
+        <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
+          <div class="book-content">
+            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
+            <button>Add to libary</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- books from internal database -->
       <div class="book-container">
         <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" class="book-box" >
           <div class="book-content">
-            <img src="" alt="">  <!-- add no image icon -->
+            <img src="" alt="" class="bookCover" />  <!-- add no image icon -->
             <h2 class="book-title"> {{ truncateTitle(book.book_name, 10) }} </h2>
             <p class="book-author"> {{ book.author }} </p>
           </div>
@@ -60,32 +53,31 @@
 
     </main>
 
-      <nav class="nav">
+    <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-        <nav class="nav">
+      <nav class="nav">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-home-60.png" alt="Home">
-            <span class="nav-text">Home</span>
+          <span class="nav-text">Home</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-keyboard-50.png" alt="Forum">
           <span>Forum</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
           <span>My BookShelf</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
           <span class="nav-box"></span>
-            <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <img src="../assets/icons8-plus-48.png" alt="AddBook">
           <span>Add Book</span>
         </div>
         </nav>
     </nav>
-
 
     <footer class="footer">
     </footer>

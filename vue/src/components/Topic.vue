@@ -1,13 +1,13 @@
 <template>
   <div class="topic-list">
-        <header class="header">
-          <router-link :to="{ name: 'home' }" class="logo">
-      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
-    </router-link>
+    <header class="header">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+      </router-link>
 
-            <div class="app-name">
+      <div class="app-name">
         <span class="app-name-text">App</span>
-       <span class="app-name-accent">Name</span>
+        <span class="app-name-accent">Name</span>
       </div>
 
       <div class="login-logout">
@@ -20,60 +20,60 @@
 
   
     <main class="main">
-    <h1 class="page-title">Forum Board</h1>
-    <div class="add-topic">
-      <h3>Add a new topic</h3>
-      <div class="search-box">
-        <textarea name="addTopic" id="addForumTopic" rows="3" v-model="topic.topicName" placeholder="Enter your topic"></textarea>
-        <button class="submit-button" v-on:click="saveTopic()">Submit</button>
+      <h1 class="page-title">Forum Board</h1>
+      <div class="add-topic">
+        <h3>Add a new topic</h3>
+        <div class="search-box">
+          <textarea name="addTopic" id="addForumTopic" rows="3" v-model="topic.topicName" placeholder="Enter your topic"></textarea>
+          <button class="submit-button" v-on:click="saveTopic()">Submit</button>
+        </div>
       </div>
-    </div>
-    <table class="topic-table">
-      <thead>
-        <tr>
-          <th>Topics</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="topicset in filteredTopics" v-bind:key="topicset.topicId">
-          <td>
-            <router-link
-              class="topic-link"
-              v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
-              {{ topicset.topicName }} {{getNumberOfMessages(topicset.topicId)}}
-            </router-link>
+      <table class="topic-table">
+        <thead>
+          <tr>
+            <th>Topics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="topicset in filteredTopics" v-bind:key="topicset.topicId">
+            <td>
+              <router-link
+                class="topic-link"
+                v-bind:to="{ name: 'forumMessages', params: { id: topicset.topicId } }">
+                {{ topicset.topicName }} {{getNumberOfMessages(topicset.topicId)}}
+              </router-link>
               <button class="delete-topic-button" v-on:click="deleteTopic(topicset.topicId)"  v-if="$store.state.user.username === 'admin'">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
    
     </main>
 
-        <nav class="nav">
+    <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-        <nav class="nav">
+      <nav class="nav">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-home-60.png" alt="Home">
-            <span class="nav-text">Home</span>
+          <span class="nav-text">Home</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
           <span>My BookShelf</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-        <img src="../assets/icons8-library-50.png" alt="BookLibrary">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary">
           <span>Book Library</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'addBook' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
+          <span class="nav-box"></span>
           <img src="../assets/icons8-plus-48.png" alt="addBook">
           <span>Add Book</span>
         </div>
-    </nav>
+      </nav>
     </nav>
   </div>
 </template>

@@ -7,8 +7,14 @@ triviaApi.defaults.headers.common = {};
 
 export default{
 
-getTriviaByNumberOfQuestions(number) {
-    return triviaApi.get(`https://opentdb.com/api.php?amount=${number}&category=10`);
-}
+    getTriviaByNumberOfQuestions(number) {
+        return triviaApi.get(`https://opentdb.com/api.php?amount=${number}&category=10`);
+    },
+    getMultipleChoiceTrivia() {
+        return triviaApi.get(`https://opentdb.com/api.php?amount=10&category=10&type=multiple`);
+    },
+    get10QuestionsChooseDifficulty(difficulty) {
+        return triviaApi.get(`https://opentdb.com/api.php?amount=10&category=10&difficulty=${difficulty}&type=multiple`);
+    }
 
 }

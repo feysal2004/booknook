@@ -22,6 +22,7 @@ export default new Vuex.Store({
     topics: [],
     messages: [],
     bookInput: [],
+    triviaDifficulty: [],
     maps: [],
     adminBooks: [],
     messageCount: [],
@@ -69,6 +70,9 @@ export default new Vuex.Store({
     SET_GOOGLE_BOOK_SEARCH(state, data) {
       state.bookInput = data;
     },
+    SET_TRIVIA_DIFFICULTY(state, data) {
+      state.triviaDifficulty = data;
+    },
     SET_ADMIN_ADDED_BOOKS(state, data) {
       state.adminBooks = data;
     },
@@ -88,7 +92,6 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-
     ADD_BOOK(state, book) {
       state.books.push(book);
     },

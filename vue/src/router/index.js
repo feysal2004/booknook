@@ -12,6 +12,7 @@ import Topic from '../views/Topic.vue'
 import ForumMessages from '../views/ForumMessages.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue';
 import GoogleMaps from '../components/AddGoogleMap.vue';
+import TriviaCorner from '../views/TriviaCorner.vue';
 
 Vue.use(Router)
 
@@ -126,6 +127,11 @@ const router = new Router({
       path: '/googlemaps',
       name: 'googleMaps',
       component: GoogleMaps
+    },
+    {
+      path: '/triviacorner',
+      name: 'TriviaCorner',
+      component: TriviaCorner
     }
   ]
 })

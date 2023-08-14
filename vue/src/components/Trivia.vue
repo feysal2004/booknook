@@ -1,15 +1,204 @@
 <template>
-  <div>
-      
+    <div class="trivia-corner">
+        <header class="header">
+            <router-link :to="{ name: 'home' }" class="logo">
+                <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+            </router-link>
+            <div class="app-name">
+                <span class="app-name-text">App</span>
+                <span class="app-name-accent">Name</span>
+            </div>
+            <div class="login-logout">
+                <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+            </div>
+        </header>
+
+
+    <div class="trivia-section">
+      <h1>
+          Trivia Corner
+      </h1>
+      <h3>
+          Welcome to the Trivia Corner! Test out your book knowledge with some trivia below. 
+          Choose your difficulty and see how well you can do!
+      </h3>
+
+    
+      <div class="dropDown">
+        <select v-model="difficultyChoice" @change="get10QuestionsByDifficulty(difficultyChoice)" >
+            <option value="">Select Difficulty</option>
+            <option value="optionEasy" >Easy</option>
+            <option value="optionMedium" >Medium</option>
+            <option value="optionHard" >Hard</option>
+        </select>
+      </div>
+
+      <div class="question-container">
+          <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId"  >
+              <div class="question-content">
+                  <h3> Q1 {{triviaQ.question}} </h3>
+              </div>
+          </div>
+      </div>
+        <h3>Test Line</h3>
+        <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId" >
+            <h3> {{triviaQ.question}} </h3>
+        </div>
+        <h3>{{get10MultipleChoiceQuestions}} </h3>
+  </div>
+
+
+    <nav class="nav">
+                     <!-- NAVIGATION MENU CODE -->
+        <nav class="nav">
+        <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-home-60.png" alt="Home">
+            <span class="nav-text">Home</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum">
+          <span>Forum</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
+            <span class="nav-box"></span>
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
+          <span>My BookShelf</span>
+        </div>
+        <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
+          <span class="nav-box"></span>
+            <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <span>Add Book</span>
+        </div>
+        </nav>
+    </nav>
+
+
+    <footer class="footer">
+    </footer>
+
+
   </div>
 </template>
 
 <script>
-export default {
+import triviaService from '../services/TriviaService';
 
+export default {
+    data() {
+        return {
+            difficultyChoice: ""
+        }
+    },
+    methods: {
+        getTriviaByCount(number) {
+            triviaService.getTriviaByNumberOfQuestions(number);
+        },
+        get10MultipleChoiceQuestions() {
+            triviaService.getMultipleChoiceQuestions().then(response => {
+                this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
+            }).catch(console.error);
+        },
+        get10QuestionsByDifficulty(difficultyChoice) {
+            triviaService.get10QuestionsChooseDifficulty(difficultyChoice).then(response => {
+                this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
+            }).catch(console.error);
+        }
+    },
+    created() {
+        this.get10MultipleChoiceQuestions();
+    }
 }
 </script>
 
 <style>
+
+.trivia-corner {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "nav main main"
+    "nav main main"
+    "footer footer footer";
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #ffffff;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.logo-image {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.app-name {
+  grid-area: app-name;
+  text-align: center;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  font-size: 4rem;
+}
+
+.app-name-text {
+  color: rgb(175, 174, 174);
+}
+
+.app-name-accent {
+  color: rgb(209, 77, 4);
+}
+
+.login-logout-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-logout-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+
+.nav {
+  grid-area: nav;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+  padding: 1rem;
+}
 
 </style>
