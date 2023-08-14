@@ -49,9 +49,11 @@
                 <td :id = "message.message_id" width="80%" v-bind:currentMessageId=message.message_id ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
                 <input type="text" v-model="editObject.message_text" v-if="activeIndex === index"  ></td>
                 <td class="edit-button-cell"  >
+                  <div v-if="message.message_written_by === $store.state.user.username || $store.state.user.username === 'admin' " >
                     <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
                     <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
-                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button> 
+                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button>
+                  </div> 
                 </td>
               </tr> 
             </tbody>
@@ -93,11 +95,13 @@ export default {
       message_text: "",
       newMessage: {
         message_text: "",
+        message_written_by:""
         
       },
       currentTopicName: "",
       editObject: {
         message_text: "",
+       message_written_by:""
       }
     };
   },
@@ -113,17 +117,22 @@ export default {
       });
     },
     saveMessage() {
+      this.newMessage.message_written_by = this.$store.state.user.username;
       forumService.createForumMessage(this.topicId, this.newMessage).then( () => {
         this.newMessage.message_text = "";
         this.getMessages();
       }).catch(console.error);
     },
     editMessage(index, message){
+     
       this.editObject.message_text = message.message_text;
       this.activeIndex = index
+      
     },
     submitEditedMessage(message_id, editedMessage) {
+     
       forumService.editForumMessage(message_id, editedMessage).then( () => {
+        
         location.reload();
       }).catch(console.error)
     },
@@ -144,6 +153,7 @@ export default {
   created(){
     this.getMessages();
     this.getTopicName();
+    this.editObject.message_written_by = this.$store.state.user.username;
   },
   computed: {
     filteredMessages(){

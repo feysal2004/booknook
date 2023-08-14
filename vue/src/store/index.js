@@ -32,6 +32,8 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
+    
+  
 
     books: [
       {

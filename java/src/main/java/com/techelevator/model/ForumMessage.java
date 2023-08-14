@@ -53,4 +53,5 @@ public class ForumMessage {
         this.message_written_by = message_written_by;
     }
 
+
 }
