@@ -27,7 +27,9 @@
 </template>
  
 <script>
-import AddGoogleMap from "../components/AddGoogleMap.vue"
+import axios from 'axios';
+// import AddGoogleMap from "../components/AddGoogleMap.vue"
+
 export default {
   name: "AddGoogleMap",
   data() {
@@ -39,7 +41,8 @@ export default {
       locationMarkers: [],
       locPlaces: [],
       nearbyBookstores: [],
-      existingPlace: null
+      existingPlace: null,
+      maps: []
     };
   },
 
@@ -74,10 +77,10 @@ export default {
       });
     },
 
-      async fetchNearbyBookstores() {
+    async fetchNearbyBookstores() {
       try {
-        const response = await AddGoogleMap.get(
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCRUi9iFNf5yy3HxMkPiy6dwVCe1EC0q8g&libraries=places" 
+        const response = await axios.get(
+          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCRUi9iFNf5yy3HxMkPiy6dwVCe1EC0q8g&libraries=places/" 
         );
         this.nearbyBookstores = response.data.maps(store => ({
           position: { lat: store.lat, lng: store.lng },
@@ -86,6 +89,9 @@ export default {
         console.error("Error fetching nearby bookstores:", error);
       }
     },
+    // created() {
+    //   this.fetchNearbyBookstores();
+    // }
   }
 };
 </script>
