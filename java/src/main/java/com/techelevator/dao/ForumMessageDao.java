@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface ForumMessageDao {
 
+
     List<ForumMessage> getListOfMessages(int topicId);
 
     String getTopicName(int topicId);
@@ -17,4 +18,5 @@ public interface ForumMessageDao {
     void editForumMessage(ForumMessage message, int messageId);
 
     void deleteMessage(int messageId);
+
 }

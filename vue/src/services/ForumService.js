@@ -19,7 +19,7 @@ import axios from 'axios';
         return axios.get(`/topics/message/${topicId}/name`);
     },
     editForumMessage(messageId, message){
-        return axios.put(`/topics/message/${messageId}/name`, message);
+        return axios.put(`/topics/message/${messageId}`, message);
     },
     deleteForumMessage(messageId,message){
         return axios.delete(`/topics/message/${messageId}`,message);

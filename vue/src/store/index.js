@@ -23,7 +23,7 @@ export default new Vuex.Store({
     messages: [],
     bookInput: [],
     triviaDifficulty: [],
-    maps: [],
+    map: [],
     adminBooks: [],
     messageCount: [],
     activeTopic: {
@@ -32,6 +32,8 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
+    
+  
 
     books: [
       {
