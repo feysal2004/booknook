@@ -1,104 +1,131 @@
 <template>
-  <div class="google-maps">
-    <div>
-      <h2>Books In Your Area!</h2>
-      <label>
-        <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
-        <button @click="addLocationMarker">Add</button>
-      </label>
-      <br/>
+  <div>
+    <h2>Check Out Local Bookstores!</h2>
  
-    </div>
-    <br>
     <gmap-map
-        :zoom="10"    
-        :center="center"
-        style="width:100%;  height: 600px;"
-        ref="gmap" 
-      >
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in locationMarkers"
-        :position="m.position"
-        @click="center=m.position"
-      ></gmap-marker>
+      :center="center"
+      :zoom="10"
+      style="width:100%;  height: 350px;">
+      <gmap-marker :key="index" v-for="(gmp, index) in locations" :position="gmp" :title="gmp.label" @click="openGoogleMaps(gmp)"></gmap-marker>
     </gmap-map>
+ 
   </div>
 </template>
  
 <script>
-import axios from 'axios';
-// import AddGoogleMap from "../components/AddGoogleMap.vue"
-
 export default {
   name: "AddGoogleMap",
   data() {
     return {
-      center: {
-        lat: 39.7837304,
-        lng: -100.4458825
+      center: { 
+          lat: 39.7837304, 
+          lng: -100.4458825 
       },
-      locationMarkers: [],
-      locPlaces: [],
-      nearbyBookstores: [],
-      existingPlace: null,
-      maps: []
+      locations: [],
+      currentLocation: null
     };
   },
-
+ 
   mounted() {
-    this.locateGeoLocation();
-    this.fetchNearbyBookstores();
+    this.setLocationLatLng();
   },
-
+ 
   methods: {
-    initMarker(loc) {
-      this.existingPlace = loc;
-      this.fetchNearbyBookstores();
+    setPlace(loc) {
+      this.currentLocation = loc;
     },
-    addLocationMarker() {
-      if (this.existingPlace) {
-        const marker = {
-          lat: this.existingPlace.geometry.location.lat(),
-          lng: this.existingPlace.geometry.location.lng()
-        };
-        this.locationMarkers.push({ position: marker });
-        this.locPlaces.push(this.existingPlace);
-        this.center = marker;
-        this.existingPlace = null;
-      }
+    setLocationLatLng: function() {
+        navigator.geolocation.getCurrentPosition(geolocation => {
+          this.center = {
+            lat: geolocation.coords.latitude,
+            lng: geolocation.coords.longitude
+          };
+        });
+ 
+        this.locations = [
+          {
+              lat: 40.034145945564255, 
+              lng: -83.01676600141941,
+              label: 'Karen Wickliff-Books',
+              address: '3527 N High St, Columbus, OH 43214'
+          },
+          {
+              lat: 40.04805351691305, 
+              lng: -83.0205286835814,
+              label: 'Hoffman Books',
+              address: '4167 N High St, Columbus, OH 43214'
+          },
+          {
+              lat: 40.02682787761025, 
+              lng: -83.01383388769464,
+              label: 'Phoenix Books Ltd',
+              address: '3110 N High St, Columbus, OH 43202'
+          },
+          {
+              lat: 39.996080947872954, 
+              lng: -83.02751699258819,
+              label: 'Barnes & Noble',
+              address: '1739 Olentangy River Rd, Columbus, OH 43212'
+          },
+          {
+              lat: 40.03579788663061, 
+              lng: -82.99857823121397,
+              label: 'Dwell Study Center',
+              address: '620 E Oakland Park Ave, Columbus, OH 43214'
+          },
+          {
+              lat: 40.05073440810323, 
+              lng: -83.0201662539624, 
+              label: 'The Laughing Ogre',
+              address: '4258 N High St, Columbus, OH 43214'
+          },
+          {
+              lat: 40.06839933963786, 
+              lng: -83.08836820846554,  
+              label: 'Half Price Books',
+              address: '561 S State St, Westerville, OH 43081'
+          },
+          {
+              lat: 40.02427808076607,  
+              lng: -83.00796696190108,  
+              label: 'Bookspace Columbus',
+              address: '200 Crestview Rd, Columbus, OH 43202'
+          },
+          {
+              lat: 39.99457812202963,  
+              lng: -83.00658630610913,   
+              label: 'The Ohio State University Bookstore',
+              address: '1598 N High St, Columbus, OH 43201'
+          },
+          {
+              lat: 39.99088789114035,   
+              lng: -83.05486830052685,  
+              label: 'Serenity Book Shop',
+              address: '1598 N High St, Columbus, OH 43201'
+          },
+          {
+              lat: 39.9587186457828,   
+              lng: -82.93455455558639,  
+              label: 'Gramercy Books',
+              address: '1598 N High St, Columbus, OH 43201'
+          },
+          {
+              lat: 39.99477598351759,    
+              lng: -82.9417502488406,  
+              label: 'Barnes & Noble at Ohio Dominican University',
+              address: '1598 N High St, Columbus, OH 43201'
+          },
+      ];
+ 
     },
-    locateGeoLocation: function() {
-      navigator.geolocation.getCurrentPosition(res => {
-        this.center = {
-          lat: res.coords.latitude,
-          lng: res.coords.longitude
-        };
-      });
-    },
+    openGoogleMaps(location) {
+      const address = location.address;
+      const label = label;
 
-    async fetchNearbyBookstores() {
-      try {
-        const response = await axios.get(
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyCRUi9iFNf5yy3HxMkPiy6dwVCe1EC0q8g&libraries=places/" 
-        );
-        this.nearbyBookstores = response.data.maps(store => ({
-          position: { lat: store.lat, lng: store.lng },
-        }));
-      } catch (error) {
-        console.error("Error fetching nearby bookstores:", error);
-      }
-    },
-    // created() {
-    //   this.fetchNearbyBookstores();
-    // }
+      const googleMapsLink = `https://www.google.com/maps/place/${address}`;
+
+      window.open(googleMapsLink, "_blank");
+    }
   }
 };
 </script>
-
-<style>
-.map {
-    width: 75%;
-    height: auto;
-}
-</style>
