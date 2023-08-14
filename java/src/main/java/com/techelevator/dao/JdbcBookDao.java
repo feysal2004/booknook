@@ -20,11 +20,11 @@ public class JdbcBookDao implements BookDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
     @Override
     public List<Book> getBooks() {
         return null;
     }
-
 
     @Override
     public Book addNewBook(String book_name, String author, String author_second,
