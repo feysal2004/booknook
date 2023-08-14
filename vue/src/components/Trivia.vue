@@ -34,20 +34,17 @@
       </div>
 
       <div class="question-container">
-          <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId"  >
+          <div v-for="(triviaQ, index) in $store.state.triviaDifficulty" v-bind:key="index"  >
               <div class="question-content">
                   <h3> Q: {{triviaQ.question}} </h3>
-                  <button @click="reveal = !reveal" >Reveal the Correct Answer</button>
-                  <h4 v-if="reveal" >Answer Hidden</h4>
-                  <h4 v-else > A: {{triviaQ.correct_answer}} </h4>
+                  <button @click="revealAnswer" >Reveal the Correct Answer</button>
+                  <div v-if="showAnswer(index)" >
+                      <h4> A: {{triviaQ.correct_answer}} Id = {{triviaQ.triviaId}} </h4>
+                  </div>
               </div>
           </div>
       </div>
-                 <!-- -- Use to test when creating --
-        <h3>Test Line</h3>
-        <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.triviaId" >
-            <h3> q2 {{triviaQ.question}} </h3>
-        </div> --> 
+
 
   </div>
 
@@ -92,7 +89,8 @@ import triviaService from '../services/TriviaService';
 export default {
     data() {
         return {
-            difficultyChoice: ""
+            difficultyChoice: "",
+            showAnswer: false
         }
     },
     methods: {
@@ -110,12 +108,10 @@ export default {
             }).catch(console.error);
         },
         revealAnswer() {
-
+            this.showAnswer = !this.showAnswer;
         }
     },
-    // created() {
-    //     this.get10MultipleChoiceQuestions();
-    // }
+   
 }
 </script>
 
@@ -209,3 +205,9 @@ export default {
 }
 
 </style>
+
+
+
+// add show answer all equal to false
+// each passes own index
+// show answer for particular object

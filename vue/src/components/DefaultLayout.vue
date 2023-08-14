@@ -16,6 +16,11 @@
 
     </header>
 
+    <div class="trivia-container">
+      <HomeTriviaVue />
+    </div>
+
+
     <map class="map-container">
       <AddGoogleMapVue />
     </map>
@@ -80,10 +85,14 @@
 
 <script>
 import AddGoogleMapVue from '../components/AddGoogleMap.vue';
+import HomeTriviaVue from '../components/HomeTrivia.vue';
 
 export default {
   name: "home",
-  components: {AddGoogleMapVue}
+  components: {
+    AddGoogleMapVue,
+    HomeTriviaVue
+  }
 };
 </script>
 
@@ -96,13 +105,25 @@ export default {
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "header header header"
-    "nav main map"
+    "nav main trivia"
     "nav main map"
     "footer footer footer";
   min-height: 100vh;
 }
 
+.trivia-container {
+  grid-area: trivia;
+  width: 300px; /* Set a fixed width */
+  height: 100%; /* Fill available height */
+  overflow: hidden; /* Hide overflow if content exceeds */
+}
 
+.map-container {
+  grid-area: map;
+  width: 300px; /* Set a fixed width */
+  height: 100%; /* Fill available height */
+  overflow: hidden; /* Hide overflow if content exceeds */
+}
 
 /* NAV MENU CSS CODE */
 .nav-item {

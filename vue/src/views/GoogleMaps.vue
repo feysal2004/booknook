@@ -8,7 +8,7 @@
 import AddGoogleMap from "../components/AddGoogleMap.vue"
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     AddGoogleMap
   }
