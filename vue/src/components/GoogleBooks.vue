@@ -115,7 +115,7 @@ export default {
       },
 
       generateRandomLetter() {
-        const alphabet = "aeijpqrtwxz"
+        const alphabet = "aitxz"
         return alphabet[Math.floor(Math.random() * alphabet.length)]
       },
 
