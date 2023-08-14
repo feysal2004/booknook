@@ -101,19 +101,19 @@ export default {
               lat: 39.99088789114035,   
               lng: -83.05486830052685,  
               label: 'Serenity Book Shop',
-              address: '1598 N High St, Columbus, OH 43201'
+              address: '1806 W 5th Ave, Columbus, OH 43212'
           },
           {
               lat: 39.9587186457828,   
               lng: -82.93455455558639,  
               label: 'Gramercy Books',
-              address: '1598 N High St, Columbus, OH 43201'
+              address: '2424 E Main St, Bexley, OH 43209'
           },
           {
               lat: 39.99477598351759,    
               lng: -82.9417502488406,  
               label: 'Barnes & Noble at Ohio Dominican University',
-              address: '1598 N High St, Columbus, OH 43201'
+              address: '1191 Sunbury Rd, Columbus, OH 43219'
           },
       ];
  
