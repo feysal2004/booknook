@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>Check Out Local Bookstores!</h2>
+  <div class="map-container">
+    <h2 class="app-name-text">Check Out Local Bookstores!</h2>
  
     <gmap-map
       :center="center"
@@ -129,3 +129,27 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.map-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: flex-start; 
+  min-height: 5vh;
+  padding: 1px;
+  width: 60%;
+  background-color: #f4f4f4;
+  word-wrap: break-word;
+  margin: 0 auto;
+}
+
+.gmap-map {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  width: 100%;
+  height: 350px;
+}
+</style>
