@@ -1,7 +1,7 @@
 ROLLBACK;
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, books_table, genre_table, topics, messages;
+DROP TABLE IF EXISTS users, books_table, genre_table, topics, messages, my_books;
 DROP SEQUENCE IF EXISTS topic_id_serial, message_id_serial;
 
 CREATE TABLE users (
@@ -45,6 +45,19 @@ CREATE TABLE messages (
 	message_text varchar (300) not null,
 	message_written_by varchar(100),
 	CONSTRAINT PK_message_id PRIMARY KEY (message_id)
+);
+CREATE TABLE my_books(
+
+	user_id int not null,
+	username varchar(50) NOT NULL UNIQUE,
+	book_name varchar(200) NOT NULL,
+	book_id int not null,
+	author varchar (100) NOT NULL,
+	thumbnail varchar(260) null,
+	description varchar(260) null,
+	read boolean not null,
+	wishlist boolean null
+
 );
 
 
