@@ -16,8 +16,14 @@
 
     </header>
 
+    <trivia class="trivia">
+      <HomeTriviaVue />
+    </trivia>
+
+
     <map class="map-container">
       <AddGoogleMapVue />
+
     </map>
 
 
@@ -80,10 +86,14 @@
 
 <script>
 import AddGoogleMapVue from '../components/AddGoogleMap.vue';
+import HomeTriviaVue from './HomeTrivia.vue';
 
 export default {
   name: "home",
-  components: {AddGoogleMapVue}
+  components: {
+    AddGoogleMapVue,
+    HomeTriviaVue
+  }
 };
 </script>
 
@@ -96,7 +106,7 @@ export default {
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "header header header"
-    "nav main map"
+    "nav main trivia"
     "nav main map"
     "footer footer footer";
   min-height: 100vh;
