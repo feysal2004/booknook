@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -33,16 +34,19 @@ public class ForumMessageController {
     public String getTopicName(@PathVariable int topicId){
         return forumMessageDao.getTopicName(topicId);
     }
-    @PreAuthorize("permitAll")
+
+
     @RequestMapping(path="/{topicId}", method = RequestMethod.POST)
     public ForumMessage createForumMessage(@RequestBody ForumMessage message, @PathVariable int topicId) {
         return forumMessageDao.createForumMessage(message, topicId);
     }
 
-    @PreAuthorize("permitAll")
-    @RequestMapping(path="/{messageId}/name", method = RequestMethod.PUT)
-    public void  editForumMessage(@RequestBody ForumMessage message, @PathVariable int messageId){
-         forumMessageDao.editForumMessage(message, messageId);
+
+    @RequestMapping(path="/{messageId}", method = RequestMethod.PUT)
+    public void  editForumMessage(@RequestBody ForumMessage message, @PathVariable int messageId, Principal principal){
+        if (principal.getName().equals(message.message_written_by)) {
+            forumMessageDao.editForumMessage(message, messageId);
+        }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
