@@ -16,15 +16,15 @@
     <main class="main">
       <!-- books from google books api -->
       <div class="search-container">
-        <input class="search-bar" type="text" placeholder="Search by Title or Author" v-model="input" />
-        <button class="submit-button" v-on:click="getBookSearch()" >Search</button>
+        <input class="search-bar" type="text" placeholder="Search" v-model="input" />
+        <button class="submit-button" v-on:click="chooseBookSearch()" >Search</button>
 
         <div class="dropDown">
-          <select id="dropdown">
+          <select id="dropdown" v-model="selectedSearchMethod">
             <option value="option1">General Search</option>
             <option value="option2">By Title</option>
             <option value="option3">By Author</option>
-            <option value="option3">By Subject</option>
+            <option value="option4">In Relation To</option>
           </select>
           <p id="selectedOption"></p>
         </div>
@@ -98,11 +98,24 @@ export default {
     data() {
         return {
             input: this.generateRandomLetter(),
-            dropDownInput: this.newestToOldest()
+            dropDownInput: this.newestToOldest(),
+            selectedSearchMethod: 'option1'
         }
     },
 
     methods: {
+      chooseBookSearch() {
+        if (this.selectedSearchMethod == 'option1') {
+          this.getBookSearch();
+        } else if (this.selectedSearchMethod == 'option2') {
+          this.getBooksByTitle();
+        } else if (this.selectedSearchMethod == 'option3') {
+          this.getBooksByAuthor();
+        } else if (this.selectedSearchMethod == 'option4') {
+          this.getBooksBySubject();
+        }  
+      },
+
       getBookSearch() {
           googleBookAPI.getBookListBySearchQuery(this.input).then(response => {
               this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
@@ -110,22 +123,22 @@ export default {
           }).catch(console.error);
       },
 
-      getBooksByTitle(input) {
-        googleBookAPI.getBookListByTitle(input).then(response => {
+      getBooksByTitle() {
+        googleBookAPI.getBookListByTitle(this.input).then(response => {
               this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
               this.input = "";
           }).catch(console.error);
       },
 
-      getBooksByAuthor(input) {
-        googleBookAPI.getBookListByAuthor(input).then(response => {
+      getBooksByAuthor() {
+        googleBookAPI.getBookListByAuthor(this.input).then(response => {
               this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
               this.input = "";
           }).catch(console.error);
       },
 
-      getBooksBySubject(input) {
-        googleBookAPI.getBookListBySubject(input).then(response => {
+      getBooksBySubject() {
+        googleBookAPI.getBookListBySubject(this.input).then(response => {
               this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
               this.input = "";
           }).catch(console.error);
