@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <h2 class="app-name-text">Check Out Local Bookstores!</h2>
+    <h2 class="map-header">Check Out Local Bookstores!</h2>
  
     <gmap-map
       :center="center"
@@ -151,5 +151,10 @@ export default {
   margin-top: 10px;
   width: 100%;
   height: 350px;
+}
+
+.map-header {
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 </style>

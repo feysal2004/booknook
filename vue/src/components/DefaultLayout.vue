@@ -33,25 +33,27 @@
 
     <main class="main">
       <!-- BOOK BOXES -->
+    <div class="book-container">
+      <h3 class="book-box-text">Look at a popular book series!  Now Showing {{this.series}}</h3>
       <div class="book-box">
         <!-- Content of the first book box -->
         <!-- By Series/Title -->
-        <p>Look at a popular book series!  Now Showing {{this.series}}</p>
-        <div v-for="book in $store.state.homePageSeries" v-bind:key="book.bookId" class="book-box">
+        <div v-for="book in $store.state.homePageSeries" v-bind:key="book.bookId" class="book-content">
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
           </div>
         </div>
-        
-
       </div>
+    </div>
+
+    <div class="book-container">
+      <h3 class="book-box-text">Look at a popular author!  Now Showing {{this.author}}</h3>
       <div class="book-box">
         <!-- Content of the second book box -->
         <!-- By Author -->
-        <p>Look at a popular author!  Now Showing {{this.author}}</p>
-        <div v-for="book in $store.state.homePageAuthors" v-bind:key="book.bookId" class="book-box">
+        <div v-for="book in $store.state.homePageAuthors" v-bind:key="book.bookId" class="book-content">
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
@@ -59,19 +61,23 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="book-container">
+      <h3 class="book-box-text">Look at a popular topic!  Now Showing {{this.topics}}</h3>
       <div class="book-box">
         <!-- Content of the third book box -->
         <!-- By Topic -->
-        <p>Look at a popular topic!  Now Showing {{this.topics}}</p>
-        <div v-for="book in $store.state.homePageTopics" v-bind:key="book.bookId" class="book-box">
+        <div v-for="book in $store.state.homePageTopics" v-bind:key="book.bookId" class="book-content">
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
           </div>
         </div>
-
       </div>
+    </div>
+
       <router-view />
     </main>
 
@@ -206,16 +212,17 @@ export default {
 
 .trivia-container {
   grid-area: trivia;
-  width: 300px; /* Set a fixed width */
-  height: 100%; /* Fill available height */
-  overflow: hidden; /* Hide overflow if content exceeds */
+  width: 300px; 
+  height: 100%; 
+  overflow: hidden; 
+  margin-bottom: 20px;
 }
 
 .map-container {
   grid-area: map;
-  width: 300px; /* Set a fixed width */
-  height: 100%; /* Fill available height */
-  overflow: hidden; /* Hide overflow if content exceeds */
+  width: 300px; 
+  height: 100%; 
+  overflow: hidden; 
 }
 
 /* NAV MENU CSS CODE */
@@ -296,16 +303,45 @@ export default {
   align-items: center; 
   gap: 20px; 
   padding: 0.5rem;
+  text-align: center;
+}
+
+.book-box-text {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .book-box {
   background-color: #fff;
-  width: 50%; 
+  display: flex;
+  align-items: center; 
+  width: 90%; 
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-top: 200px;
+  margin-top: 20px;
+}
+
+.book-content {
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+.book-content:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 
