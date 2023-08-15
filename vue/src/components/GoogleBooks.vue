@@ -168,9 +168,7 @@ export default {
         this.$store.dispatch('addToLibrary',book)
       
       },
-      newestToOldest(){
-        
-      }
+      
     },
     created() {
         this.getBookSearch();
