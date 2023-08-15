@@ -16,6 +16,11 @@
 
     </header>
 
+
+
+
+
+
     <div class="trivia-container">
       <HomeTriviaVue />
     </div>
@@ -30,12 +35,42 @@
       <!-- BOOK BOXES -->
       <div class="book-box">
         <!-- Content of the first book box -->
+        <!-- By Series/Title -->
+        <p>Look at a popular book series!  Now Showing {{this.series}}</p>
+        <div v-for="book in $store.state.homePageSeries" v-bind:key="book.bookId" class="book-box">
+          <div class="book-content">
+            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
+          </div>
+        </div>
+        
+
       </div>
       <div class="book-box">
         <!-- Content of the second book box -->
+        <!-- By Author -->
+        <p>Look at a popular author!  Now Showing {{this.author}}</p>
+        <div v-for="book in $store.state.homePageAuthors" v-bind:key="book.bookId" class="book-box">
+          <div class="book-content">
+            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
+          </div>
+        </div>
       </div>
       <div class="book-box">
         <!-- Content of the third book box -->
+        <!-- By Topic -->
+        <p>Look at a popular topic!  Now Showing {{this.topics}}</p>
+        <div v-for="book in $store.state.homePageTopics" v-bind:key="book.bookId" class="book-box">
+          <div class="book-content">
+            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
+          </div>
+        </div>
+
       </div>
       <router-view />
     </main>
@@ -86,12 +121,70 @@
 <script>
 import AddGoogleMapVue from '../components/AddGoogleMap.vue';
 import HomeTriviaVue from '../components/HomeTrivia.vue';
+import homePageService from '../services/HomePageService.js';
 
 export default {
   name: "home",
+  data() {
+    return {
+      author: this.randomizeAuthors(),
+      series: this.randomizeSeries(),
+      topics: this.randomizeTopics()
+    }
+  },
   components: {
     AddGoogleMapVue,
     HomeTriviaVue
+  },
+
+  methods: {
+
+    getRandomizedBooksAuthor() {
+      homePageService.getByAuthor(this.author).then(response => {
+              this.$store.commit("SET_HOME_PAGE_AUTHORS", response.data.items);
+          }).catch(console.error);
+    },
+
+    getRandomizedBooksSeries() {
+      homePageService.getBySeries(this.series).then(response => {
+              this.$store.commit("SET_HOME_PAGE_SERIES", response.data.items);
+          }).catch(console.error);
+    },
+
+    getRandomizedBooksTopics() {
+      homePageService.getBySeries(this.topics).then(response => {
+              this.$store.commit("SET_HOME_PAGE_TOPICS", response.data.items);
+          }).catch(console.error);
+    },
+
+    truncateTitle(title, words) {
+      const titleWords = title.split(' ');
+      if (titleWords.length > words) {
+        return titleWords.slice(0, words).join(' ') + '...';
+      }
+      return title;
+    },
+      
+    randomizeAuthors() {
+      let authors = ["Tolkien", "Ray Bradbury", "Brandon Sanderson", "James Patterson", "Tom Clancy", "George R. R. Martin", "Stephen King" ];
+      let randomNumber = Math.floor(Math.random() * authors.length);
+      return authors[randomNumber];
+    },
+    randomizeSeries() {
+      let series = ["Game of Thrones", "Harry Potter", "Dune", "Percy Jackson", "Handmaid's Tale"];
+      let randomNumber = Math.floor(Math.random() * series.length);
+      return series[randomNumber];
+    },
+    randomizeTopics() {
+      let topics = ["Football", "Science", "Basketball", "History", "Soccer", "Hockey", "Physics", "Messi"];
+      let randomNumber = Math.floor(Math.random() * topics.length);
+      return topics[randomNumber];
+    }
+  },
+  created() {
+    this.getRandomizedBooksAuthor();
+    this.getRandomizedBooksSeries();
+    this.getRandomizedBooksTopics();
   }
 };
 </script>
