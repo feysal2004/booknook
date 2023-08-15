@@ -16,6 +16,11 @@
 
     </header>
 
+
+
+
+
+
     <div class="trivia-container">
       <HomeTriviaVue />
     </div>
@@ -30,12 +35,18 @@
       <!-- BOOK BOXES -->
       <div class="book-box">
         <!-- Content of the first book box -->
+        <!-- By Author -->
+
       </div>
       <div class="book-box">
         <!-- Content of the second book box -->
+        <!-- By Title/Series -->
+
       </div>
       <div class="book-box">
         <!-- Content of the third book box -->
+        <!-- By Topic -->
+
       </div>
       <router-view />
     </main>
@@ -92,6 +103,14 @@ export default {
   components: {
     AddGoogleMapVue,
     HomeTriviaVue
+  },
+
+  methods: {
+    randomizeAuthors() {
+      let authors = ["tolkien", "sanderson", "patterson", "tom clancy", "George R. R. Martin", "stephen king" ];
+      return authors;
+
+    }
   }
 };
 </script>
