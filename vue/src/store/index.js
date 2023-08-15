@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     userLibrary:[],
+    bookShelf:[],
     homePageAuthors: [],
     homePageSeries: [],
     homePageTopics: [],
@@ -121,7 +122,11 @@ export default new Vuex.Store({
     },
     ADD_TO_LIBRARY(state,book){
       state.userLibrary.push(book)
+    },
+    ADD_TO_BOOKSHELF(state, book){
+      state.bookShelf.push(book);
     }
+
   },
   actions:{
     addToLibrary({ commit }, book) {

@@ -1,5 +1,6 @@
 <template>
   <div class = "myBookShelf">
+
        <h5>My Books</h5>  
        <div v-for="book in userLibrary" v-bind:key="book.bookId" >
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
@@ -50,10 +51,17 @@
 </template>
 
 <script>
+//import bookShelfService from "../services/BookShelfService.js";
 export default {
     computed:{
     userLibrary(){
       return this.$store.state.userLibrary;
+    },
+    methods:{
+
+
+
+
     }
   }
 
