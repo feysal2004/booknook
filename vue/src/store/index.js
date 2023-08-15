@@ -21,6 +21,9 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     userLibrary:[],
+    homePageAuthors: [],
+    homePageSeries: [],
+    homePageTopics: [],
     messages: [],
     bookInput: [],
     triviaDifficulty: [],
@@ -72,6 +75,15 @@ export default new Vuex.Store({
     },
     SET_MESSAGES(state, data) {
       state.messages = data;
+    },
+    SET_HOME_PAGE_AUTHORS(state, data) {
+      state.homePageAuthors = data;
+    },
+    SET_HOME_PAGE_SERIES(state, data) {
+      state.homePageSeries = data;
+    },
+    SET_HOME_PAGE_TOPICS(state, data) {
+      state.homePageTopics = data;
     },
     SET_GOOGLE_BOOK_SEARCH(state, data) {
       state.bookInput = data;
