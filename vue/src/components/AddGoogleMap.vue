@@ -35,12 +35,12 @@ export default {
       this.currentLocation = loc;
     },
     setLocationLatLng: function() {
-        navigator.geolocation.getCurrentPosition(geolocation => {
+        
           this.center = {
-            lat: geolocation.coords.latitude,
-            lng: geolocation.coords.longitude
+            lat:39.96125990250928, 
+            lng: -83.00182686097138
           };
-        });
+        
  
         this.locations = [
           {
