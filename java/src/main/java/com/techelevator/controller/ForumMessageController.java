@@ -23,13 +23,13 @@ public class ForumMessageController {
         this.forumMessageDao = forumMessageDao;
     }
 
-    @PreAuthorize("permitAll")
+
     @RequestMapping(path="/{topicId}", method = RequestMethod.GET)
     public List<ForumMessage> getListOfMessages(@PathVariable int topicId) {
         return forumMessageDao.getListOfMessages(topicId);
     }
 
-    @PreAuthorize("permitAll")
+
     @RequestMapping(path="/{topicId}/name", method = RequestMethod.GET)
     public String getTopicName(@PathVariable int topicId){
         return forumMessageDao.getTopicName(topicId);

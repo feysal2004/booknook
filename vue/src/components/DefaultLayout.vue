@@ -189,7 +189,7 @@ export default {
       return series[randomNumber];
     },
     randomizeTopics() {
-      let topics = ["Football", "Science", "Basketball", "History", "Soccer", "Hockey", "Physics", "Messi"];
+      let topics = ["Football", "Science", "Basketball", "History", "Soccer", "Baseball", "Physics", "Messi"];
       let randomNumber = Math.floor(Math.random() * topics.length);
       return topics[randomNumber];
     }

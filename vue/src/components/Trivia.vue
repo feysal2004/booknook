@@ -41,9 +41,9 @@
                   </h2>
                   <button @click="revealAnswer(triviaQ)" >Reveal the Correct Answer</button>
                   <div v-if="showAnswer[triviaQ.question]" >
-                      <h3> Answer: 
+                      <h4> Answer: 
                         <span v-html="triviaQ.correct_answer" > </span>
-                      </h3>
+                      </h4>
                   </div>
               </div>
           </div>
@@ -92,7 +92,8 @@ export default {
     data() {
         return {
             difficultyChoice: "",
-            showAnswer: {}
+            showAnswer: {},
+            possibleAnswers: []
         }
     },
     methods: {

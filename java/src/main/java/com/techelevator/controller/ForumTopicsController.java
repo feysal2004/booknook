@@ -41,7 +41,7 @@ public class ForumTopicsController {
         forumTopicDao.deleteForumTopic(id);
     }
 
-    @PreAuthorize("permitAll")
+
     @RequestMapping(path="/{topicId}/messages", method = RequestMethod.GET)
     public int getMessageCount(@PathVariable int topicId) {
         return forumTopicDao.getNumberOfMessages(topicId);
