@@ -113,16 +113,16 @@ export default {
 
 .trivia-container {
   grid-area: trivia;
-  width: 300px; /* Set a fixed width */
-  height: 100%; /* Fill available height */
-  overflow: hidden; /* Hide overflow if content exceeds */
+  width: 300px; 
+  height: 100%; 
+  overflow: hidden; 
 }
 
 .map-container {
   grid-area: map;
-  width: 300px; /* Set a fixed width */
-  height: 100%; /* Fill available height */
-  overflow: hidden; /* Hide overflow if content exceeds */
+  width: 300px; 
+  height: 100%; 
+  overflow: hidden; 
 }
 
 /* NAV MENU CSS CODE */
