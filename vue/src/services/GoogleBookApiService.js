@@ -15,6 +15,18 @@ export default{
 
 getBookListBySearchQuery(input){
     return googleApi.get(baseURL + `${input}` + apiKey);
+},
+
+getBookListByTitle(input) {
+    return googleApi.get(baseURL + `intitle:` + `${input}` + apiKey);
+},
+
+getBookListByAuthor(input) {
+    return googleApi.get(baseURL + `inauthor:` + `${input}` + apiKey);
+},
+
+getBookListBySubject(input) {
+    return googleApi.get(baseURL + `subject:` + `${input}` + apiKey);
 }
 
 }
