@@ -172,17 +172,17 @@ export default {
     },
       
     randomizeAuthors() {
-      let authors = ["Tolkien", "Brandon Sanderson", "James Patterson", "Tom Clancy", "George R. R. Martin", "Stephen King" ];
+      let authors = ["Tolkien", "Ray Bradbury", "Brandon Sanderson", "James Patterson", "Tom Clancy", "George R. R. Martin", "Stephen King" ];
       let randomNumber = Math.floor(Math.random() * authors.length);
       return authors[randomNumber];
     },
     randomizeSeries() {
-      let series = ["Game of Thrones", "Harry Potter", "Dune"];
+      let series = ["Game of Thrones", "Harry Potter", "Dune", "Percy Jackson", "Handmaid's Tale"];
       let randomNumber = Math.floor(Math.random() * series.length);
       return series[randomNumber];
     },
     randomizeTopics() {
-      let topics = ["Football", "Science", "Basketball", "History"];
+      let topics = ["Football", "Science", "Basketball", "History", "Soccer", "Hockey", "Physics", "Messi"];
       let randomNumber = Math.floor(Math.random() * topics.length);
       return topics[randomNumber];
     }

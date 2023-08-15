@@ -2,7 +2,10 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.BookDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
+import com.techelevator.model.MyBook;
+import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +19,11 @@ import java.util.List;
 public class BookController {
 
     private BookDao bookDao;
+    private UserDao userDao;
 
-    public BookController(BookDao bookDao) {
+    public BookController(BookDao bookDao, UserDao userDao) {
         this.bookDao = bookDao;
+        this.userDao = userDao;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -33,6 +38,14 @@ public class BookController {
     public List<Book> getBooksFromDatabase() {
         return bookDao.getBooksFromDatabase();
     }
+
+    @RequestMapping(path = "/myBookShelf", method = RequestMethod.POST)
+    public void addBook(@RequestBody MyBook myBook, Principal principal) {
+        User user = userDao.getUserByUsername(principal.getName());
+        MyBook addBook = bookDao.addToBookShelf(myBook, user);
+
+    }
+
 
 
 }
