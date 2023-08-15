@@ -7,8 +7,10 @@
       </div>
 
       <div v-for="triviaQ in $store.state.triviaBoolean" :key="triviaQ.triviaId" class="trivia-item">
-        <h4> T/F: {{triviaQ.question}} </h4>
-        <h5> (Difficulty: {{triviaQ.difficulty}} ) </h5>
+        <h4> 
+            <span v-html="triviaQ.question" > </span>
+        </h4>
+        <h5> (Difficulty: {{triviaQ.difficulty}} )</h5>
         <button @click="revealAnswer(triviaQ)" class="reveal-button">Reveal the Correct Answer</button>
         <div v-if="triviaQ.showAnswer" class="answer-box">
           <h4> A: {{triviaQ.correct_answer}} </h4>
@@ -33,7 +35,7 @@ export default {
             triviaService.get1TrueFalseQuestion().then(response => {
                 const triviaData = response.data.results.map(trivia => ({
                     ...trivia,
-          showAnswer: false,
+            showAnswer: false,
         }));
         this.$store.commit("SET_TRIVIA_TRUE_FALSE", triviaData);
             }).catch(console.error);
