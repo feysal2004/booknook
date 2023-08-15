@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Book;
+import com.techelevator.model.MyBook;
+import com.techelevator.model.User;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -14,7 +16,9 @@ import java.util.List;
 @Component
 public class JdbcBookDao implements BookDao {
 
+
     private final JdbcTemplate jdbcTemplate;
+
 
     public JdbcBookDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -35,6 +39,18 @@ public class JdbcBookDao implements BookDao {
         int newBookId = jdbcTemplate.queryForObject(sql, int.class, book_name, author, author_second, description, series, release_date, date_added_to_collection);
         Book newBook = new Book(book_name, author, author_second, description, series, newBookId, release_date, date_added_to_collection);
         return newBook;
+    }
+
+
+
+
+    @Override
+    public MyBook addToBookShelf(MyBook myBook, User user) {
+
+        String sql = "insert into my_books (book_name, author, user_id, username, isbn) values (?,?,?,?,?) ;";
+        jdbcTemplate.update(sql, myBook.getBook_name(),myBook.getAuthor(),user.getId(),user.getUsername(),myBook.getIsbn());
+
+        return myBook;
     }
 
     @Override

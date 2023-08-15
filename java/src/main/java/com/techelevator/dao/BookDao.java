@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.MyBook;
+import com.techelevator.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +19,9 @@ public interface BookDao {
                     String description, String series, LocalDate release_date,
                     LocalDate date_added_to_collection);
 
+
+
+    MyBook addToBookShelf(MyBook myBook, User user);
 
     List<Book> getBooksFromDatabase();
 }
