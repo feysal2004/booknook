@@ -135,6 +135,7 @@ export default {
   width: 300px; 
   height: 100%; 
   overflow: hidden; 
+  margin-bottom: 20px;
 }
 
 .map-container {
