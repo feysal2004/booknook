@@ -21,9 +21,10 @@
 
         <div class="dropDown">
           <select id="dropdown">
-            <option value="option1">Newest Books</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">General Search</option>
+            <option value="option2">By Title</option>
+            <option value="option3">By Author</option>
+            <option value="option3">By Subject</option>
           </select>
           <p id="selectedOption"></p>
         </div>
@@ -109,6 +110,27 @@ export default {
           }).catch(console.error);
       },
 
+      getBooksByTitle(input) {
+        googleBookAPI.getBookListByTitle(input).then(response => {
+              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+              this.input = "";
+          }).catch(console.error);
+      },
+
+      getBooksByAuthor(input) {
+        googleBookAPI.getBookListByAuthor(input).then(response => {
+              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+              this.input = "";
+          }).catch(console.error);
+      },
+
+      getBooksBySubject(input) {
+        googleBookAPI.getBookListBySubject(input).then(response => {
+              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+              this.input = "";
+          }).catch(console.error);
+      },
+
       truncateTitle(title, words) {
         const titleWords = title.split(' ');
         if (titleWords.length > words) {
@@ -127,9 +149,7 @@ export default {
           this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
         }).catch(console.error);
       },
-      // showingAuthors() {
-      //   book.volumeInfo.authors.join(', ')
-      // }
+
       addToLibrary(book){
         
         this.$store.dispatch('addToLibrary',book)
