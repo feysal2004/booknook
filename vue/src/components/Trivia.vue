@@ -18,10 +18,10 @@
       <h1>
           Trivia Corner
       </h1>
-      <h3>
+      <p>
           Welcome to the Trivia Corner! Test out your book knowledge with some trivia below. 
           Choose your difficulty and see how well you can do!
-      </h3>
+      </p>
 
     
       <div class="dropDown">
@@ -34,18 +34,20 @@
       </div>
 
       <div class="question-container">
-          <div v-for="(triviaQ, index) in $store.state.triviaDifficulty" v-bind:key="index"  >
+          <div v-for="triviaQ in $store.state.triviaDifficulty" v-bind:key="triviaQ.question"  >
               <div class="question-content">
-                  <h3> Q: {{triviaQ.question}} </h3>
-                  <button @click="revealAnswer" >Reveal the Correct Answer</button>
-                  <div v-if="showAnswer(index)" >
-                      <h4> A: {{triviaQ.correct_answer}} Id = {{triviaQ.triviaId}} </h4>
+                  <h2> Q. 
+                      <span v-html="triviaQ.question" ></span>
+                  </h2>
+                  <button @click="revealAnswer(triviaQ)" >Reveal the Correct Answer</button>
+                  <div v-if="showAnswer[triviaQ.question]" >
+                      <h3> Answer: 
+                        <span v-html="triviaQ.correct_answer" > </span>
+                      </h3>
                   </div>
               </div>
           </div>
       </div>
-
-
   </div>
 
 
@@ -90,7 +92,7 @@ export default {
     data() {
         return {
             difficultyChoice: "",
-            showAnswer: false
+            showAnswer: {}
         }
     },
     methods: {
@@ -107,8 +109,9 @@ export default {
                 this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
             }).catch(console.error);
         },
-        revealAnswer() {
-            this.showAnswer = !this.showAnswer;
+        revealAnswer(triviaQ) {
+            this.showAnswer[triviaQ.question] = true;
+            this.$forceUpdate();
         }
     },
    
