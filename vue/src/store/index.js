@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     topics: [],
+    userLibrary:[],
     messages: [],
     bookInput: [],
     triviaDifficulty: [],
@@ -33,6 +34,8 @@ export default new Vuex.Store({
       messages: []
     },
     user: currentUser || {},
+
+    
     
   
 
@@ -104,8 +107,14 @@ export default new Vuex.Store({
     SET_NUMBER_OF_MESSAGES(state, data) {
       state.messageCount = data;
     },
-    SAVE_BOOK_TO_LIBRAY(state,book){
-      state.books.push(book)
+    ADD_TO_LIBRARY(state,book){
+      state.userLibrary.push(book)
     }
+  },
+  actions:{
+    addToLibrary({ commit }, book) {
+      commit('ADD_TO_LIBRARY', book);
+    },
+
   }
 })

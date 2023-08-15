@@ -35,7 +35,10 @@
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
-            <button>Add to libary</button>
+           
+           <button v-on:click="addToLibrary(book)">Add to library</button>
+           
+           
           </div>
         </div>
       </div>
@@ -127,8 +130,9 @@ export default {
       // showingAuthors() {
       //   book.volumeInfo.authors.join(', ')
       // }
-      AddToMyLibary(){
+      addToLibrary(book){
         
+        this.$store.dispatch('addToLibrary',book)
       
       },
       newestToOldest(){
