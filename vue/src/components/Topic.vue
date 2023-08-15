@@ -138,6 +138,7 @@ export default {
 }
 
 
+/* Page title */
 .page-title {
   text-align: center;
   font-size: 35px;
@@ -146,14 +147,15 @@ export default {
   color: rgb(209, 77, 4);
 }
 
-
+/* Add topic section */
 .add-topic {
   background-color: rgb(175, 174, 174);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-bottom: 20px;
   text-align: center;
   font-family: Arial, sans-serif;
+  width: 90%;
 }
 
 .search-box {
@@ -195,8 +197,9 @@ export default {
   background-color: #e65c00;
 }
 
+/* Table for listing topics */
 .topic-table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
 }
 
@@ -226,11 +229,9 @@ export default {
 
 .topic-link:hover {
   color: #e65c00;
-
 }
 
-
-
+/* Delete topic button */
 .delete-topic-button {
   background-color: rgb(209, 77, 4);
   color: white;

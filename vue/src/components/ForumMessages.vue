@@ -52,7 +52,7 @@
                   <div v-if="message.message_written_by === $store.state.user.username || $store.state.user.username === 'admin' " >
                     <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
                     <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
-                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete Message</button>
+                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete</button>
                   </div> 
                 </td>
               </tr> 
@@ -191,6 +191,7 @@ export default {
   margin-bottom: 20px;
   text-align: center;
   font-family: Arial, sans-serif;
+  width: 90%;
 }
 
 .message-box {
@@ -247,7 +248,7 @@ export default {
 .message-table th {
   font-weight: bold;
   font-family: Arial, sans-serif;
-  padding: 10px;
+  padding: 1px;
   border-bottom: 2px solid rgb(209, 77, 4);
   color: rgb(209, 77, 4);
 }
@@ -255,7 +256,10 @@ export default {
 .message-table td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  width: 92%;
 }
+
+
 
 /* NAV MENU CSS CODE */
 .nav-item {
@@ -372,6 +376,21 @@ font-family: Arial, sans-serif;
 
 .edit-button:hover {
   background-color: #e65c00;
+}
+
+.delete-message-button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: Arial, sans-serif;
+}
+
+.delete-message-button:hover {
+  background-color: #e6003e;
 }
 
 .main {

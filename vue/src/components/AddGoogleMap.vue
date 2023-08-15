@@ -133,28 +133,31 @@ export default {
 <style scoped>
 .map-container {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: flex-start; 
-  min-height: 5vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 1px;
+  border-radius: 10px;
   width: 60%;
-  background-color: #f4f4f4;
-  word-wrap: break-word;
-  margin: 0 auto;
+  height: auto;
+  background-size: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
 }
 
 .gmap-map {
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 10px;
+  border-radius: 10px;
   width: 100%;
   height: 350px;
+  margin-top: 10px;
 }
 
 .map-header {
   text-align: center;
   font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
 }
 </style>

@@ -34,7 +34,10 @@
     <main class="main">
       <!-- BOOK BOXES -->
     <div class="book-container">
-      <h3 class="book-box-text">Look at a popular book series!  Now Showing {{this.series}}</h3>
+      <h2 class="book-box-text">
+        <span class="app-name-text">Look at a popular book series! </span>
+        <span class="app-name-accent">Now Showing: {{this.series}}</span> 
+          </h2>
       <div class="book-box">
         <!-- Content of the first book box -->
         <!-- By Series/Title -->
@@ -49,8 +52,10 @@
     </div>
 
     <div class="book-container">
-      <h3 class="book-box-text">Look at a popular author!  Now Showing {{this.author}}</h3>
-      <div class="book-box">
+<h2 class="book-box-text">
+        <span class="app-name-text">Look at a popular Author! </span>
+        <span class="app-name-accent">Now Showing: {{this.author}}</span> 
+          </h2>      <div class="book-box">
         <!-- Content of the second book box -->
         <!-- By Author -->
         <div v-for="book in $store.state.homePageAuthors" v-bind:key="book.bookId" class="book-content">
@@ -64,8 +69,10 @@
     </div>
 
     <div class="book-container">
-      <h3 class="book-box-text">Look at a popular topic!  Now Showing {{this.topics}}</h3>
-      <div class="book-box">
+<h2 class="book-box-text">
+        <span class="app-name-text">Look at a popular Topic! </span>
+        <span class="app-name-accent">Now Showing: {{this.topics}}</span> 
+          </h2>      <div class="book-box">
         <!-- Content of the third book box -->
         <!-- By Topic -->
         <div v-for="book in $store.state.homePageTopics" v-bind:key="book.bookId" class="book-content">
@@ -212,7 +219,7 @@ export default {
 
 .trivia-container {
   grid-area: trivia;
-  width: 300px; 
+  width: 310px; 
   height: 100%; 
   overflow: hidden; 
   margin-bottom: 20px;
@@ -220,7 +227,7 @@ export default {
 
 .map-container {
   grid-area: map;
-  width: 300px; 
+  width: 310px; 
   height: 100%; 
   overflow: hidden; 
 }
@@ -308,7 +315,7 @@ export default {
 
 .book-box-text {
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   color: #333;
   text-align: center;
   margin-bottom: 10px;
@@ -318,7 +325,8 @@ export default {
   background-color: #fff;
   display: flex;
   align-items: center; 
-  width: 90%; 
+  width: 1200; 
+  height: auto;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -328,7 +336,8 @@ export default {
 
 .book-content {
   font-family: Arial, sans-serif;
-  width: 100%;
+  width: 255px;
+  height: auto;
 }
 
 .book-content:hover {

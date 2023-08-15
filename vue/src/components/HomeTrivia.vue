@@ -57,7 +57,9 @@ export default {
   align-items: flex-end;
   min-height: 5vh;
   padding: 1px;
+  border-radius: 10px;
   width: 100%;
+  height: auto;
   overflow: auto;
   background-color: #f4f4f4;
   word-wrap: break-word;
