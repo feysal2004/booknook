@@ -32,9 +32,9 @@
       <div class="book-container">
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
           <div class="book-content">
-            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
+            <img :src="book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/No-Image-Placeholder.svg.png')" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown'}}</p>
+            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
            
            <button v-on:click="addToBookshelf(book)">Add to Bookshelf</button>
                      
@@ -96,7 +96,7 @@ export default {
   data() {
     return {
       input: this.generateRandomLetter(),
-      dropDownInput: this.newestToOldest(),
+      //dropDownInput: this.newestToOldest(),
       selectedSearchMethod: 'option1'
     }
   },
@@ -151,7 +151,7 @@ export default {
     },
 
     generateRandomLetter() {
-      const alphabet = "aitxz"
+      const alphabet = "abcdfghijklnopqrstvwxz"
       return alphabet[Math.floor(Math.random() * alphabet.length)]
     },
 
@@ -166,9 +166,9 @@ export default {
       // get bookTitle from book
       newBook.book_name = book.volumeInfo.title;
       // get author from book
-      newBook.author = book.volumeInfo.authors[0];
+      newBook.author = book.volumeInfo.authors ?book.volumeInfo.authors[0] : 'Unknown Author';
       // get thumbnail from book
-      newBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
+      newBook.thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ('@/assets/No-Image-Placeholder.svg.png');
       // get description from book
       newBook.description = book.volumeInfo.description;
       // newBook.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
@@ -342,7 +342,7 @@ export default {
 }
 
 .book-cover {
-  width: 80px;
+  width: 50%;
   height: auto;
   margin: 0 auto;
 }
