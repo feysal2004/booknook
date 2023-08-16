@@ -3,7 +3,9 @@ import axios from 'axios';
 const googleApi = axios.create();
 googleApi.defaults.headers.common = {};
 
-const apiKey = "&key=AIzaSyD7CXjdwbiWpjFADwOGsX0XZoJPXUgej7c";
+//const apiKey = "&key=AIzaSyD7CXjdwbiWpjFADwOGsX0XZoJPXUgej7c";
+
+const apiKey = "&key=AIzaSyAStNZHFdvoINzIF34-Vz94K7-BU6BWAVk";
 
 const baseURL = "https://www.googleapis.com/books/v1/volumes?maxResults=20&q=";
 
