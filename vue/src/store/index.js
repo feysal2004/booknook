@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     bookShelf:[],
+    unRead:[],
     homePageAuthors: [],
     homePageSeries: [],
     homePageTopics: [],

@@ -85,6 +85,12 @@ public class JdbcBookDao implements BookDao {
         return myBooks;
     }
 
+    @Override
+    public MyBook deleteMyBook(MyBook myBook, User user) {
+        String sql = "DELETE FROM my_books where isbn = ?;";
+        return null;
+    }
+
     private Book mapRowToBook(SqlRowSet rs) {
         Book book = new Book();
         book.setBookName(rs.getString("book_name"));
