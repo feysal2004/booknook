@@ -32,7 +32,7 @@
       <div class="book-container">
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
           <div class="book-content">
-            <img :src="book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/No-Image-Placeholder.svg.png')" alt="" class="bookCover" />
+            <img :src="book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg')" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
            
@@ -168,7 +168,7 @@ export default {
       // get author from book
       newBook.author = book.volumeInfo.authors ?book.volumeInfo.authors[0] : 'Unknown Author';
       // get thumbnail from book
-      newBook.thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ('@/assets/No-Image-Placeholder.svg.png');
+      newBook.thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg');
       // get description from book
       newBook.description = book.volumeInfo.description;
       // newBook.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
@@ -342,7 +342,7 @@ export default {
 }
 
 .book-cover {
-  width: 50%;
+  
   height: auto;
   margin: 0 auto;
 }
