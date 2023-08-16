@@ -1,6 +1,19 @@
 <template>
   <div class = "myBookShelf">
 
+    <header class="header">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+      </router-link>
+      <div class="app-name">
+        <span class="app-name-text">App</span>
+        <span class="app-name-accent">Name</span>
+      </div>
+      <div class="login-logout">
+        <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+      </div>
+    </header>
+
        <h5>My Books</h5>  
        <div v-for="book in userLibrary" v-bind:key="book.bookId" >
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
