@@ -24,7 +24,7 @@
 
     <main>
       <h4>Here are my unread books</h4>
-      <div v-for="book in $store.state.unRead" v-bind:key="book.bookId">
+      <div v-for="book in $store.state.unRead" v-bind:key="book.bookshelf_book_id">
         <img :src="book.thumbnail" alt="" class="bookCover" />
         <h5>{{ book.book_name }}</h5>
         <p class="book-author">{{ book.author }}</p>
@@ -34,7 +34,7 @@
       </div>
 
       <h5>Full List of My Books</h5>
-      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookId">
+      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id">
         <img :src="book.thumbnail" alt="" class="bookCover" />
         <h5>{{ book.book_name }}</h5>
         <p class="book-author">{{ book.author }}</p>
@@ -119,7 +119,7 @@ export default {
     markAsRead(book) {
       this.$store.state.unRead.push(book);
       const index = this.$store.state.bookShelf.findIndex(
-        (b) => b.bookId === book.bookId
+        (b) => b.bookshelf_book_id === book.bookshelf_book_id
       );
       if (index !== -1) {
         this.$store.state.bookShelf.splice(index, 1);
@@ -127,7 +127,7 @@ export default {
     },
     moveToReadingList(book) {
       const index = this.$store.state.unRead.findIndex(
-        (b) => b.bookId === book.bookId
+        (b) => b.bookshelf_book_id === book.bookshelf_book_id
       );
       if (index !== -1) {
         this.$store.state.unRead.splice(index, 1);
@@ -135,9 +135,9 @@ export default {
 
       this.$store.state.bookShelf.push(book);
     },
-    removeFromFullList: function (book) {
+    removeFromFullList(book) {
       const index = this.$store.state.bookShelf.findIndex(
-        (b) => b.bookId === book.bookId
+        (b) => b.bookshelf_book_id === book.bookshelf_book_id
       );
       if (index !== -1) {
         this.$store.state.bookShelf.splice(index, 1);
