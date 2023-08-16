@@ -20,7 +20,6 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     topics: [],
-    userLibrary:[],
     bookShelf:[],
     homePageAuthors: [],
     homePageSeries: [],
@@ -119,9 +118,6 @@ export default new Vuex.Store({
     },
     SET_NUMBER_OF_MESSAGES(state, data) {
       state.messageCount = data;
-    },
-    ADD_TO_LIBRARY(state,book){
-      state.userLibrary.push(book)
     },
     ADD_TO_BOOKSHELF(state, book){
       state.bookShelf.push(book);

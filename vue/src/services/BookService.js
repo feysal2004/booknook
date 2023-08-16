@@ -19,8 +19,8 @@ import axios from 'axios';
       return data
     },
       
-    addBook(book){
-        return axios.post('/books/addBook', book);
+    addBookToBookshelf(book){
+        return axios.post('/books/myBookShelf', book);
     },
 
     getBooksFromOurDatabase(){
