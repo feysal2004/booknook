@@ -24,4 +24,6 @@ public interface BookDao {
     MyBook addToBookShelf(MyBook myBook, User user);
 
     List<Book> getBooksFromDatabase();
+
+    List<MyBook> getMyBooksFromDatabase(int userId);
 }

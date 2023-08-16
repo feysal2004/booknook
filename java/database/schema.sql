@@ -56,8 +56,8 @@ CREATE TABLE my_books(
 	isbn varchar null,
 	author varchar (100) NOT NULL,
 	thumbnail varchar null,
-	description varchar(260) null,
-	read boolean null,
+	description varchar null,
+	read boolean not null default false,
 	wishlist boolean null,
 	CONSTRAINT PK_bookshelf_book_id PRIMARY KEY (bookshelf_book_id)
 

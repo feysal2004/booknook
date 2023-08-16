@@ -88,6 +88,9 @@ export default new Vuex.Store({
     SET_GOOGLE_BOOK_SEARCH(state, data) {
       state.bookInput = data;
     },
+    SET_BOOKSHELF_FROM_DATABASE(state, data) {
+      state.bookShelf = data;
+    },
     SET_TRIVIA_DIFFICULTY(state, data) {
       state.triviaDifficulty = data;
     },

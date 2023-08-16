@@ -14,14 +14,19 @@
       </div>
     </header>
 
-       <h5>My Books</h5>  
-       <div v-for="book in userLibrary" v-bind:key="book.bookId" >
-            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
-           <h5>{{book.volumeInfo.title}}</h5>
-           <p class="book-author">{{ book.volumeInfo.authors }}</p>
+
+    <main>
+
+      <h4>Here are my unread books</h4>
+
+       <h5>Full List of My Books</h5>  
+       <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookId" >
+            <img :src="book.thumbnail" alt="" class="bookCover" />
+           <h5>{{book.book_name}}</h5>
+           <p class="book-author">{{ book.author }}</p>
        </div>
 
-       
+    </main>
     <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
       <nav class="nav">
@@ -64,18 +69,18 @@
 </template>
 
 <script>
-//import bookShelfService from "../services/BookShelfService.js";
+import bookService from "../services/BookService.js";
 export default {
-    computed:{
-    userLibrary(){
-      return this.$store.state.userLibrary;
+  methods:{
+    getMyBooksFromDatabase() {
+      bookService.getBooksFromBookshelf().then(response => {
+        this.$store.commit("SET_BOOKSHELF_FROM_DATABASE", response.data);
+      }).catch(console.error);
     },
-    methods:{
-
-
-
-
-    }
+    
+  },
+  created() {
+    this.getMyBooksFromDatabase();
   }
 
 
