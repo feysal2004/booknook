@@ -35,9 +35,9 @@
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
+            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown'}}</p>
            
-           <button v-on:click="addToBookshelf(book)">Add to MyBookshelf</button>
+           <button v-on:click="addToLibrary(book)">Add to library</button>
            
            
           </div>
@@ -153,7 +153,7 @@ export default {
       },
 
       generateRandomLetter() {
-        const alphabet = "abcdfghijklnopqrstvwxz"
+        const alphabet = "aitxz"
         return alphabet[Math.floor(Math.random() * alphabet.length)]
       },
 
@@ -163,21 +163,14 @@ export default {
         }).catch(console.error);
       },
 
-      addToBookshelf(book){
-        let newBook = {};
-        // get bookTitle from book
-        newBook.book_name = book.volumeInfo.title;
-        // get author from book
-        newBook.author = book.volumeInfo.authors[0];
-        // get thumbnail from book
-        newBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
-        // get description from book
-        newBook.description = book.volumeInfo.description;
-        // newBook.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+      addToLibrary(book){
         
-        return bookService.addBookToBookshelf(newBook);
-      },
+        this.$store.dispatch('addToLibrary',book)
       
+      },
+      newestToOldest(){
+        
+      }
     },
     created() {
         this.getBookSearch();
