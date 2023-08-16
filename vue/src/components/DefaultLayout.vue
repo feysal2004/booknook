@@ -2,13 +2,9 @@
   <div class="default-layout">
     <header class="header">
       <router-link :to="{ name: 'home' }" class="logo">
-        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
-      <div class="app-name">
-        <span class="app-name-text">App</span>
-        <span class="app-name-accent">Name</span>
-      </div>
 
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
@@ -114,7 +110,7 @@
         </div>
         <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="TriviaCorner">
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner">
           <span>Trivia Corner</span>
         </div>
         <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
@@ -369,15 +365,13 @@ export default {
 }
 
 .logo img {
-  width: 150px; 
+  width: 550px; 
   height: auto; 
 }
 
 .logo-image {
-  width: 100px; 
+  width: 300px; 
   height: auto; 
-  border-radius: 50%;
-  overflow: hidden; 
 }
 
 /* SIGN IN SIGN OUT BUTTON CSS CODE */
