@@ -63,7 +63,6 @@
       </nav>
     </nav>
 
-
   </div>
 
 </template>
