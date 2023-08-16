@@ -37,6 +37,12 @@
                   <h2> Q. 
                       <span v-html="triviaQ.question" ></span>
                   </h2>
+                  <h3>
+                    <p>A. </p>
+                    <p>B. </p>
+                    <p>C. </p>
+                    <p>D. </p>
+                  </h3>
                   <button @click="revealAnswer(triviaQ)" >Reveal the Correct Answer</button>
                   <div v-if="showAnswer[triviaQ.question]" >
                       <h4> Answer: 
