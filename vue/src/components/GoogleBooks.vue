@@ -34,7 +34,9 @@
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
-            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <h2 class="book-title">  <a href= book..volumeInfo.infoLink  target="_blank">{{ truncateTitle(book.volumeInfo.title, 10) }}</a>
+
+            </h2>
             <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
            
            <button v-on:click="addToLibrary(book)">Add to library</button>
