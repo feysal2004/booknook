@@ -53,4 +53,12 @@ public class BookController {
         return bookDao.getMyBooksFromDatabase(userId);
     }
 
+    @RequestMapping(path="/myBookShelf", method = RequestMethod.DELETE)
+    public void deleteMyBook(MyBook myBook,Principal principal){
+
+    }
+
+
+
+
 }
