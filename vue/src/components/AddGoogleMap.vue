@@ -1,6 +1,8 @@
 <template>
   <div class="map-container">
-    <h2 class="map-header">Check Out Local Bookstores!</h2>
+    <div class="header-container">
+      <h2 class="map-header">Check Out Local Bookstores!</h2>
+    </div>
  
     <gmap-map
       :center="center"
@@ -153,11 +155,20 @@ export default {
   margin-top: 10px;
 }
 
-.map-header {
+.header-container {
+  background-color: #f9f9f9;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px;
+  width: 100%;
   text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-header {
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   color: #333;
-  margin-bottom: 10px;
+  margin: 0;
 }
 </style>

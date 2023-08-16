@@ -2,18 +2,13 @@
   <div class="default-layout">
     <header class="header">
       <router-link :to="{ name: 'home' }" class="logo">
-        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
-      <div class="app-name">
-        <span class="app-name-text">App</span>
-        <span class="app-name-accent">Name</span>
-      </div>
 
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
-
     </header>
 
 
@@ -91,38 +86,52 @@
 
     <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-      <nav class="nav">
+      <nav class="nav-container">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-home-60.png" alt="Home">
+          <img src="../assets/icons8-home-60.png" alt="Home" class="nav-icon">
           <span class="nav-text">Home</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-keyboard-50.png" alt="Forum">
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum" class="nav-icon">
           <span>Forum</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" class="nav-icon">
           <span>My BookShelf</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="BookLibrary">
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary" class="nav-icon">
           <span>Book Library</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="TriviaCorner">
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" class="nav-icon">
           <span>Trivia Corner</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-plus-48.png" alt="AddBook">
+          <img src="../assets/icons8-plus-48.png" alt="AddBook" class="nav-icon">
           <span>Add Book</span>
         </div>
+
       </nav>
+          <div class="bookstore-highlight">
+      <img :src="featuredBookstore.image" class="bookstore-image" :alt="featuredBookstore.name" />
+      <div class="bookstore-details">
+        <h3 class="bookstore-name">{{ featuredBookstore.name }}</h3>
+        <p class="bookstore-description">{{ featuredBookstore.description }}</p>
+        <a :href="featuredBookstore.link" class="bookstore-link" target="_blank">Learn More</a>
+      </div>
+    </div>
     </nav>
 
     <footer class="footer">
@@ -142,14 +151,33 @@ export default {
     return {
       author: this.randomizeAuthors(),
       series: this.randomizeSeries(),
-      topics: this.randomizeTopics()
-    }
+      topics: this.randomizeTopics(),
+      featuredBookstoreIndex: 0,
+      featuredBookstores: [
+        {
+          name: "Cover to Cover",
+          description: "Visit Cover to Cover for a great selection of books!",
+          link: "https://www.covertocoverchildrensbooks.com/",
+          image: require("../assets/CovertoCoverFrontLineCOLOR_1.jpg")
+        },
+        {
+          name: "Prologue Bookshop",
+          description: "Discover new reads at Prologue Bookshop!",
+          link: "https://www.prologuebookshop.com/",
+          image: require("../assets/348s.jpg")
+        },
+      ]
+    };
   },
   components: {
     AddGoogleMapVue,
     HomeTriviaVue
   },
-
+  computed: {
+    featuredBookstore() {
+      return this.featuredBookstores[this.featuredBookstoreIndex];
+    }
+  },
   methods: {
 
     getRandomizedBooksAuthor() {
@@ -192,12 +220,17 @@ export default {
       let topics = ["Football", "Science", "Basketball", "History", "Soccer", "Baseball", "Physics", "Messi"];
       let randomNumber = Math.floor(Math.random() * topics.length);
       return topics[randomNumber];
+    },
+    rotateFeaturedBookstore() {
+      this.featuredBookstoreIndex = (this.featuredBookstoreIndex + 1) % this.featuredBookstores.length;
     }
   },
   created() {
     this.getRandomizedBooksAuthor();
     this.getRandomizedBooksSeries();
     this.getRandomizedBooksTopics();
+    setInterval(this.rotateFeaturedBookstore, 24 * 60 * 60 * 1000); 
+
   }
 };
 </script>
@@ -245,13 +278,14 @@ export default {
 }
 
 
-.nav {
+.nav-container {
   grid-area: nav;
   display: flex;
   flex-direction: column;
   align-items: left; 
   justify-content: left; 
   padding: 1rem;
+  margin-left: 30px;
 }
 
 .nav-box {
@@ -275,8 +309,55 @@ export default {
   margin-top: 0.5rem; 
 }
 
+.nav-icon {
+  margin-left: 10px;
+}
 
 
+/* BOOKSTORE HIGHLIGHT CODE */
+
+
+.bookstore-highlight {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ccc;
+}
+
+.bookstore-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.bookstore-details {
+  flex: 1;
+}
+
+.bookstore-name {
+  font-size: 18px;
+  color: #333;
+}
+
+.bookstore-description {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.bookstore-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.bookstore-link:hover {
+  text-decoration: underline;
+}
 
 
 /* APPNAME CSS CODE */
@@ -332,6 +413,12 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-content {
@@ -341,9 +428,10 @@ export default {
 }
 
 .book-content:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
 
 .book-container {
   display: flex;
@@ -369,15 +457,13 @@ export default {
 }
 
 .logo img {
-  width: 150px; 
+  width: 550px; 
   height: auto; 
 }
 
 .logo-image {
-  width: 100px; 
+  width: 300px; 
   height: auto; 
-  border-radius: 50%;
-  overflow: hidden; 
 }
 
 /* SIGN IN SIGN OUT BUTTON CSS CODE */

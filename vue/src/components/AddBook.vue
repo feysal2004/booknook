@@ -2,19 +2,15 @@
 
   <div class="page-container">
     <header class="header">
-          <router-link :to="{ name: 'home' }" class="logo">
-      <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
-    </router-link>
-
-            <div class="app-name">
-        <span class="app-name-text">App</span>
-       <span class="app-name-accent">Name</span>
-      </div>
+      <div class="logo-container">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
+      </router-link>
+</div>
 
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
-
     </header>
 <main class="main">
     <div class="book-data" v-if="$store.state.user.username === 'admin'">
@@ -105,8 +101,9 @@ export default {
 </script>
 
 <style scoped>
+/* Layout and General Styling */
 .page-container {
- display: grid;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
@@ -115,8 +112,10 @@ export default {
     "nav main main"
     "footer footer footer";
   min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
+/* Book Data Form Styling */
 .book-data {
   display: flex;
   flex-direction: column;
@@ -125,9 +124,9 @@ export default {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 80%; 
+  width: 80%;
   max-width: 500px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .add-book-title {
@@ -156,8 +155,10 @@ export default {
 }
 
 .add-button:hover {
-  background-color:#d14d04;
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
 }
+
 
 .auth-required {
   text-align: center;
@@ -166,39 +167,42 @@ export default {
   margin-top: 20px;
 }
 
-
-
-/* HEADER CSS CODE */
+/* Header Styling */
 .header {
   grid-area: header;
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: #ffffff;
- 
 }
 
 .logo img {
-  width: 150px; 
-  height: auto; 
+  width: 550px;
+  height: auto;
 }
 
 .logo-image {
-  width: 100px; 
-  height: auto; 
-  border-radius: 50%;
-  overflow: hidden; 
+  width: 300px;
+  height: auto;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
-/* SIGN IN SIGN OUT BUTTON CSS CODE */
+.sign-out-container {
+  display: flex;
+  align-items: center;
+}
+
 .login-logout-button {
   padding: 0.5rem 1rem;
   border: none;
   background-color: rgb(209, 77, 4);
   color: white;
   font-weight: bold;
-  font-family:sans-serif;
+  font-family: sans-serif;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -209,8 +213,7 @@ export default {
   transform: scale(1.05);
 }
 
-
-/* APPNAME CSS CODE */
+/* App Name Styling */
 .app-name {
   grid-area: app-name;
   text-align: center;
