@@ -338,6 +338,7 @@ export default {
 }
 .bookstore-highlight {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 20px;
