@@ -36,8 +36,6 @@ CREATE TABLE topics (
 	CONSTRAINT PK_topic_id PRIMARY KEY (topic_id)
 );
 
-INSERT INTO topics (topic_name) VALUES ('test name');
-
 CREATE SEQUENCE message_id_serial;
 CREATE TABLE messages (
 	message_id int not null default nextval('message_id_serial'),
@@ -62,8 +60,5 @@ CREATE TABLE my_books(
 	CONSTRAINT PK_bookshelf_book_id PRIMARY KEY (bookshelf_book_id)
 
 );
-
-
-INSERT INTO messages (topic_id, message_text, message_written_by) VALUES ('1', 'sample text', 'some user');
 
 COMMIT TRANSACTION;
