@@ -32,10 +32,13 @@
 
       <div class="book-container">
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box"  >
+          
           <div class="book-content" >
              
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover"  />
-            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}
+              
+            </h2>
             <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
           
            <button v-on:click="selectedBook(book)">Add to My BookShelf</button>
