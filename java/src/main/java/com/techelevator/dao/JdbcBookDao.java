@@ -47,8 +47,8 @@ public class JdbcBookDao implements BookDao {
     @Override
     public MyBook addToBookShelf(MyBook myBook, User user) {
 
-        String sql = "insert into my_books (book_name, author, user_id, username, isbn) values (?,?,?,?,?) ;";
-        jdbcTemplate.update(sql, myBook.getBook_name(),myBook.getAuthor(),user.getId(),user.getUsername(),myBook.getIsbn());
+        String sql = "insert into my_books (book_name, author, user_id, username, isbn, thumbnail, description) values (?,?,?,?,?, ?, ?) ;";
+        jdbcTemplate.update(sql, myBook.getBook_name(),myBook.getAuthor(),user.getId(),user.getUsername(),myBook.getIsbn(), myBook.getThumbnail(), myBook.getDescription());
 
         return myBook;
     }
@@ -69,6 +69,22 @@ public class JdbcBookDao implements BookDao {
         return books;
     }
 
+    @Override
+    public List<MyBook> getMyBooksFromDatabase(int userId) {
+        List<MyBook> myBooks = new ArrayList<>();
+        String sql = "SELECT * FROM my_books WHERE user_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            while (results.next()) {
+                MyBook myBook = mapRowToMyBook(results);
+                myBooks.add(myBook);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return myBooks;
+    }
+
     private Book mapRowToBook(SqlRowSet rs) {
         Book book = new Book();
         book.setBookName(rs.getString("book_name"));
@@ -80,6 +96,16 @@ public class JdbcBookDao implements BookDao {
         book.setRelease_date(rs.getDate("release_date").toLocalDate());
         book.setDate_added_to_collection(rs.getDate("date_added_to_collection").toLocalDate());
         return book;
+    }
+
+    private MyBook mapRowToMyBook(SqlRowSet rs) {
+        MyBook myBook = new MyBook();
+        myBook.setAuthor(rs.getString("author"));
+        myBook.setBook_name(rs.getString("book_name"));
+        myBook.setDescription(rs.getString("description"));
+        myBook.setThumbnail(rs.getString("thumbnail"));
+        myBook.setIsbn(rs.getInt("isbn"));
+        return myBook;
     }
 
 }
