@@ -51,7 +51,7 @@ CREATE TABLE my_books(
 	user_id int not null,
 	username varchar(50) NOT NULL UNIQUE,
 	book_name varchar(200) NOT NULL,
-	isbn int not null,
+	isbn varchar null,
 	author varchar (100) NOT NULL,
 	thumbnail varchar(260) null,
 	description varchar(260) null,
