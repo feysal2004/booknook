@@ -16,13 +16,23 @@
 
 
 
-    <div class="trivia-container">
-      <HomeTriviaVue />
-    </div>
-
 
     <map class="map-container">
+      <div class="map-box">
       <AddGoogleMapVue />
+      </div>
+
+                     <div class="bookstore-h-container">  
+    <div class="bookstore-highlight">
+      <h1 class="highlight-header">Bookstore Highlight</h1> 
+      <img :src="featuredBookstore.image" class="bookstore-image" :alt="featuredBookstore.name" />
+      <div class="bookstore-details">
+        <h3 class="bookstore-name">{{ featuredBookstore.name }}</h3>
+        <p class="bookstore-description">{{ featuredBookstore.description }}</p>
+        <a :href="featuredBookstore.link" class="bookstore-link" target="_blank">Learn More</a>
+      </div>
+    </div>
+   </div>
     </map>
 
 
@@ -122,16 +132,13 @@
           <img src="../assets/icons8-plus-48.png" alt="AddBook" class="nav-icon">
           <span>Add Book</span>
         </div>
-
       </nav>
-          <div class="bookstore-highlight">
-      <img :src="featuredBookstore.image" class="bookstore-image" :alt="featuredBookstore.name" />
-      <div class="bookstore-details">
-        <h3 class="bookstore-name">{{ featuredBookstore.name }}</h3>
-        <p class="bookstore-description">{{ featuredBookstore.description }}</p>
-        <a :href="featuredBookstore.link" class="bookstore-link" target="_blank">Learn More</a>
-      </div>
+
+      
+    <div class="trivia-container">
+      <HomeTriviaVue />
     </div>
+
     </nav>
 
     <footer class="footer">
@@ -156,13 +163,13 @@ export default {
       featuredBookstores: [
         {
           name: "Cover to Cover",
-          description: "Visit Cover to Cover for a great selection of books!",
+          description: "We have loved sharing our passion for reading with children, parents, and teachers since 1980. At our new store at 2116 Arlington Avenue, we continue to offer the very best of classic and new literature for young readers. Our in-store events include story-time, reading clubs, writing workshops, and author/illustrator visits.",
           link: "https://www.covertocoverchildrensbooks.com/",
           image: require("../assets/CovertoCoverFrontLineCOLOR_1.jpg")
         },
         {
           name: "Prologue Bookshop",
-          description: "Discover new reads at Prologue Bookshop!",
+          description: "Welcome to Prologue Bookshop, your source for inspiration, imagination, and community in the Short North Arts District. We’re a new bookstore in Columbus, Ohio, stop in today!",
           link: "https://www.prologuebookshop.com/",
           image: require("../assets/348s.jpg")
         },
@@ -270,11 +277,10 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-bottom: 1rem;
+  margin-right: 370px;
 }
 
 
@@ -285,7 +291,7 @@ export default {
   align-items: left; 
   justify-content: left; 
   padding: 1rem;
-  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .nav-box {
@@ -298,6 +304,7 @@ export default {
   border-radius: 5px; 
   z-index: -1;
   transition: background-color 0.3s; 
+  margin-right: 70px;
 }
 
 
@@ -316,13 +323,29 @@ export default {
 
 /* BOOKSTORE HIGHLIGHT CODE */
 
-
+.bookstore-h-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 5vh;
+  padding: 1px;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  background-color: #f4f4f4;
+  word-wrap: break-word;
+}
 .bookstore-highlight {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f8f8f8;
-  border-top: 1px solid #ccc;
+  background-color: white; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 70%;
 }
 
 .bookstore-image {
@@ -338,25 +361,42 @@ export default {
 
 .bookstore-name {
   font-size: 18px;
-  color: #333;
+  color: black; 
+  font-family: 'Arial', sans-serif; 
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .bookstore-description {
   font-size: 14px;
-  color: #777;
+  color: black; 
+  font-family: 'Arial', sans-serif; 
   margin-top: 5px;
+  text-align: center;
 }
 
 .bookstore-link {
   display: inline-block;
   margin-top: 10px;
-  color: #007bff;
+  color: white;
   text-decoration: none;
   font-weight: bold;
+  font-family: 'Arial', sans-serif; 
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(209, 77, 4); 
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .bookstore-link:hover {
-  text-decoration: underline;
+  background-color: rgb(255, 102, 0); 
+  text-decoration: none;
+}
+
+.highlight-header {
+  color: rgb(175, 174, 174);
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px; 
 }
 
 
