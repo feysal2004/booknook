@@ -31,14 +31,13 @@
       </div>
 
       <div class="book-container">
-        <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box"  >
-          <div class="book-content" >
-             
-            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover"  />
+        <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
+          <div class="book-content">
+            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>
-          
-           <button v-on:click="selectedBook(book)">Add to My BookShelf</button>
+            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
+           
+           <button v-on:click="addToLibrary(book)">Add to library</button>
            
            
           </div>
@@ -92,7 +91,6 @@
 </template>
 
 <script>
-import bookShelfService from "../services/BookShelfService.js";
 import bookService from '../services/BookService';
 import googleBookAPI from "../services/GoogleBookApiService";
 
@@ -101,9 +99,7 @@ export default {
         return {
             input: this.generateRandomLetter(),
             dropDownInput: this.newestToOldest(),
-            selectedSearchMethod: 'option1',
-            currentUserId: 1,
-            selectedBook: ""
+            selectedSearchMethod: 'option1'
         }
     },
 
@@ -172,17 +168,8 @@ export default {
         this.$store.dispatch('addToLibrary',book)
       
       },
-     
-      selectBook(book){
-        this.selectedBook = book;
-      },
-      
-      addBookToBookShelf(){
-       if(this.selectedBook){
-         bookShelfService.addMyBook(this.currentUserId, this.selectedBook);
+      newestToOldest(){
         
-       }
-
       }
     },
     created() {
