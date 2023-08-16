@@ -18,16 +18,17 @@ import axios from 'axios';
       }
       return data
     },
-      
-    addBook(book){
-        return axios.post('/books/addBook', book);
-    },
 
     getBooksFromOurDatabase(){
       return axios.get('/books');
     },
-   
+    addBookToBookshelf(book){
+        return axios.post('/books/myBookShelf', book);
+    },
 
+    getBooksFromBookshelf() {
+      return axios.get(`/books/myBookShelf`);
+    }
     
 
   }

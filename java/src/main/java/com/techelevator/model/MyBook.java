@@ -7,13 +7,19 @@ public class MyBook {
     public String author;
     public String description;
     public int isbn;
+    public String thumbnail;
 
-    public MyBook(String book_name, String author, String description, int isbn){
+    public MyBook(String book_name, String author, String description, int isbn, String thumbnail){
         this.book_name = book_name;
         this.author = author;
         this.description=description;
         this.isbn=isbn;
+        this.thumbnail = thumbnail;
 
+
+    }
+
+    public MyBook() {
 
     }
 
@@ -47,5 +53,13 @@ public class MyBook {
 
     public void setIsbn(int isbn) {
         this.isbn = isbn;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

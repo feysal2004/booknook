@@ -1,14 +1,32 @@
 <template>
   <div class = "myBookShelf">
 
-       <h5>My Books</h5>  
-       <div v-for="book in userLibrary" v-bind:key="book.bookId" >
-            <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
-           <h5>{{book.volumeInfo.title}}</h5>
-           <p class="book-author">{{ book.volumeInfo.authors }}</p>
+    <header class="header">
+      <router-link :to="{ name: 'home' }" class="logo">
+        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+      </router-link>
+      <div class="app-name">
+        <span class="app-name-text">App</span>
+        <span class="app-name-accent">Name</span>
+      </div>
+      <div class="login-logout">
+        <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
+      </div>
+    </header>
+
+
+    <main>
+
+      <h4>Here are my unread books</h4>
+
+       <h5>Full List of My Books</h5>  
+       <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookId" >
+            <img :src="book.thumbnail" alt="" class="bookCover" />
+           <h5>{{book.book_name}}</h5>
+           <p class="book-author">{{ book.author }}</p>
        </div>
 
-       
+    </main>
     <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
       <nav class="nav">
@@ -51,18 +69,18 @@
 </template>
 
 <script>
-//import bookShelfService from "../services/BookShelfService.js";
+import bookService from "../services/BookService.js";
 export default {
-    computed:{
-    userLibrary(){
-      return this.$store.state.userLibrary;
+  methods:{
+    getMyBooksFromDatabase() {
+      bookService.getBooksFromBookshelf().then(response => {
+        this.$store.commit("SET_BOOKSHELF_FROM_DATABASE", response.data);
+      }).catch(console.error);
     },
-    methods:{
-
-
-
-
-    }
+    
+  },
+  created() {
+    this.getMyBooksFromDatabase();
   }
 
 

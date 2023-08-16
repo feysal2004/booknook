@@ -34,14 +34,11 @@
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
-            <h2 class="book-title">  <a href= book..volumeInfo.infoLink  target="_blank">{{ truncateTitle(book.volumeInfo.title, 10) }}</a>
-
-            </h2>
-            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
+            <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
+            <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown'}}</p>
            
-           <button v-on:click="addToLibrary(book)">Add to library</button>
-           
-           
+           <button v-on:click="addToBookshelf(book)">Add to Bookshelf</button>
+                     
           </div>
         </div>
       </div>
@@ -97,88 +94,95 @@ import bookService from '../services/BookService';
 import googleBookAPI from "../services/GoogleBookApiService";
 
 export default {
-    data() {
-        return {
-            input: this.generateRandomLetter(),
-            dropDownInput: this.newestToOldest(),
-            selectedSearchMethod: 'option1'
-        }
-    },
-
-    methods: {
-      chooseBookSearch() {
-        if (this.selectedSearchMethod == 'option1') {
-          this.getBookSearch();
-        } else if (this.selectedSearchMethod == 'option2') {
-          this.getBooksByTitle();
-        } else if (this.selectedSearchMethod == 'option3') {
-          this.getBooksByAuthor();
-        } else if (this.selectedSearchMethod == 'option4') {
-          this.getBooksBySubject();
-        }  
-      },
-
-      getBookSearch() {
-          googleBookAPI.getBookListBySearchQuery(this.input).then(response => {
-              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
-              this.input = "";
-          }).catch(console.error);
-      },
-
-      getBooksByTitle() {
-        googleBookAPI.getBookListByTitle(this.input).then(response => {
-              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
-              this.input = "";
-          }).catch(console.error);
-      },
-
-      getBooksByAuthor() {
-        googleBookAPI.getBookListByAuthor(this.input).then(response => {
-              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
-              this.input = "";
-          }).catch(console.error);
-      },
-
-      getBooksBySubject() {
-        googleBookAPI.getBookListBySubject(this.input).then(response => {
-              this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
-              this.input = "";
-          }).catch(console.error);
-      },
-
-      truncateTitle(title, words) {
-        const titleWords = title.split(' ');
-        if (titleWords.length > words) {
-          return titleWords.slice(0, words).join(' ') + '...';
-        }
-        return title;
-      },
-
-      generateRandomLetter() {
-        const alphabet = "aitxz"
-        return alphabet[Math.floor(Math.random() * alphabet.length)]
-      },
-
-      getAdminAddedBooks() {
-        return bookService.getBooksFromOurDatabase().then(response => {
-          this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
-        }).catch(console.error);
-      },
-
-      addToLibrary(book){
-        
-        this.$store.dispatch('addToLibrary',book)
-      
-      },
-      newestToOldest(){
-        
-      }
-    },
-    created() {
-        this.getBookSearch();
-        this.getAdminAddedBooks();
+  data() {
+    return {
+      input: this.generateRandomLetter(),
+      dropDownInput: this.newestToOldest(),
+      selectedSearchMethod: 'option1'
     }
+  },
+
+  methods: {
+    chooseBookSearch() {
+      if (this.selectedSearchMethod == 'option1') {
+        this.getBookSearch();
+      } else if (this.selectedSearchMethod == 'option2') {
+        this.getBooksByTitle();
+      } else if (this.selectedSearchMethod == 'option3') {
+        this.getBooksByAuthor();
+      } else if (this.selectedSearchMethod == 'option4') {
+        this.getBooksBySubject();
+      }  
+    },
+
+    getBookSearch() {
+        googleBookAPI.getBookListBySearchQuery(this.input).then(response => {
+            this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+            this.input = "";
+        }).catch(console.error);
+    },
+
+    getBooksByTitle() {
+      googleBookAPI.getBookListByTitle(this.input).then(response => {
+            this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+            this.input = "";
+        }).catch(console.error);
+    },
+
+    getBooksByAuthor() {
+      googleBookAPI.getBookListByAuthor(this.input).then(response => {
+            this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+            this.input = "";
+        }).catch(console.error);
+    },
+
+    getBooksBySubject() {
+      googleBookAPI.getBookListBySubject(this.input).then(response => {
+            this.$store.commit("SET_GOOGLE_BOOK_SEARCH", response.data.items);
+            this.input = "";
+        }).catch(console.error);
+    },
+
+    truncateTitle(title, words) {
+      const titleWords = title.split(' ');
+      if (titleWords.length > words) {
+        return titleWords.slice(0, words).join(' ') + '...';
+      }
+      return title;
+    },
+
+    generateRandomLetter() {
+      const alphabet = "aitxz"
+      return alphabet[Math.floor(Math.random() * alphabet.length)]
+    },
+
+    getAdminAddedBooks() {
+      return bookService.getBooksFromOurDatabase().then(response => {
+        this.$store.commit("SET_ADMIN_ADDED_BOOKS", response.data);
+      }).catch(console.error);
+    },
+
+    addToBookshelf(book){
+      let newBook = {};
+      // get bookTitle from book
+      newBook.book_name = book.volumeInfo.title;
+      // get author from book
+      newBook.author = book.volumeInfo.authors[0];
+      // get thumbnail from book
+      newBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
+      // get description from book
+      newBook.description = book.volumeInfo.description;
+      // newBook.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
+
+      return bookService.addBookToBookshelf(newBook);
+    }
+  },
+  created() {
+      this.getBookSearch();
+      this.getAdminAddedBooks();
+  }
 }
+
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@ ROLLBACK;
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users, books_table, genre_table, topics, messages, my_books;
-DROP SEQUENCE IF EXISTS topic_id_serial, message_id_serial;
+DROP SEQUENCE IF EXISTS topic_id_serial, message_id_serial, bookshelf_book_id;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -13,7 +13,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE books_table (
-book_name varchar(200) NOT NULL,
+	book_name varchar(200) NOT NULL,
 	author varchar (100) NOT NULL,
 	author_second varchar(100) NULL,
 	description varchar(260) NOT NULL,
@@ -46,17 +46,20 @@ CREATE TABLE messages (
 	message_written_by varchar(100),
 	CONSTRAINT PK_message_id PRIMARY KEY (message_id)
 );
-CREATE TABLE my_books(
 
+CREATE SEQUENCE bookshelf_book_id;
+CREATE TABLE my_books(
+	bookshelf_book_id int not null default nextval('bookshelf_book_id'),
 	user_id int not null,
-	username varchar(50) NOT NULL UNIQUE,
+	username varchar(50) NOT NULL,
 	book_name varchar(200) NOT NULL,
-	isbn int not null,
+	isbn varchar null,
 	author varchar (100) NOT NULL,
-	thumbnail varchar(260) null,
-	description varchar(260) null,
-	read boolean null,
-	wishlist boolean null
+	thumbnail varchar null,
+	description varchar null,
+	read boolean not null default false,
+	wishlist boolean null,
+	CONSTRAINT PK_bookshelf_book_id PRIMARY KEY (bookshelf_book_id)
 
 );
 

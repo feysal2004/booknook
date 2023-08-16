@@ -43,9 +43,14 @@ public class BookController {
     public void addBook(@RequestBody MyBook myBook, Principal principal) {
         User user = userDao.getUserByUsername(principal.getName());
         MyBook addBook = bookDao.addToBookShelf(myBook, user);
-
     }
 
-
+//    @PreAuthorize("permitAll")
+    @RequestMapping(path="/myBookShelf", method = RequestMethod.GET)
+    public List<MyBook> getListOfMyBooks(Principal principal) {
+        User user = userDao.getUserByUsername(principal.getName());
+        int userId = user.getId();
+        return bookDao.getMyBooksFromDatabase(userId);
+    }
 
 }
