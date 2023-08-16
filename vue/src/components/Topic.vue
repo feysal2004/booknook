@@ -2,18 +2,13 @@
   <div class="topic-list">
     <header class="header">
       <router-link :to="{ name: 'home' }" class="logo">
-        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
-      <div class="app-name">
-        <span class="app-name-text">App</span>
-        <span class="app-name-accent">Name</span>
-      </div>
 
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
-
     </header>
 
 
@@ -248,7 +243,7 @@ export default {
 }
 
 .delete-topic-button:hover {
-  background-color: #e6003e;
+  background-color: rgb(255, 102, 0);
 }
 
 /* NAV MENU CSS CODE */
@@ -308,15 +303,13 @@ export default {
 }
 
 .logo img {
-  width: 150px; 
+  width: 550px; 
   height: auto; 
 }
 
 .logo-image {
-  width: 100px; 
+  width: 400px; 
   height: auto; 
-  border-radius: 50%;
-  overflow: hidden; 
 }
 
 /* SIGN IN SIGN OUT BUTTON CSS CODE */

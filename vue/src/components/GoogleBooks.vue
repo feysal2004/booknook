@@ -2,12 +2,10 @@
   <div class="google-books">
     <header class="header">
       <router-link :to="{ name: 'home' }" class="logo">
-        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
-      <div class="app-name">
-        <span class="app-name-text">App</span>
-        <span class="app-name-accent">Name</span>
-      </div>
+
+
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
@@ -15,10 +13,11 @@
 
     <main class="main">
       <!-- books from google books api -->
-      <div class="search-container">
-        <input class="search-bar" type="text" placeholder="Search" v-model="input" />
-        <button class="submit-button" v-on:click="chooseBookSearch()" >Search</button>
-
+      <div class="search-box">
+        <div class="search-container">
+          <input class="search-bar" type="text" placeholder="Search" v-model="input" />
+          <button class="submit-button" v-on:click="chooseBookSearch()">Search</button>
+        </div>
         <div class="dropDown">
           <select id="dropdown" v-model="selectedSearchMethod">
             <option value="option1">General Search</option>
@@ -198,25 +197,25 @@ export default {
   min-height: 100vh;
 }
 
+/* HEADER CSS CODE */
 .header {
   grid-area: header;
-  display: flex;
+ display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: #ffffff;
+ 
 }
 
 .logo img {
-  width: 150px;
-  height: auto;
+  width: 550px; 
+  height: auto; 
 }
 
 .logo-image {
-  width: 100px;
-  height: auto;
-  border-radius: 50%;
-  overflow: hidden;
+  width: 300px; 
+  height: auto; 
 }
 
 .app-name {
@@ -260,6 +259,14 @@ export default {
   padding: 0.5rem;
 }
 
+.search-box {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .search-container {
   display: flex;
   align-items: center;
@@ -272,6 +279,7 @@ export default {
   border: 1px solid #ccc;
   padding: 8px;
   border-radius: 5px;
+  border: 1px solid #ccc;
   flex: 1;
   font-size: 14px;
   font-family: Arial, sans-serif;
@@ -281,7 +289,7 @@ export default {
   background-color: rgb(209, 77, 4);
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -291,6 +299,13 @@ export default {
 
 .submit-button:hover {
   background-color: #e65c00;
+}
+
+.dropDown select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
 }
 
 .book-container {
@@ -310,6 +325,12 @@ export default {
   text-align: center;
   font-family: Arial, sans-serif;
   margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-content {

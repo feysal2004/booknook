@@ -2,18 +2,13 @@
   <div class="topic-list">
     <header class="header">
       <router-link :to="{ name: 'home' }" class="logo">
-        <img class="logo-image" src="../assets/T0GNFLF6D-U0192MVUM7C-d3304dbc9516-512.png" alt="Logo" />
+        <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
-      <div class="app-name">
-        <span class="app-name-text">App</span>
-        <span class="app-name-accent">Name</span>
-      </div>
 
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
-
     </header>
 
 
@@ -48,13 +43,13 @@
               <tr v-for="(message, index) in filteredMessages" :key="message.message_id">
                 <td :id = "message.message_id" width="80%" v-bind:currentMessageId=message.message_id ><span v-if="activeIndex !== index">{{ message.message_text }} </span>
                 <input type="text" v-model="editObject.message_text" v-if="activeIndex === index"  ></td>
-                <td class="edit-button-cell"  >
-                  <div v-if="message.message_written_by === $store.state.user.username || $store.state.user.username === 'admin' " >
-                    <button class="edit-button" v-on:click.prevent.stop="editMessage(index, message)"  >Edit</button>
-                    <button  v-on:click="submitEditedMessage( message.message_id, editObject)" v-if="activeIndex === index" >Save Message</button>
-                    <button class="delete-message-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete</button>
-                  </div> 
-                </td>
+                <td class="edit-button-cell">
+  <div class="button-group">
+    <button class="action-button" v-on:click.prevent.stop="editMessage(index, message)">Edit</button>
+    <button class="action-button" v-on:click="submitEditedMessage(message.message_id, editObject)" v-if="activeIndex === index">Save</button>
+    <button class="action-button delete-button" v-on:click="deleteMessage(message.message_id)" v-if="$store.state.user.username === 'admin'">Delete</button>
+  </div>
+</td>
               </tr> 
             </tbody>
           </div>
@@ -164,6 +159,7 @@ export default {
 </script>
 
 <style scoped>
+/* General styles */
 .topic-list {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -235,7 +231,7 @@ export default {
 
 .message-list {
   width: 100%;
- display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -259,9 +255,7 @@ export default {
   width: 92%;
 }
 
-
-
-/* NAV MENU CSS CODE */
+/* Navigation styles */
 .nav-item {
   position: relative;
   display: flex;
@@ -302,39 +296,34 @@ export default {
   margin-top: 0.5rem;
 }
 
-
-
-/* HEADER CSS CODE */
+/* Header styles */
 .header {
   grid-area: header;
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: #ffffff;
- 
 }
 
 .logo img {
-  width: 150px; 
-  height: auto; 
+  width: 550px;
+  height: auto;
 }
 
 .logo-image {
-  width: 100px; 
-  height: auto; 
-  border-radius: 50%;
-  overflow: hidden; 
+  width: 300px;
+  height: auto;
 }
 
-/* SIGN IN SIGN OUT BUTTON CSS CODE */
+/* Sign In/Sign Out Button styles */
 .login-logout-button {
   padding: 0.5rem 1rem;
   border: none;
   background-color: rgb(209, 77, 4);
   color: white;
   font-weight: bold;
-font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -345,8 +334,7 @@ font-family: Arial, sans-serif;
   transform: scale(1.05);
 }
 
-
-/* APPNAME CSS CODE */
+/* App Name styles */
 .app-name {
   grid-area: app-name;
   text-align: center;
@@ -363,7 +351,8 @@ font-family: Arial, sans-serif;
   color: rgb(209, 77, 4);
 }
 
-.edit-button {
+/* Action Button styles */
+.action-button {
   background-color: rgb(209, 77, 4);
   color: white;
   border: none;
@@ -372,30 +361,20 @@ font-family: Arial, sans-serif;
   cursor: pointer;
   transition: background-color 0.2s;
   font-family: Arial, sans-serif;
+  margin-right: 5px;
 }
 
-.edit-button:hover {
+.action-button:hover {
   background-color: #e65c00;
 }
 
-.delete-message-button {
-  background-color: rgb(209, 77, 4);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-family: Arial, sans-serif;
-}
-
-.delete-message-button:hover {
-  background-color: #e6003e;
+.button-group {
+  display: flex;
+  gap: 5px;
 }
 
 .main {
   grid-area: main;
   padding: 5rem;
 }
-
 </style>
