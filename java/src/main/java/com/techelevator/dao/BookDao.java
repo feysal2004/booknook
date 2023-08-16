@@ -26,6 +26,6 @@ public interface BookDao {
     List<Book> getBooksFromDatabase();
 
     List<MyBook> getMyBooksFromDatabase(int userId);
-    void deleteMyBook(User user, MyBook myBook);
+    void deleteMyBook(User user, MyBook myBook );
 
 }
