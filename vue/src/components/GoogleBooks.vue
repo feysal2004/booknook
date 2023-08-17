@@ -32,7 +32,7 @@
       <div class="book-container">
         <div v-for="book in $store.state.bookInput" v-bind:key="book.bookId" class="book-box">
           <div class="book-content">
-            <img :src="book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg')" alt="" class="bookCover" />
+            <img :src="book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg')" alt="" class="bookCover resizable-image" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown Author'}}</p>
            
@@ -44,9 +44,9 @@
 
       <!-- books from internal database -->
       <div class="book-container">
-        <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" class="book-box" >
+        <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" >
           <div class="book-content">
-            <img src="../assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg" alt="" class="bookCover" />  <!-- add no image icon -->
+            <img src="../assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg" alt="" class="bookCover resizable-image" />  <!-- add no image icon -->
             <h2 class="book-title"> {{ truncateTitle(book.book_name, 10) }} </h2>
             <p class="book-author"> {{ book.author }} </p>
           </div>
@@ -385,6 +385,18 @@ export default {
 .submit-button:hover {
   background-color: rgb(255, 102, 0);
   transform: scale(1.05);
+}
+
+.book-cover {
+  width: auto;
+  max-height: 150px; 
+  margin: 0 auto;
+}
+
+
+.resizable-image {
+  max-width: 235px; 
+  height: auto;
 }
 
 .nav {
