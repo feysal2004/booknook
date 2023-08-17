@@ -107,7 +107,6 @@ export default {
   data() {
     return {
       input: this.generateRandomLetter(),
-      //dropDownInput: this.newestToOldest(),
       selectedSearchMethod: 'option1'
     }
   },
