@@ -259,17 +259,15 @@ export default {
 
 .trivia-container {
   grid-area: nav;
-  width: 310px; 
-  height: 100%; 
-  overflow: hidden; 
+  width: 310px;
+  overflow: hidden;
   margin-bottom: 20px;
 }
 
 .map-container {
   grid-area: map;
-  width: 310px; 
-  height: 100%; 
-  overflow: hidden; 
+  width: 310px;
+  overflow: hidden;
 }
 
 /* NAV MENU CSS CODE */
@@ -281,49 +279,33 @@ export default {
   cursor: pointer;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-bottom: 1rem;
-  margin-right: 370px;
-}
-
-
-.nav-container {
-  grid-area: nav;
-  display: flex;
-  flex-direction: column;
-  align-items: left; 
-  justify-content: left; 
-  padding: 1rem;
-  margin-right: 30px;
 }
 
 .nav-box {
   position: absolute;
-  left: -45px; 
+  left: -45px;
   top: 0;
   width: 150px;
   height: 100%;
   background-color: rgb(175, 174, 174);
-  border-radius: 5px; 
+  border-radius: 5px;
   z-index: -1;
-  transition: background-color 0.3s; 
-  margin-right: 70px;
+  transition: background-color 0.3s;
 }
 
-
 .nav-item:hover .nav-box {
-  background-color: #555; 
+  background-color: #555;
 }
 
 .nav-text {
-  margin-top: 0.5rem; 
+  margin-top: 0.5rem;
 }
 
 .nav-icon {
   margin-left: 10px;
 }
 
-
 /* BOOKSTORE HIGHLIGHT CODE */
-
 .bookstore-h-container {
   grid-area: map;
   display: flex;
@@ -333,18 +315,18 @@ export default {
   padding: 1px;
   border-radius: 10px;
   width: 100%;
-  height: auto;
   overflow: auto;
   background-color: #f4f4f4;
   word-wrap: break-word;
 }
+
 .bookstore-highlight {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: white; 
+  background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
@@ -364,16 +346,16 @@ export default {
 
 .bookstore-name {
   font-size: 18px;
-  color: black; 
-  font-family: 'Arial', sans-serif; 
+  color: black;
+  font-family: 'Arial', sans-serif;
   margin-bottom: 5px;
   text-align: center;
 }
 
 .bookstore-description {
   font-size: 14px;
-  color: black; 
-  font-family: 'Arial', sans-serif; 
+  color: black;
+  font-family: 'Arial', sans-serif;
   margin-top: 5px;
   text-align: center;
 }
@@ -384,36 +366,34 @@ export default {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-family: 'Arial', sans-serif; 
+  font-family: 'Arial', sans-serif;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: rgb(209, 77, 4); 
+  background-color: rgb(209, 77, 4);
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .bookstore-link:hover {
-  background-color: rgb(255, 102, 0); 
+  background-color: rgb(255, 102, 0);
   text-decoration: none;
 }
 
 .highlight-header {
   color: rgb(175, 174, 174);
   font-family: Arial, sans-serif;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
-
 
 /* BOOK BOXES */
 .main {
   grid-area: main;
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  gap: 20px; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   padding: 0.5rem;
   text-align: center;
-  max-width: 600px;
 }
 
 .book-box-text {
@@ -427,8 +407,8 @@ export default {
 .book-box {
   background-color: #fff;
   display: flex;
-  align-items: center; 
-  width: 1200; 
+  align-items: center;
+  width: 100%; /* Adjusted width */
   height: auto;
   padding: 10px;
   border-radius: 10px;
@@ -436,8 +416,6 @@ export default {
   text-align: center;
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
-  margin-right: 650px;
-
 }
 
 .book-box:hover {
@@ -456,21 +434,6 @@ export default {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-
-.book-container {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 20px;
-  
-}
-
-
-
-
-
 /* HEADER CSS CODE */
 .header {
   grid-area: header;
@@ -479,17 +442,11 @@ export default {
   justify-content: space-between;
   padding: 1rem;
   background-color: #ffffff;
- 
-}
-
-.logo img {
-  width: 550px; 
-  height: auto; 
 }
 
 .logo-image {
-  width: 300px; 
-  height: auto; 
+  width: 300px;
+  height: auto;
 }
 
 /* SIGN IN SIGN OUT BUTTON CSS CODE */
@@ -500,7 +457,7 @@ export default {
   background-color: rgb(209, 77, 4);
   color: white;
   font-weight: bold;
-  font-family:Arial, sans-serif;
+  font-family: Arial, sans-serif;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -511,22 +468,14 @@ export default {
   transform: scale(1.05);
 }
 
-
-
-
-
-.main {
-  grid-area: main;
-  padding: 0.5rem;
-  text-align: center;
-}
-
+/* FOOTER CSS CODE */
 .footer {
   grid-area: footer;
   text-align: center;
   padding: 1rem;
 }
 
+/* NAV CSS CODE */
 .nav {
   grid-area: nav;
   text-align: center;
