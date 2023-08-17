@@ -23,6 +23,17 @@
         </div>
       </div>
 
+      <div>
+        <h4>Here are my Read Books</h4>
+        <div class="book-container">
+          <div v-for="readBook in $store.state.readBooks" v-bind:key="readBook.bookshelf_book_id" class="book-box">
+            <img :src="readBook.thumbnail" alt="" class="book-cover" />
+            <h5>{{ readBook.book_name }}</h5>
+            <p class="book-author">{{ readBook.author }}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="book-container">
         <h2 class="horizontal-book-box-text">
           <span class="app-name-text">Full List of </span>
@@ -32,14 +43,16 @@
           <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
             <div class="book-content">
               <img :src="book.thumbnail" alt="" class="bookCover" />
-             <h5>{{ book.book_name }}</h5>
-             <p class="book-author">{{ book.author }}</p>
-            <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
-        <button class="action-button orange" v-on:click="removeFromFullList(book)">Remove Book</button>
+              <h5>{{ book.book_name }}</h5>
+              <p class="book-author">{{ book.author }}</p>
+              <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
+              <button class="action-button orange" v-on:click="removeFromFullList(book)">Remove Book</button>
+            </div>
+          </div>
+        </div>
       </div>
-     </div>
-    </div>
-    </div>
+
+      
     </main>
      <nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
@@ -114,8 +127,7 @@ export default {
   created() {
     this.getMyBooksFromDatabase();
     this.getUnreadBooksFromDatabase();
-    console.log("unread books:", this.$store.state.unread);
-    console.log("bookshelf books:", this.$store.state.bookShelf);
+    this.getReadBooksFromDatabase();
   },
 };
 </script>
