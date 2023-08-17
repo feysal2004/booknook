@@ -20,7 +20,7 @@
       <input class="input-field" type="text" placeholder="Second Author" v-model="book.author_second" />
       <input class="input-field" type="text" placeholder="Description" v-model="book.description" />
       <input class="input-field" type="text" placeholder="Series" v-model="book.series" />
-      <input class="input-field" type="text" placeholder="Book ID" v-model="book.book_id" />
+      <!-- <input class="input-field" type="text" placeholder="Book ID" v-model="book.book_id" /> -->
       <input class="input-field" type="date" placeholder="Release Date" v-model="book.release_date" />
       <input class="input-field" type="date" placeholder="Date added to Collection" v-model="book.date_added_to_collection" />
 
@@ -70,7 +70,7 @@ export default {
         author_second: "",
         description: "",
         series: "",
-        book_id: "",
+        // book_id: "",
         release_date: "",
         date_added_to_collection: ""
       },
@@ -79,18 +79,18 @@ export default {
 
   methods:{
 
-      saveBook(){
-           bookService.addBook(this.book).then(()=> {
-             this.book.book_name="";
-             this.book.author="";
-             this.book.author_second=""
-             this.book.series="";
-             this.book.book_id="";
-             this.book.date_added_to_collection="";
-             this.book.release_date="";
-             this.book.description="";
-           }).catch(console.error);
-      }
+    saveBook(){
+      bookService.addBook(this.book).then(()=> {
+        this.book.book_name="";
+        this.book.author="";
+        this.book.author_second=""
+        this.book.series="";
+        this.book.book_id="";
+        this.book.date_added_to_collection="";
+        this.book.release_date="";
+        this.book.description="";
+      }).catch(console.error);
+    }
 
   }
 
