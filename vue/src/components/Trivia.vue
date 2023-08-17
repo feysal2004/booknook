@@ -13,9 +13,10 @@
 
 
     <div class="trivia-section">
-      <h1>
-          Trivia Corner
-      </h1>
+      <h2 class="book-box-text">
+        <span class="app-name-text">Trivia </span>
+        <span class="app-name-accent">Corner</span> 
+          </h2>
       <p>
           Welcome to the Trivia Corner! Test out your book knowledge with some trivia below. 
           Choose your difficulty and see how well you can do!
@@ -143,6 +144,8 @@ export default {
     "nav main main"
     "footer footer footer";
   min-height: 100vh;
+    font-family: Arial, sans-serif;
+
 }
 
 /* HEADER CSS CODE */
@@ -220,6 +223,93 @@ export default {
   padding: 1rem;
 }
 
+.trivia-section {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.book-box-text {
+  font-size: 34px;
+}
+
+.trivia-section h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.trivia-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.dropDown {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.select {
+  background-color: #f7f7f7;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.question-content {
+  background-color: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-content h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.question-content h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 1rem;
+}
+
+.question-content button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 1rem;
+}
+
+.question-content button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
+.question-content h4 {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 1rem;
+}
 </style>
 
 

@@ -51,13 +51,14 @@ CREATE TABLE my_books(
 	user_id int not null,
 	username varchar(50) NOT NULL,
 	book_name varchar(200) NOT NULL,
-	isbn varchar null,
+	-- isbn varchar null,
 	author varchar (100) NOT NULL,
 	thumbnail varchar null,
 	description varchar null,
 	read boolean not null default false,
 	wishlist boolean null,
-	CONSTRAINT PK_bookshelf_book_id PRIMARY KEY (bookshelf_book_id)
+	CONSTRAINT PK_bookshelf_book_id PRIMARY KEY(bookshelf_book_id),
+	CONSTRAINT FK_bookshelf_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
 
 );
 
