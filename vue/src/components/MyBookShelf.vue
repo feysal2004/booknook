@@ -24,17 +24,23 @@
         </button>
       </div>
       </div>
-
-      <h5>Full List of My Books</h5>
-      <div class="book-container">
-      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-box">
+    <div class="book-container">
+<h2 class="horizontal-book-box-text">
+        <span class="app-name-text">Full List of </span>
+        <span class="app-name-accent">My Books:</span> 
+      </h2> 
+    <div class="horizontal-book-box">
+      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
+        <div class="book-content">
         <img :src="book.thumbnail" alt="" class="bookCover" />
         <h5>{{ book.book_name }}</h5>
         <p class="book-author">{{ book.author }}</p>
-        <button v-on:click="markAsRead(book)">Read</button>
-        <button v-on:click="removeFromFullList(book)">Remove Book</button>
+        <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
+        <button class="action-button orange" v-on:click="removeFromFullList(book)">Remove Book</button>
       </div>
-      </div>
+     </div>
+    </div>
+    </div>
     </main>
     <nav class="nav">
       <!-- NAVIGATION MENU CODE -->
@@ -173,6 +179,25 @@ export default {
   height: auto;
 }
 
+/* Button Styles */
+.action-button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 10px;
+}
+
+.action-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
+}
+
 /* Main Content Styles */
 .main {
   grid-area: main;
@@ -232,83 +257,58 @@ h5 {
   margin-top: 0.5rem;
 }
 
-.book-container {
+/* BOOK BOXES */
+.horizontal-book-box {
   display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  padding: 0 10px;
-  margin-top: 20px;
-}
-
-.book-box {
-  /* Book box styles */
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 23%; /* Adjusted width */
+  justify-content: center;
+  overflow-x: auto;
+  gap: 20px;
   padding: 10px;
+  align-items: flex-start;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-sizing: auto;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.horizontal-book-box::-webkit-scrollbar {
+  display: none; 
+}
 
-.book-box:hover {
+.horizontal-book-box-text {
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-container {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-content {
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  gap: 1px;
+  width: 245px;
+  height: auto;
+}
+
+.book-content:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.book-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  font-family: Arial, sans-serif;
-}
-
-.book-cover {
-  width: 100px;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
-
-.book-title {
-  font-size: 1rem;
-  margin: 0;
-  white-space: normal;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.book-author {
-  color: #888;
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* HEADER CSS CODE */
-.header {
-  grid-area: header;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #ffffff;
-}
-
-.logo-image {
-  width: 300px;
-  height: auto;
-}
 </style>

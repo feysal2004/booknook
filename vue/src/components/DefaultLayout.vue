@@ -402,18 +402,28 @@ export default {
   gap: 20px;
   padding: 10px;
   align-items: flex-start;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: auto;
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .horizontal-book-box::-webkit-scrollbar {
-  display: none; /* Hide scrollbar */
+  display: none; 
 }
 
 .book-container {
+  background-color: #fff;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   padding: 0 10px;
+  border-radius: 10px;
+
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .book-box-text {
@@ -453,8 +463,7 @@ export default {
   text-align: center;
   display: flex;
   gap: 10px;
-  width: 255px;
-  width: 180px;
+  width: 245px;
   height: auto;
 }
 
