@@ -20,7 +20,7 @@
       <input class="input-field" type="text" placeholder="Second Author" v-model="book.author_second" />
       <input class="input-field" type="text" placeholder="Description" v-model="book.description" />
       <input class="input-field" type="text" placeholder="Series" v-model="book.series" />
-      <input class="input-field" type="text" placeholder="Book ID" v-model="book.book_id" />
+      <!-- <input class="input-field" type="text" placeholder="Book ID" v-model="book.book_id" /> -->
       <input class="input-field" type="date" placeholder="Release Date" v-model="book.release_date" />
       <input class="input-field" type="date" placeholder="Date added to Collection" v-model="book.date_added_to_collection" />
 
@@ -30,31 +30,41 @@
     </main>
 
 
-            <nav class="nav">
+<nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-        <nav class="nav">
+      <nav class="nav-container">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-home-60.png" alt="Home">
-            <span class="nav-text">Home</span>
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-home-60.png" alt="Home" class="nav-icon">
+          <span class="nav-text">Home</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-keyboard-50.png" alt="Forum">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum" class="nav-icon">
           <span>Forum</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" class="nav-icon">
           <span>My BookShelf</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-        <img src="../assets/icons8-library-50.png" alt="BookLibrary">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary" class="nav-icon">
           <span>Book Library</span>
         </div>
-    </nav>
-    </nav>
+
+        <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" class="nav-icon">
+          <span>Trivia Corner</span>
+        </div>
+
+      </nav>
+ </nav>
   </div>
 </template>
 
@@ -70,7 +80,7 @@ export default {
         author_second: "",
         description: "",
         series: "",
-        book_id: "",
+        // book_id: "",
         release_date: "",
         date_added_to_collection: ""
       },
@@ -79,18 +89,18 @@ export default {
 
   methods:{
 
-      saveBook(){
-           bookService.addBook(this.book).then(()=> {
-             this.book.book_name="";
-             this.book.author="";
-             this.book.author_second=""
-             this.book.series="";
-             this.book.book_id="";
-             this.book.date_added_to_collection="";
-             this.book.release_date="";
-             this.book.description="";
-           }).catch(console.error);
-      }
+    saveBook(){
+      bookService.addBook(this.book).then(()=> {
+        this.book.book_name="";
+        this.book.author="";
+        this.book.author_second=""
+        this.book.series="";
+        this.book.book_id="";
+        this.book.date_added_to_collection="";
+        this.book.release_date="";
+        this.book.description="";
+      }).catch(console.error);
+    }
 
   }
 

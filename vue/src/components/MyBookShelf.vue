@@ -4,33 +4,62 @@
       <router-link :to="{ name: 'home' }" class="logo">
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
-
-
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
     </header>
 
-
     <main class="main">
-      <h4>Here are my unread books</h4>
-      <div class="book-container">
-      <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-box">
-        <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
-        <h5>{{ unreadBook.book_name }}</h5>
-        <p class="book-author">{{ unreadBook.author }}</p>
-        <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
-      </div>
-      </div>
+      <h1 class="page-title">My BookShelf</h1>
 
-      <h5>Full List of My Books</h5>
+      <h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Here Are My </span>
+          <span class="app-name-accent">Unread Books</span>
+        </h2>
       <div class="book-container">
-      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-box">
-        <img :src="book.thumbnail" alt="" class="bookCover" />
-        <h5>{{ book.book_name }}</h5>
-        <p class="book-author">{{ book.author }}</p>
-        <button v-on:click="removeFromMyBookshelf(book)">Remove Book</button>
+        
+        <div class="horizontal-book-box">
+        <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+          <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
+          <h5>{{ unreadBook.book_name }}</h5>
+          <p class="book-author">{{ unreadBook.author }}</p>
+          <button class="action-button orange" v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
+        </div>
       </div>
+     </div>
+    </div>
+
+<h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Here Are My </span>
+          <span class="app-name-accent">Read Books</span>
+        </h2>
+      <div class="book-container">
+        <div class="horizontal-book-box">
+          <div v-for="readBook in $store.state.readBooks" v-bind:key="readBook.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+            <img :src="readBook.thumbnail" alt="" class="book-cover" />
+            <h5>{{ readBook.book_name }}</h5>
+            <p class="book-author">{{ readBook.author }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Full List of </span>
+          <span class="app-name-accent">My Books:</span>
+        </h2>
+      <div class="book-container">
+        <div class="horizontal-book-box">
+          <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+              <img :src="book.thumbnail" alt="" class="bookCover" />
+              <h5>{{ book.book_name }}</h5>
+              <p class="book-author">{{ book.author }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <nav class="nav">
@@ -78,7 +107,7 @@
           v-if="$store.state.token != ''"
         >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="TriviaCorner" />
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" />
           <span>Trivia Corner</span>
         </div>
         <div
@@ -94,11 +123,9 @@
     </nav>
   </div>
 </template>
-
 <script>
 import bookService from "../services/BookService.js";
 import bookshelfService from "../services/BookShelfService.js";
-
 export default {
   methods: {
     getMyBooksFromDatabase() {
@@ -112,22 +139,27 @@ export default {
         console.log("here", this.$store.state.unread);
       }).catch(console.log);
     },
+    getReadBooksFromDatabase() {
+      bookshelfService.getReadBooks().then(response => {
+        this.$store.commit("SET_READ_BOOKS", response.data);
+      }).catch(console.error);
+    },
     markBookAsRead(bookId) {
       bookshelfService.changeBookToRead(bookId).then(() => {
         this.getUnreadBooksFromDatabase();
+        this.getReadBooksFromDatabase();
       }).catch(console.error);
     },
     removeFromMyBookshelf(book) {
       bookshelfService.deleteFromMyBookshelf(book).then(() => {
         this.getMyBooksFromDatabase();
       }).catch(console.error);
-    },  
+    },
   },
   created() {
     this.getMyBooksFromDatabase();
     this.getUnreadBooksFromDatabase();
-    console.log("unread books:", this.$store.state.unread);
-    console.log("bookshelf books:", this.$store.state.bookShelf);
+    this.getReadBooksFromDatabase();
   },
 };
 </script>
@@ -145,6 +177,14 @@ export default {
   min-height: 100vh;
 }
 
+.page-title {
+  text-align: center;
+  font-size: 40px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  color: rgb(209, 77, 4);
+}
+
 /* Header Styles */
 .header {
   grid-area: header;
@@ -159,6 +199,25 @@ export default {
 .logo-image {
   width: 300px;
   height: auto;
+}
+
+/* Button Styles */
+.action-button {
+  background-color: rgb(209, 77, 4);
+  color: white;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 10px;
+}
+
+.action-button:hover {
+  background-color: rgb(255, 102, 0);
+  transform: scale(1.05);
 }
 
 /* Main Content Styles */
@@ -220,83 +279,72 @@ h5 {
   margin-top: 0.5rem;
 }
 
-.book-container {
+/* BOOK BOXES */
+.horizontal-book-box {
   display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  padding: 0 10px;
-  margin-top: 20px;
-}
-
-.book-box {
-  /* Book box styles */
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 23%; /* Adjusted width */
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
   padding: 10px;
+  align-items: flex-start;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-sizing: auto;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+ @media (max-width: 768px) {
+    .book-list {
+      max-width: 100%;
+    }
+  }
 
-.book-box:hover {
-  transform: translateY(-5px);
+.horizontal-book-box::-webkit-scrollbar {
+  display: none; 
+}
+
+.horizontal-book-box-text {
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-container {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-container:hover {
+  transform: translateY(-1px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-content {
-  display: flex;
+  font-family: Arial, sans-serif;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  font-family: Arial, sans-serif;
-}
-
-.book-cover {
-  width: 100px;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
-
-.book-title {
-  font-size: 1rem;
-  margin: 0;
-  white-space: normal;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.book-author {
-  color: #888;
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.button-group {
+  text-align: center;
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* HEADER CSS CODE */
-.header {
-  grid-area: header;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #ffffff;
-}
-
-.logo-image {
-  width: 300px;
+  gap: 1px;
+  width: 245px;
   height: auto;
 }
+
+.book-content:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 </style>

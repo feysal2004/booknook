@@ -19,6 +19,10 @@ import axios from 'axios';
       return data
     },
 
+    addBook(book) {
+      return axios.post(`/books/addBook`, book);
+    },
+
     getBooksFromOurDatabase(){
       return axios.get('/books');
     },
