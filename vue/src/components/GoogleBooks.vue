@@ -168,7 +168,7 @@ export default {
       // get author from book
       newBook.author = book.volumeInfo.authors ?book.volumeInfo.authors[0] : 'Unknown Author';
       // get thumbnail from book
-      newBook.thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg');
+      newBook.thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : require('@/assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg');
       // get description from book
       newBook.description = book.volumeInfo.description;
       // newBook.isbn = book.volumeInfo.industryIdentifiers[0].identifier;
