@@ -22,6 +22,7 @@ export default new Vuex.Store({
     topics: [],
     bookShelf:[],
     unread:[],
+    readBooks: [],
     homePageAuthors: [],
     homePageSeries: [],
     homePageTopics: [],
@@ -128,6 +129,9 @@ export default new Vuex.Store({
     },
     SET_UNREAD_BOOKS(state, data) {
       state.unread = data;
+    },
+    SET_READ_BOOKS(state, data) {
+      state.readBooks = data;
     }
 
   },

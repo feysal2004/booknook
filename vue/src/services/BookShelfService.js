@@ -16,6 +16,10 @@ export default{
 
     changeBookToRead(bookId) {
         return axios.put(`/books/myBookShelf/${bookId}`)
+    },
+
+    getReadBooks() {
+        return axios.get(`/books/myBookShelf/read`);
     }
 
 }

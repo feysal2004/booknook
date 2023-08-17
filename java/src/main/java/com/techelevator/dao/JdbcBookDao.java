@@ -102,6 +102,22 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
+    public List<MyBook> getReadBooksFromDatabase(int userId) {
+        List<MyBook> myBooks = new ArrayList<>();
+        String sql = "SELECT * FROM my_books WHERE user_id = ? AND read = 'true' ";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            while (results.next()) {
+                MyBook myBook = mapRowToMyBook(results);
+                myBooks.add(myBook);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return myBooks;
+    }
+
+    @Override
     public void changeBookToRead(int userId, int bookId) {
         String sql = "UPDATE my_books SET read = 'true' WHERE user_id = ? AND bookshelf_book_id = ? ;";
         jdbcTemplate.update(sql, userId, bookId);

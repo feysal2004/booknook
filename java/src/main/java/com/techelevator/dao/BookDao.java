@@ -29,6 +29,8 @@ public interface BookDao {
 
     List<MyBook> getUnreadBooksFromDatabase(int userId);
 
+    List<MyBook> getReadBooksFromDatabase(int userId);
+
     void changeBookToRead(int userId, int bookId);
 
     void deleteMyBook(int userId, int bookId );

@@ -15,25 +15,26 @@
     <main class="main">
       <h4>Here are my unread books</h4>
       <div class="book-container">
-      <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-box">
-        <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
-        <h5>{{ unreadBook.book_name }}</h5>
-        <p class="book-author">{{ unreadBook.author }}</p>
-        <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
+        <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-box">
+          <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
+          <h5>{{ unreadBook.book_name }}</h5>
+          <p class="book-author">{{ unreadBook.author }}</p>
+          <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
+        </div>
       </div>
-      </div>
-    <div class="book-container">
-<h2 class="horizontal-book-box-text">
-        <span class="app-name-text">Full List of </span>
-        <span class="app-name-accent">My Books:</span> 
-      </h2> 
-    <div class="horizontal-book-box">
-      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
-        <div class="book-content">
-        <img :src="book.thumbnail" alt="" class="bookCover" />
-        <h5>{{ book.book_name }}</h5>
-        <p class="book-author">{{ book.author }}</p>
-        <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
+
+      <div class="book-container">
+        <h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Full List of </span>
+          <span class="app-name-accent">My Books:</span> 
+        </h2> 
+        <div class="horizontal-book-box">
+          <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+              <img :src="book.thumbnail" alt="" class="bookCover" />
+             <h5>{{ book.book_name }}</h5>
+             <p class="book-author">{{ book.author }}</p>
+            <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
         <button class="action-button orange" v-on:click="removeFromFullList(book)">Remove Book</button>
       </div>
      </div>
@@ -118,6 +119,11 @@ export default {
         this.$store.commit("SET_UNREAD_BOOKS", response.data);
         console.log("here", this.$store.state.unread);
       }).catch(console.log);
+    },
+    getReadBooksFromDatabase() {
+      bookshelfService.getReadBooks().then(response => {
+        this.$store.commit("SET_READ_BOOKS", response.data);
+      }).catch(console.error);
     },
     markBookAsRead(bookId) {
       bookshelfService.changeBookToRead(bookId).then(() => {
