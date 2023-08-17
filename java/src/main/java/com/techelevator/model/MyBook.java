@@ -6,15 +6,17 @@ public class MyBook {
     public String book_name;
     public String author;
     public String description;
-    public int isbn;
+   // public int isbn;
     public String thumbnail;
+    public int bookshelf_book_id;
 
-    public MyBook(String book_name, String author, String description, int isbn, String thumbnail){
+    public MyBook(String book_name, String author, String description,  String thumbnail, int bookshelf_book_id){
         this.book_name = book_name;
         this.author = author;
         this.description=description;
-        this.isbn=isbn;
+       // this.isbn=isbn;
         this.thumbnail = thumbnail;
+        this.bookshelf_book_id = bookshelf_book_id;
 
 
     }
@@ -47,13 +49,13 @@ public class MyBook {
         this.description = description;
     }
 
-    public int getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
-    }
+//    public int getIsbn() {
+//        return isbn;
+//    }
+//
+//    public void setIsbn(int isbn) {
+//        this.isbn = isbn;
+//    }
 
     public String getThumbnail() {
         return thumbnail;
@@ -61,5 +63,13 @@ public class MyBook {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public int getBookshelf_book_id() {
+        return bookshelf_book_id;
+    }
+
+    public void setBookshelf_book_id(int bookshelf_book_id) {
+        this.bookshelf_book_id = bookshelf_book_id;
     }
 }

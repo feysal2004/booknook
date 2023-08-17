@@ -21,7 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     topics: [],
     bookShelf:[],
-    unRead:[],
+    unread:[],
     homePageAuthors: [],
     homePageSeries: [],
     homePageTopics: [],
@@ -125,6 +125,9 @@ export default new Vuex.Store({
     },
     ADD_TO_BOOKSHELF(state, book){
       state.bookShelf.push(book);
+    },
+    SET_UNREAD_BOOKS(state, data) {
+      state.unread = data;
     }
 
   },

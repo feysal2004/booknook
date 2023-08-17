@@ -47,8 +47,8 @@ public class JdbcBookDao implements BookDao {
     @Override
     public MyBook addToBookShelf(MyBook myBook, User user) {
 
-        String sql = "insert into my_books (book_name, author, user_id, username, isbn, thumbnail, description) values (?,?,?,?,?, ?, ?) ;";
-        jdbcTemplate.update(sql, myBook.getBook_name(),myBook.getAuthor(),user.getId(),user.getUsername(),myBook.getIsbn(), myBook.getThumbnail(), myBook.getDescription());
+        String sql = "insert into my_books (book_name, author, user_id, username, thumbnail, description) values (?,?,?,?,?, ?) ;";
+        jdbcTemplate.update(sql, myBook.getBook_name(),myBook.getAuthor(),user.getId(),user.getUsername(), myBook.getThumbnail(), myBook.getDescription());
 
         return myBook;
     }
@@ -86,10 +86,31 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public void deleteMyBook(User user, MyBook myBook) {
-        String sql = "DELETE FROM my_books where bookshelf_book_id = ?;";
-        jdbcTemplate.update(sql);
+    public List<MyBook> getUnreadBooksFromDatabase(int userId) {
+        List<MyBook> myBooks = new ArrayList<>();
+        String sql = "SELECT * FROM my_books WHERE user_id = ? AND read = 'false' ";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            while (results.next()) {
+                MyBook myBook = mapRowToMyBook(results);
+                myBooks.add(myBook);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return myBooks;
+    }
 
+    @Override
+    public void changeBookToRead(int userId, int bookId) {
+        String sql = "UPDATE my_books SET read = 'true' WHERE user_id = ? AND bookshelf_book_id = ? ;";
+        jdbcTemplate.update(sql, userId, bookId);
+    }
+
+    @Override
+    public void deleteMyBook(int userId, int bookId) {
+        String sql = "DELETE FROM my_books where bookshelf_book_id = ? AND user_id = ?;";
+        jdbcTemplate.update(sql, bookId, userId);
 
     }
 
@@ -112,7 +133,8 @@ public class JdbcBookDao implements BookDao {
         myBook.setBook_name(rs.getString("book_name"));
         myBook.setDescription(rs.getString("description"));
         myBook.setThumbnail(rs.getString("thumbnail"));
-        myBook.setIsbn(rs.getInt("isbn"));
+        // myBook.setIsbn(rs.getInt("isbn"));
+        myBook.setBookshelf_book_id(rs.getInt("bookshelf_book_id"));
         return myBook;
     }
 

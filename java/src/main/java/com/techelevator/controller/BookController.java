@@ -53,12 +53,27 @@ public class BookController {
         return bookDao.getMyBooksFromDatabase(userId);
     }
 
-    @RequestMapping(path="/myBookShelf", method = RequestMethod.DELETE)
-    public void deleteMyBook(Principal principal, int book_book_id){
+    @RequestMapping(path="/myBookShelf/unread", method = RequestMethod.GET)
+    public List<MyBook> getListOfUnreadBooks(Principal principal) {
         User user = userDao.getUserByUsername(principal.getName());
-        
+        int userId = user.getId();
+        return bookDao.getUnreadBooksFromDatabase(userId);
+    }
 
 
+    @RequestMapping(path="/myBookShelf", method = RequestMethod.DELETE)
+    public void deleteMyBook(Principal principal, @RequestBody MyBook myBook){
+        User user = userDao.getUserByUsername(principal.getName());
+        int userId = user.getId();
+        int bookId = myBook.bookshelf_book_id;
+        bookDao.deleteMyBook(userId, bookId);
+    }
+
+    @RequestMapping(path="/myBookShelf/{bookId}", method = RequestMethod.PUT)
+    public void updateBookToRead(Principal principal, @PathVariable int bookId) {
+        User user = userDao.getUserByUsername(principal.getName());
+        int userId = user.getId();
+        bookDao.changeBookToRead(userId, bookId);
     }
 
 
