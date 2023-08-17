@@ -15,13 +15,11 @@
     <main class="main">
       <h4>Here are my unread books</h4>
       <div class="book-container">
-      <div v-for="book in $store.state.unRead" v-bind:key="book.bookshelf_book_id" class="book-box">
-        <img :src="book.thumbnail" alt="" class="book-cover" />
-        <h5>{{ book.book_name }}</h5>
-        <p class="book-author">{{ book.author }}</p>
-        <button v-on:click="moveToReadingList(book)">
-          Move to Reading List
-        </button>
+      <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-box">
+        <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
+        <h5>{{ unreadBook.book_name }}</h5>
+        <p class="book-author">{{ unreadBook.author }}</p>
+        <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
       </div>
       </div>
 
@@ -31,8 +29,7 @@
         <img :src="book.thumbnail" alt="" class="bookCover" />
         <h5>{{ book.book_name }}</h5>
         <p class="book-author">{{ book.author }}</p>
-        <button v-on:click="markAsRead(book)">Read</button>
-        <button v-on:click="removeFromFullList(book)">Remove Book</button>
+        <button v-on:click="removeFromMyBookshelf(book)">Remove Book</button>
       </div>
       </div>
     </main>
@@ -100,46 +97,37 @@
 
 <script>
 import bookService from "../services/BookService.js";
+import bookshelfService from "../services/BookShelfService.js";
+
 export default {
   methods: {
     getMyBooksFromDatabase() {
-      bookService
-        .getBooksFromBookshelf()
-        .then((response) => {
+      bookService.getBooksFromBookshelf().then((response) => {
           this.$store.commit("SET_BOOKSHELF_FROM_DATABASE", response.data);
-        })
-        .catch(console.error);
+        }).catch(console.error);
     },
-    markAsRead(book) {
-      this.$store.state.unRead.push(book);
-      const index = this.$store.state.bookShelf.findIndex(
-        (b) => b.bookshelf_book_id === book.bookshelf_book_id
-      );
-      if (index !== -1) {
-        this.$store.state.bookShelf.splice(index, 1);
-      }
+    getUnreadBooksFromDatabase() {
+      bookshelfService.getUnreadBooks().then(response => {
+        this.$store.commit("SET_UNREAD_BOOKS", response.data);
+        console.log("here", this.$store.state.unread);
+      }).catch(console.log);
     },
-    moveToReadingList(book) {
-      const index = this.$store.state.unRead.findIndex(
-        (b) => b.bookshelf_book_id === book.bookshelf_book_id
-      );
-      if (index !== -1) {
-        this.$store.state.unRead.splice(index, 1);
-      }
-
-      this.$store.state.bookShelf.push(book);
+    markBookAsRead(bookId) {
+      bookshelfService.changeBookToRead(bookId).then(() => {
+        this.getUnreadBooksFromDatabase();
+      }).catch(console.error);
     },
-    removeFromFullList(book) {
-      const index = this.$store.state.bookShelf.findIndex(
-        (b) => b.bookshelf_book_id === book.bookshelf_book_id
-      );
-      if (index !== -1) {
-        this.$store.state.bookShelf.splice(index, 1);
-      }
-    },
+    removeFromMyBookshelf(book) {
+      bookshelfService.deleteFromMyBookshelf(book).then(() => {
+        this.getMyBooksFromDatabase();
+      }).catch(console.error);
+    },  
   },
   created() {
     this.getMyBooksFromDatabase();
+    this.getUnreadBooksFromDatabase();
+    console.log("unread books:", this.$store.state.unread);
+    console.log("bookshelf books:", this.$store.state.bookShelf);
   },
 };
 </script>
