@@ -1,7 +1,7 @@
 <template>
   <div class="topic-list">
     <header class="header">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }" >
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
@@ -304,7 +304,7 @@ export default {
 /* HEADER CSS CODE */
 .header {
   grid-area: header;
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -312,13 +312,8 @@ export default {
  
 }
 
-.logo img {
-  width: 550px; 
-  height: auto; 
-}
-
 .logo-image {
-  width: 400px; 
+  width: 300px; 
   height: auto; 
 }
 

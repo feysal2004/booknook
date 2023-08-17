@@ -1,7 +1,7 @@
 <template>
     <div class="trivia-corner">
     <header class="header">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }" >
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 

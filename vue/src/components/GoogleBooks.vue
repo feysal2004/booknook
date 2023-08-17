@@ -1,7 +1,7 @@
 <template>
   <div class="google-books">
     <header class="header">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }" >
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
@@ -412,7 +412,7 @@ export default {
 
 .book-box-admin {
   background-color: #fff;
-  width: calc(100% - 15px);
+  width: calc(80% - 15px);
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 6px black;

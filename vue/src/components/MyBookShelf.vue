@@ -1,7 +1,7 @@
 <template>
   <div class="myBookShelf">
     <header class="header">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }">
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
       <div class="login-logout">
@@ -82,15 +82,6 @@
           <span class="nav-box"></span>
           <img src="../assets/icons8-keyboard-50.png" alt="Forum" />
           <span>Forum</span>
-        </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'MyBookShelf' })"
-          v-if="$store.state.token != ''"
-        >
-          <span class="nav-box"></span>
-          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" />
-          <span>My BookShelf</span>
         </div>
         <div
           class="nav-item"
