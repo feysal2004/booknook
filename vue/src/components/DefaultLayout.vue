@@ -13,16 +13,13 @@
 
 
 
-
-
-
-
     <map class="map-container">
       <div class="map-box">
       <AddGoogleMapVue />
       </div>
+      
 
-                     <div class="bookstore-h-container">  
+  <div class="bookstore-h-container">  
     <div class="bookstore-highlight">
       <h1 class="highlight-header">Bookstore Highlight</h1> 
       <img :src="featuredBookstore.image" class="bookstore-image" :alt="featuredBookstore.name" />
@@ -43,7 +40,7 @@
         <span class="app-name-text">Look at a popular book series! </span>
         <span class="app-name-accent">Now Showing: {{this.series}}</span> 
           </h2>
-      <div class="book-box">
+      <div class="horizontal-book-box">
         <!-- Content of the first book box -->
         <!-- By Series/Title -->
         <div v-for="book in $store.state.homePageSeries" v-bind:key="book.bookId" class="book-content">
@@ -60,7 +57,8 @@
 <h2 class="book-box-text">
         <span class="app-name-text">Look at a popular Author! </span>
         <span class="app-name-accent">Now Showing: {{this.author}}</span> 
-          </h2>      <div class="book-box">
+          </h2>      
+      <div class="horizontal-book-box">
         <!-- Content of the second book box -->
         <!-- By Author -->
         <div v-for="book in $store.state.homePageAuthors" v-bind:key="book.bookId" class="book-content">
@@ -77,7 +75,8 @@
 <h2 class="book-box-text">
         <span class="app-name-text">Look at a popular Topic! </span>
         <span class="app-name-accent">Now Showing: {{this.topics}}</span> 
-          </h2>      <div class="book-box">
+      </h2>      
+      <div class="horizontal-book-box">
         <!-- Content of the third book box -->
         <!-- By Topic -->
         <div v-for="book in $store.state.homePageTopics" v-bind:key="book.bookId" class="book-content">
@@ -219,7 +218,7 @@ export default {
       return authors[randomNumber];
     },
     randomizeSeries() {
-      let series = ["Game of Thrones", "Harry Potter", "Dune", "Percy Jackson", "Handmaid's Tale"];
+      let series = ["Game of Thrones", "Harry Potter", "Dune", "Percy Jackson", "Handmaid's Tale", "Twilight", "The Raven Cycle"];
       let randomNumber = Math.floor(Math.random() * series.length);
       return series[randomNumber];
     },
@@ -279,6 +278,7 @@ export default {
   cursor: pointer;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin-bottom: 1rem;
+  margin-right: 350px;
 }
 
 .nav-box {
@@ -396,6 +396,26 @@ export default {
   text-align: center;
 }
 
+.horizontal-book-box {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px;
+  align-items: flex-start;
+}
+
+.horizontal-book-box::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 10px;
+}
+
 .book-box-text {
   font-family: Arial, sans-serif;
   font-size: 25px;
@@ -416,6 +436,9 @@ export default {
   text-align: center;
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
 }
 
 .book-box:hover {
@@ -425,7 +448,13 @@ export default {
 
 .book-content {
   font-family: Arial, sans-serif;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  gap: 10px;
   width: 255px;
+  width: 180px;
   height: auto;
 }
 
