@@ -12,6 +12,8 @@
     </header>
 
     <main class="main">
+<h1 class="page-title">Book Library</h1>
+
       <!-- books from google books api -->
       <div class="search-box">
         <div class="search-container">
@@ -205,6 +207,14 @@ export default {
     "nav main main"
     "footer footer footer";
   min-height: 100vh;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 35px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  color: rgb(209, 77, 4);
 }
 
 /* HEADER CSS CODE */

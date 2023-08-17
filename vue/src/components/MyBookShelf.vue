@@ -10,6 +10,8 @@
     </header>
 
     <main class="main">
+      <h1 class="page-title">My BookShelf</h1>
+
       <h2 class="horizontal-book-box-text">
           <span class="app-name-text">Here Are My </span>
           <span class="app-name-accent">Unread Books</span>
@@ -175,6 +177,14 @@ export default {
   min-height: 100vh;
 }
 
+.page-title {
+  text-align: center;
+  font-size: 40px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  color: rgb(209, 77, 4);
+}
+
 /* Header Styles */
 .header {
   grid-area: header;
@@ -272,8 +282,11 @@ h5 {
 /* BOOK BOXES */
 .horizontal-book-box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 20px;
   padding: 10px;
   align-items: flex-start;
@@ -282,6 +295,12 @@ h5 {
   box-sizing: auto;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
+ @media (max-width: 768px) {
+    .book-list {
+      max-width: 100%;
+    }
+  }
 
 .horizontal-book-box::-webkit-scrollbar {
   display: none; 
@@ -308,7 +327,7 @@ h5 {
 }
 
 .book-container:hover {
-  transform: translateY(-5px);
+  transform: translateY(-1px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -324,7 +343,7 @@ h5 {
 }
 
 .book-content:hover {
-  transform: translateY(-5px);
+  transform: translateY(-1px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
