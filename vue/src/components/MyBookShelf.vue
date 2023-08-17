@@ -40,61 +40,36 @@
     </div>
     </div>
     </main>
-    <nav class="nav">
-      <!-- NAVIGATION MENU CODE -->
-      <nav class="nav">
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'home' })"
-          v-if="$store.state.token != ''"
-        >
+     <nav class="nav">
+                     <!-- NAVIGATION MENU CODE -->
+      <nav class="nav-container">
+        <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-home-60.png" alt="Home" />
+          <img src="../assets/icons8-home-60.png" alt="Home" class="nav-icon">
           <span class="nav-text">Home</span>
         </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'Topic' })"
-          v-if="$store.state.token != ''"
-        >
+        
+        <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-keyboard-50.png" alt="Forum" />
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum" class="nav-icon">
           <span>Forum</span>
         </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'MyBookShelf' })"
-          v-if="$store.state.token != ''"
-        >
+
+        <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" />
-          <span>My BookShelf</span>
-        </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'BookLibrary' })"
-          v-if="$store.state.token != ''"
-        >
-          <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="BookLibrary" />
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary" class="nav-icon">
           <span>Book Library</span>
         </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'TriviaCorner' })"
-          v-if="$store.state.token != ''"
-        >
+
+        <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" />
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" class="nav-icon">
           <span>Trivia Corner</span>
         </div>
-        <div
-          class="nav-item"
-          @click="$router.push({ name: 'addBook' })"
-          v-if="$store.state.user.username === 'admin'"
-        >
+
+        <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
           <span class="nav-box"></span>
-          <img src="../assets/icons8-plus-48.png" alt="AddBook" />
+          <img src="../assets/icons8-plus-48.png" alt="AddBook" class="nav-icon">
           <span>Add Book</span>
         </div>
       </nav>

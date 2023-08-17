@@ -30,31 +30,41 @@
     </main>
 
 
-            <nav class="nav">
+<nav class="nav">
                      <!-- NAVIGATION MENU CODE -->
-        <nav class="nav">
+      <nav class="nav-container">
         <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-home-60.png" alt="Home">
-            <span class="nav-text">Home</span>
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-home-60.png" alt="Home" class="nav-icon">
+          <span class="nav-text">Home</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-keyboard-50.png" alt="Forum">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum" class="nav-icon">
           <span>Forum</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'MyBookShelf' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" class="nav-icon">
           <span>My BookShelf</span>
         </div>
+
         <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
-            <span class="nav-box"></span>
-        <img src="../assets/icons8-library-50.png" alt="BookLibrary">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary" class="nav-icon">
           <span>Book Library</span>
         </div>
-    </nav>
-    </nav>
+
+        <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" class="nav-icon">
+          <span>Trivia Corner</span>
+        </div>
+
+      </nav>
+ </nav>
   </div>
 </template>
 
