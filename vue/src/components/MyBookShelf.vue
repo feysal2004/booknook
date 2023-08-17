@@ -4,88 +4,126 @@
       <router-link :to="{ name: 'home' }" class="logo">
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
-
-
       <div class="login-logout">
         <router-link v-bind:to="{ name: 'logout' }" class="login-logout-button" v-if="$store.state.token != ''">Sign In/Sign Out</router-link>
       </div>
     </header>
 
-
     <main class="main">
-      <div class="book-container">
       <h2 class="horizontal-book-box-text">
-        <span class="app-name-text">Here's a List of </span>
-        <span class="app-name-accent">My Books:</span> 
-      </h2> 
+          <span class="app-name-text">Here Are My </span>
+          <span class="app-name-accent">Unread Books</span>
+        </h2>
       <div class="book-container">
-      <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-box">
-        <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
-        <h5>{{ unreadBook.book_name }}</h5>
-        <p class="book-author">{{ unreadBook.author }}</p>
-        <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
-      </div>
-      </div>
-      </div>
-    <div class="book-container">
-<h2 class="horizontal-book-box-text">
-        <span class="app-name-text">Full List of </span>
-        <span class="app-name-accent">My Books:</span> 
-      </h2> 
-    <div class="horizontal-book-box">
-      <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
-        <div class="book-content">
-        <img :src="book.thumbnail" alt="" class="bookCover" />
-        <h5>{{ book.book_name }}</h5>
-        <p class="book-author">{{ book.author }}</p>
-        <button class="action-button orange" v-on:click="markAsRead(book)">Read</button>
-        <button class="action-button orange" v-on:click="removeFromFullList(book)">Remove Book</button>
+        
+        <div class="horizontal-book-box">
+        <div v-for="unreadBook in $store.state.unread" v-bind:key="unreadBook.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+          <img :src="unreadBook.thumbnail" alt="" class="book-cover" />
+          <h5>{{ unreadBook.book_name }}</h5>
+          <p class="book-author">{{ unreadBook.author }}</p>
+          <button class="action-button orange" v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
+        </div>
       </div>
      </div>
     </div>
+
+<h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Here Are My </span>
+          <span class="app-name-accent">Read Books</span>
+        </h2>
+      <div class="book-container">
+        <div class="horizontal-book-box">
+          <div v-for="readBook in $store.state.readBooks" v-bind:key="readBook.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+            <img :src="readBook.thumbnail" alt="" class="book-cover" />
+            <h5>{{ readBook.book_name }}</h5>
+            <p class="book-author">{{ readBook.author }}</p>
+          </div>
+        </div>
+      </div>
     </div>
+
+<h2 class="horizontal-book-box-text">
+          <span class="app-name-text">Full List of </span>
+          <span class="app-name-accent">My Books:</span>
+        </h2>
+      <div class="book-container">
+        <div class="horizontal-book-box">
+          <div v-for="book in $store.state.bookShelf" v-bind:key="book.bookshelf_book_id" class="book-content">
+            <div class="book-content">
+              <img :src="book.thumbnail" alt="" class="bookCover" />
+              <h5>{{ book.book_name }}</h5>
+              <p class="book-author">{{ book.author }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-     <nav class="nav">
-                     <!-- NAVIGATION MENU CODE -->
-      <nav class="nav-container">
-        <div class="nav-item" @click="$router.push({ name: 'home' })" v-if="$store.state.token != ''">
+    <nav class="nav">
+      <!-- NAVIGATION MENU CODE -->
+      <nav class="nav">
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'home' })"
+          v-if="$store.state.token != ''"
+        >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-home-60.png" alt="Home" class="nav-icon">
+          <img src="../assets/icons8-home-60.png" alt="Home" />
           <span class="nav-text">Home</span>
         </div>
-        
-        <div class="nav-item" @click="$router.push({ name: 'Topic' })" v-if="$store.state.token != ''">
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'Topic' })"
+          v-if="$store.state.token != ''"
+        >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-keyboard-50.png" alt="Forum" class="nav-icon">
+          <img src="../assets/icons8-keyboard-50.png" alt="Forum" />
           <span>Forum</span>
         </div>
-
-        <div class="nav-item" @click="$router.push({ name: 'BookLibrary' })" v-if="$store.state.token != ''">
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'MyBookShelf' })"
+          v-if="$store.state.token != ''"
+        >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-library-50.png" alt="BookLibrary" class="nav-icon">
+          <img src="../assets/icons8-bookcase-50.png" alt="BookShelf" />
+          <span>My BookShelf</span>
+        </div>
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'BookLibrary' })"
+          v-if="$store.state.token != ''"
+        >
+          <span class="nav-box"></span>
+          <img src="../assets/icons8-library-50.png" alt="BookLibrary" />
           <span>Book Library</span>
         </div>
-
-        <div class="nav-item" @click="$router.push({ name: 'TriviaCorner' })" v-if="$store.state.token != ''">
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'TriviaCorner' })"
+          v-if="$store.state.token != ''"
+        >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" class="nav-icon">
+          <img src="../assets/icons8-game-50.png" alt="TriviaCorner" />
           <span>Trivia Corner</span>
         </div>
-
-        <div class="nav-item" @click="$router.push({ name: 'addBook' })"  v-if="$store.state.user.username === 'admin'">
+        <div
+          class="nav-item"
+          @click="$router.push({ name: 'addBook' })"
+          v-if="$store.state.user.username === 'admin'"
+        >
           <span class="nav-box"></span>
-          <img src="../assets/icons8-plus-48.png" alt="AddBook" class="nav-icon">
+          <img src="../assets/icons8-plus-48.png" alt="AddBook" />
           <span>Add Book</span>
         </div>
       </nav>
     </nav>
   </div>
 </template>
-
 <script>
 import bookService from "../services/BookService.js";
 import bookshelfService from "../services/BookShelfService.js";
-
 export default {
   methods: {
     getMyBooksFromDatabase() {
@@ -99,22 +137,27 @@ export default {
         console.log("here", this.$store.state.unread);
       }).catch(console.log);
     },
+    getReadBooksFromDatabase() {
+      bookshelfService.getReadBooks().then(response => {
+        this.$store.commit("SET_READ_BOOKS", response.data);
+      }).catch(console.error);
+    },
     markBookAsRead(bookId) {
       bookshelfService.changeBookToRead(bookId).then(() => {
         this.getUnreadBooksFromDatabase();
+        this.getReadBooksFromDatabase();
       }).catch(console.error);
     },
     removeFromMyBookshelf(book) {
       bookshelfService.deleteFromMyBookshelf(book).then(() => {
         this.getMyBooksFromDatabase();
       }).catch(console.error);
-    },  
+    },
   },
   created() {
     this.getMyBooksFromDatabase();
     this.getUnreadBooksFromDatabase();
-    console.log("unread books:", this.$store.state.unread);
-    console.log("bookshelf books:", this.$store.state.bookShelf);
+    this.getReadBooksFromDatabase();
   },
 };
 </script>
@@ -262,6 +305,11 @@ h5 {
   border-radius: 10px;
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-content {
