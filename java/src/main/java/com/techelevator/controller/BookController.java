@@ -56,13 +56,13 @@ public class BookController {
     @RequestMapping(path="/myBookShelf/unread", method = RequestMethod.GET)
     public List<MyBook> getListOfUnreadBooks(Principal principal) {
         User user = userDao.getUserByUsername(principal.getName());
-<<<<<<< HEAD
 
-=======
+
+
         int userId = user.getId();
         return bookDao.getUnreadBooksFromDatabase(userId);
     }
->>>>>>> 20799caae68a9e5e35769b2cf75a462f16d96158
+
 
 
     @RequestMapping(path="/myBookShelf", method = RequestMethod.DELETE)
