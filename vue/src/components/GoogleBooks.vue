@@ -44,11 +44,13 @@
 
       <!-- books from internal database -->
       <div class="book-container">
-        <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" >
+        <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" class="book-box-admin" >
           <div class="book-content">
             <img src="../assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg" alt="" class="bookCover resizable-image" />  <!-- add no image icon -->
             <h2 class="book-title"> {{ truncateTitle(book.book_name, 10) }} </h2>
             <p class="book-author"> {{ book.author }} </p>
+
+            <button class="submit-button" v-on:click="addToBookshelf(book)">Add to Bookshelf</button>
           </div>
         </div>
       </div>
@@ -397,6 +399,18 @@ export default {
 .resizable-image {
   max-width: 235px; 
   height: auto;
+}
+
+.book-box-admin {
+  background-color: #fff;
+  width: calc(100% - 15px);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px black;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .nav {
