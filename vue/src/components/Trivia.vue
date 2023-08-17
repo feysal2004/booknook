@@ -38,10 +38,10 @@
                       <span v-html="triviaQ.question" ></span>
                   </h2>
                   <h3>
-                    <p>A. </p>
-                    <p>B. </p>
-                    <p>C. </p>
-                    <p>D. </p>
+                    <p>A) {{triviaQ.allPossibleAnswers[0]}} </p>
+                    <p>B) {{triviaQ.allPossibleAnswers[1]}} </p>
+                    <p>C) {{triviaQ.allPossibleAnswers[2]}} </p>
+                    <p>D) {{triviaQ.allPossibleAnswers[3]}} </p>
                   </h3>
                   <button @click="revealAnswer(triviaQ)" >Reveal the Correct Answer</button>
                   <div v-if="showAnswer[triviaQ.question]" >
@@ -102,32 +102,31 @@
 import triviaService from '../services/TriviaService';
 
 export default {
-    data() {
-        return {
-            difficultyChoice: "",
-            showAnswer: {},
-            possibleAnswers: []
-        }
+  data() {
+      return {
+          difficultyChoice: "",
+          showAnswer: {},
+      }
+  },
+  methods: {
+    getTriviaByCount(number) {
+        triviaService.getTriviaByNumberOfQuestions(number);
     },
-    methods: {
-        getTriviaByCount(number) {
-            triviaService.getTriviaByNumberOfQuestions(number);
-        },
-        get10MultipleChoiceQuestions() {
-            triviaService.getMultipleChoiceQuestions().then(response => {
-                this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
-            }).catch(console.error);
-        },
-        get10QuestionsByDifficulty(difficultyChoice) {
-            triviaService.get10QuestionsChooseDifficulty(difficultyChoice).then(response => {
-                this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
-            }).catch(console.error);
-        },
-        revealAnswer(triviaQ) {
-            this.showAnswer[triviaQ.question] = true;
-            this.$forceUpdate();
-        }
+    get10MultipleChoiceQuestions() {
+        triviaService.getMultipleChoiceQuestions().then(response => {
+            this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
+        }).catch(console.error);
     },
+    get10QuestionsByDifficulty(difficultyChoice) {
+        triviaService.get10QuestionsChooseDifficulty(difficultyChoice).then(response => {
+          this.$store.commit("SET_TRIVIA_DIFFICULTY", response.data.results);
+        }).catch(console.error);
+    },
+    revealAnswer(triviaQ) {
+        this.showAnswer[triviaQ.question] = true;
+        this.$forceUpdate();
+    }
+  }
    
 }
 </script>
