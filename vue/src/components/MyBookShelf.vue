@@ -26,6 +26,7 @@
         <button v-on:click="markBookAsRead(unreadBook.bookshelf_book_id)">Mark as Read</button>
       </div>
       </div>
+      </div>
     <div class="book-container">
 <h2 class="horizontal-book-box-text">
         <span class="app-name-text">Full List of </span>
