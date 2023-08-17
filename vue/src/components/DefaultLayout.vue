@@ -251,14 +251,14 @@ export default {
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "header header header"
-    "nav main trivia"
+    "nav main map"
     "nav main map"
     "footer footer footer";
   min-height: 100vh;
 }
 
 .trivia-container {
-  grid-area: trivia;
+  grid-area: nav;
   width: 310px; 
   height: 100%; 
   overflow: hidden; 
@@ -274,6 +274,7 @@ export default {
 
 /* NAV MENU CSS CODE */
 .nav-item {
+  grid-area: nav;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -324,6 +325,7 @@ export default {
 /* BOOKSTORE HIGHLIGHT CODE */
 
 .bookstore-h-container {
+  grid-area: map;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -401,28 +403,6 @@ export default {
 }
 
 
-/* APPNAME CSS CODE */
-.app-name {
-  grid-area: app-name;
-  text-align: center;
-  padding: 1rem;
-  font-family: Arial, sans-serif;
-  font-size: 4rem;
-}
-
-.app-name-text {
-  color: rgb(175, 174, 174);
-}
-
-.app-name-accent {
-  color: rgb(209, 77, 4);
-}
-
-
-
-
-
-
 /* BOOK BOXES */
 .main {
   grid-area: main;
@@ -433,6 +413,7 @@ export default {
   gap: 20px; 
   padding: 0.5rem;
   text-align: center;
+  max-width: 600px;
 }
 
 .book-box-text {
@@ -455,6 +436,8 @@ export default {
   text-align: center;
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
+  margin-right: 650px;
+
 }
 
 .book-box:hover {
@@ -475,11 +458,13 @@ export default {
 
 
 .book-container {
+  grid-area: main;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   margin-bottom: 20px;
+  
 }
 
 
@@ -489,7 +474,7 @@ export default {
 /* HEADER CSS CODE */
 .header {
   grid-area: header;
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -509,6 +494,7 @@ export default {
 
 /* SIGN IN SIGN OUT BUTTON CSS CODE */
 .login-logout-button {
+  grid-area: header;
   padding: 0.5rem 1rem;
   border: none;
   background-color: rgb(209, 77, 4);
@@ -529,17 +515,10 @@ export default {
 
 
 
-
-
-.app-name {
-  grid-area: app-name;
-  text-align: center;
-  padding: 1rem;
-}
-
 .main {
   grid-area: main;
   padding: 0.5rem;
+  text-align: center;
 }
 
 .footer {
