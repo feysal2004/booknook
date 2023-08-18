@@ -45,9 +45,9 @@
       </div>
 
       <!-- books from internal database -->
-      <div class="book-container">
+      <div class="book-container-admin">
         <div v-for="book in $store.state.adminBooks" v-bind:key="book.bookId" class="book-box-admin" >
-          <div class="book-content">
+          <div class="book-content-admin">
             <img src="../assets/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg" alt="" class="bookCover resizable-image" />  <!-- add no image icon -->
             <h2 class="book-title"> {{ truncateTitle(book.book_name, 10) }} </h2>
             <p class="book-author"> {{ book.author }} </p>
@@ -412,7 +412,7 @@ export default {
 
 .book-box-admin {
   background-color: #fff;
-  width: calc(80% - 15px);
+  width: 400px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 3px 6px black;
@@ -420,6 +420,23 @@ export default {
   font-family: Arial, sans-serif;
   margin-bottom: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-content-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.book-container-admin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 10px;
+  flex-direction: row;
 }
 
 .nav {
