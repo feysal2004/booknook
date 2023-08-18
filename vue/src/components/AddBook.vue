@@ -3,7 +3,7 @@
   <div class="page-container">
     <header class="header">
       <div class="logo-container">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }" >
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 </div>

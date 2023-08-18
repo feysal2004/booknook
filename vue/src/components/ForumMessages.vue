@@ -1,7 +1,7 @@
 <template>
   <div class="topic-list">
     <header class="header">
-      <router-link :to="{ name: 'home' }" class="logo">
+      <router-link :to="{ name: 'home' }" >
         <img class="logo-image" src="../assets/image.png" alt="Logo" />
       </router-link>
 
@@ -306,10 +306,6 @@ export default {
   background-color: #ffffff;
 }
 
-.logo img {
-  width: 550px;
-  height: auto;
-}
 
 .logo-image {
   width: 300px;
