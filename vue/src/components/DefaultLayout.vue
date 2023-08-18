@@ -47,8 +47,7 @@
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>    
-            <button class="submit-button" v-on:click="addToBookshelf(book)">Add to Bookshelf</button>       
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
           </div>
         </div>
       </div>
@@ -66,8 +65,7 @@
           <div class="book-content">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
-            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>         
-            <button class="submit-button" v-on:click="addToBookshelf(book)">Add to Bookshelf</button>  
+            <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
           </div>
         </div>
       </div>
@@ -86,8 +84,6 @@
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" class="bookCover" />
             <h2 class="book-title">{{ truncateTitle(book.volumeInfo.title, 10) }}</h2>
             <p class="book-author">{{ book.volumeInfo.authors.join(', ') }}</p>           
-
-            <button class="submit-button" v-on:click="addToBookshelf(book)">Add to Bookshelf</button>
           </div>
         </div>
       </div>
@@ -404,7 +400,7 @@ export default {
   display: flex;
   overflow-x: auto;
   gap: 20px;
-  padding: 5px;
+  padding: 10px;
   align-items: flex-start;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -423,8 +419,9 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  padding: 0 5px;
+  padding: 0 10px;
   border-radius: 10px;
+
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -441,9 +438,9 @@ export default {
   background-color: #fff;
   display: flex;
   align-items: center;
-  width: 100%; 
+  width: 100%; /* Adjusted width */
   height: auto;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -465,7 +462,7 @@ export default {
   align-items: center;
   text-align: center;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   width: 245px;
   height: auto;
 }
